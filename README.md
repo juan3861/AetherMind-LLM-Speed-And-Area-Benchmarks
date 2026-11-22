@@ -96,3 +96,31 @@ Medições empíricas via `llama-bench` (`pp512` / `tg128`) e `llama-server` (`c
 | **[`raw_data/areas/`](raw_data/areas/)** | Provas isoladas por área, `QUALITY_RANKING_FINAL.txt`, `PARIDADE_REPORT_FINAL.txt`, Battery 50 e logs `campeonato_*.log`. |
 | **[`registry_docs/`](registry_docs/)** | 4 documentos canônicos históricos do laboratório (`LLM_BENCHMARK_AND_PRUNING_REGISTRY.md`, `ROTOR_FLEET_STATE.md`, etc.). |
 | **[`scripts/`](scripts/)** | Scripts Python e `.bat` reprodutíveis de velocidade (`scripts/speed/`) e avaliações isoladas (`scripts/areas/`). |
+
+---
+
+## ⚡ Estudo A/B de Otimização de Hardware nos Campeões (`K2-Horizon-0.9B [Q6_K]` & `3.7B [Q5_K_M]`)
+
+Comparativo empírico controlado ([`proof_ab_tuning_winners.json`](raw_data/speed_server_mtp_pld/proof_ab_tuning_winners.json) · [`ab_tuning_winners.log`](raw_data/speed_server_mtp_pld/ab_tuning_winners.log)) medindo latência fria, reuse de prefixo (`--cache-reuse 256`), threads assimétricos (`-t 7 -tb 14 -C 0x5555555`), KV cache `q8_0`, `-fa` e `ngram-cache` mantendo validação cognitiva simultânea:
+
+### 1. `K2-Horizon-0.9B [Q6_K]` (846.4 MB)
+| Perfil | Flags Principais | Prompt Frio (`PP`) | Reuse Prefixo | `TG` Global | Áreas | Opus |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **`A1_baseline_gpu`** | `-ngl 99 -t 8 -fa 1` | 2,432.4 ms (`171.85 t/s`) | 425.1 ms (`89.4 t/s`) | **29.81 tok/s** | 9/13 | 2/4 |
+| **`A2_tuned_gpu_kv_reuse`** | `-t 7 -tb 14 -C 0x5555555 -ctk/v q8_0 --cache-reuse 256 --prio 2 --poll 100` | **2,049.4 ms (`203.96 t/s`, +18.7%)** | **334.2 ms (-21.4%)** | 26.84 tok/s | **10/13** | **3/4** |
+| **`A3_tuned_cpu_zero_vram`** | `--device none -t 7 -tb 14 -C 0x5555555 -ctk/v q8_0 --cache-reuse 256` | 2,062.8 ms (`202.64 t/s`) | **328.0 ms (-22.8%)** | 26.21 tok/s | **10/13** | **3/4** |
+| **`A4_tuned_cpu_ngram`** | `A3` + `--spec-type ngram-cache --spec-draft-n-max 8` | 2,254.8 ms (`185.39 t/s`) | 380.3 ms (`99.9 t/s`) | 20.62 tok/s | **11/13** | **3/4** |
+
+### 2. `K2-Horizon-3.7B [Q5_K_M]` (3,475.0 MB)
+| Perfil | Flags Principais | Prompt Frio (`PP`) | Reuse Prefixo | `TG` Global | Áreas | Opus |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **`B1_baseline_gpu`** | `-ngl 99 -t 8 -fa 1` | 2,420.4 ms (`148.74 t/s`) | **215.1 ms (`144.15 t/s`)** | **19.93 tok/s** | **13/13** | **2/2** |
+| **`B2_tuned_gpu_fa0`** | `-fa 0` + `-ctk/v q8_0` | ❌ *Exit code 1* | — | — | — | — |
+| **`B3_tuned_gpu_fa1`** | `-fa 1 -t 7 -tb 14 -C 0x5555555 -ctk/v q8_0 --cache-reuse 256 --prio 2 --poll 100` | **1,830.9 ms (`196.62 t/s`, +32.2%)** | 721.9 ms (`42.9 t/s`) | 17.34 tok/s | **13/13** | **2/2** |
+| **`B4_tuned_gpu_ngram`** | `B3` + `--spec-type ngram-cache` | ❌ *Exit code 1* | — | — | — | — |
+
+### Principais Descobertas Empíricas de Engenharia:
+1. **Prefill Assimétrico (`-t 7 -tb 14 -C 0x5555555`) acelera ingestão em +18.7% a +32.2%:** No `3.7B`, o tempo de prompt frio caiu de **2.42s para 1.83s** (`148.74 -> 196.62 t/s`).
+2. **Regra do KV Cache Quantizado (`-ctk/v q8_0`):** No backend Vulkan (RX 580), `-ctk/v q8_0` exige `-fa 1` (Flash Attention ligado); com `-fa 0` o servidor recusa iniciar (`exit 1`). Em `f16` padrão (`B1`), o reuse de prefixo em GPU é mais rápido (`215ms` vs `721ms`) e o `TG` de geração pura é `+14.9%` maior (`19.93` vs `17.34 t/s`) — logo **`-ctk/v q8_0` só compensa quando for preciso economizar VRAM**, enquanto **`-t 7 -tb 14 -C 0x5555555` com KV padrão (`f16`) combina o melhor prefill com o maior TG**.
+3. **N-Gram Cache (`--spec-type ngram-cache`):** Em CPU pura no `0.9B`, reduziu o `TG` (`26.2 -> 20.6 t/s`) pelo custo de verificação, e na GPU Vulkan com `3.7B` falhou ao subir (`exit 1`).
+4. **CPU Zero-VRAM (`A3`) viável para sub-1B:** O `0.9B` em CPU pura com afinidade física roda a **26.21 tok/s** com **328 ms** de latência reuse e `10/13` + `3/4` Opus, consumindo **0 MB de VRAM**.
