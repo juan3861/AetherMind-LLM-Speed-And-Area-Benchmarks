@@ -409,7 +409,15 @@ Comparativo empírico controlado ([`proof_ab_tuning_winners.json`](raw_data/spee
 | **`B1_baseline_gpu`** | `-ngl 99 -t 8 -fa 1` | 2,420.4 ms (`148.74 t/s`) | **215.1 ms (`144.15 t/s`)** | **19.93 tok/s** | **13/13** | **2/2** |
 | **`B2_tuned_gpu_fa0`** | `-fa 0` + `-ctk/v q8_0` | ❌ *Exit code 1* | — | — | — | — |
 | **`B3_tuned_gpu_fa1`** | `-fa 1 -t 7 -tb 14 -C 0x5555555 -ctk/v q8_0 --cache-reuse 256 --prio 2 --poll 100` | **1,830.9 ms (`196.62 t/s`, +32.2%)** | 721.9 ms (`42.9 t/s`) | 17.34 tok/s | **13/13** | **2/2** |
+| **`B5_optimal_f16_asym`** 🏆 | `-fa 1 -t 7 -tb 14 -C 0x5555555 --cache-reuse 256 --prio 2 --poll 100` *(KV F16)* | **1,777.2 ms (`202.56 t/s`, +36.2%)** | **217.6 ms (`142.5 t/s`)** | **19.97 tok/s** | **13/13** | **2/2** |
 | **`B4_tuned_gpu_ngram`** | `B3` + `--spec-type ngram-cache` | ❌ *Exit code 1* | — | — | — | — |
+
+
+### 3. `K2-Horizon-3.7B [Q6_K]` (3,968.6 MB — Campeão Absoluto de Pareto)
+| Perfil | Flags Principais | Prompt Frio (`PP`) | Reuse Prefixo | `TG` Global | Áreas | Opus |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **`Q6_B1_baseline_gpu`** | `-ngl 99 -t 8 -fa 1` | 1,850.0 ms (`194.60 t/s`) | 239.2 ms (`129.6 t/s`) | **19.28 tok/s** | **11/13** | **3/3** |
+| **`Q6_B5_optimal_f16_asym`** 🏆 | `-fa 1 -t 7 -tb 14 -C 0x5555555 --cache-reuse 256 --prio 2 --poll 100` *(KV F16)* | **1,833.7 ms (`196.33 t/s`)** | **238.2 ms (`130.2 t/s`)** | **19.27 tok/s** | **11/13** | **3/3** |
 
 ### Principais Descobertas Empíricas de Engenharia:
 1. **Prefill Assimétrico (`-t 7 -tb 14 -C 0x5555555`) acelera ingestão em +18.7% a +32.2%:** No `3.7B`, o tempo de prompt frio caiu de **2.42s para 1.83s** (`148.74 -> 196.62 t/s`).

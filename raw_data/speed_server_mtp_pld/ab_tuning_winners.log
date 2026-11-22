@@ -75,3 +75,35 @@
 ================================================================================
 [2026-11-22 15:35:31] [🏆] TESTE A/B DE OTIMIZACAO CONCLUIDO E REGISTRADO!
 [2026-11-22 15:35:31] ================================================================================
+[2026-11-22 16:32:04] 
+================================================================================
+[2026-11-22 16:32:04] AETHERMIND — ROUND 2: PERFIL OTIMO HIBRIDO (KV F16 + ASSIMETRICO) NOS CAMPEOES 3.7B
+[2026-11-22 16:32:04] ================================================================================
+[2026-11-22 16:32:04] 
+################################################################################
+[2026-11-22 16:32:04] CAMPEAO 3.7B: K2-Horizon-3.7B [Q5_K_M] (K2-Horizon-4B-Q5_K_M.gguf)
+[2026-11-22 16:32:04] ################################################################################
+[2026-11-22 16:32:29] 
+  >>> Perfil [B5_optimal_f16_asym]: GPU Otimizado KV:F16 (-fa 1 -t 7 -tb 14 -C 0x5555555 --cache-reuse 256 --prio 2 --poll 100)
+[2026-11-22 16:32:49]       [Turno 1 Frio  ] Prompt=1777.23ms (202.56 t/s PP) | Gen=19.55 t/s | Wall=6643.53ms
+[2026-11-22 16:32:49]       [Turno 2 Reuse ] Prompt=217.59ms (142.47 t/s PP) | Gen=19.58 t/s | Wall=5073.65ms
+[2026-11-22 16:32:49]       [Turno 3 Codigo] Prompt=209.47ms | Gen=19.55 t/s | Wall=8347.98ms
+[2026-11-22 16:37:54]       [Cognicao      ] Areas Rep: 13/13 | Opus Campeao: 2/2 | TG Medio Global: 19.97 t/s
+[2026-11-22 16:37:56] 
+################################################################################
+[2026-11-22 16:37:56] CAMPEAO 3.7B: K2-Horizon-3.7B [Q6_K] (K2-Horizon-4B-Q6_K.gguf)
+[2026-11-22 16:37:56] ################################################################################
+[2026-11-22 16:38:24] 
+  >>> Perfil [Q6_B1_baseline_gpu]: Baseline GPU Padrão (-ngl 99 -t 8 -fa 1)
+[2026-11-22 16:38:45]       [Turno 1 Frio  ] Prompt=1849.95ms (194.6 t/s PP) | Gen=18.96 t/s | Wall=6863.83ms
+[2026-11-22 16:38:45]       [Turno 2 Reuse ] Prompt=239.22ms (129.59 t/s PP) | Gen=18.99 t/s | Wall=5245.97ms
+[2026-11-22 16:38:45]       [Turno 3 Codigo] Prompt=230.59ms | Gen=18.97 t/s | Wall=8617.92ms
+[2026-11-22 16:45:44]       [Cognicao      ] Areas Rep: 11/13 | Opus Campeao: 3/3 | TG Medio Global: 19.28 t/s
+[2026-11-22 16:45:58] 
+  >>> Perfil [Q6_B5_optimal_f16_asym]: GPU Otimizado KV:F16 (-fa 1 -t 7 -tb 14 -C 0x5555555 --cache-reuse 256 --prio 2 --poll 100)
+[2026-11-22 16:46:18]       [Turno 1 Frio  ] Prompt=1833.68ms (196.33 t/s PP) | Gen=18.98 t/s | Wall=6855.66ms
+[2026-11-22 16:46:18]       [Turno 2 Reuse ] Prompt=238.16ms (130.17 t/s PP) | Gen=18.99 t/s | Wall=5246.08ms
+[2026-11-22 16:46:18]       [Turno 3 Codigo] Prompt=229.2ms | Gen=18.99 t/s | Wall=8608.85ms
+[2026-11-22 16:53:17]       [Cognicao      ] Areas Rep: 11/13 | Opus Campeao: 3/3 | TG Medio Global: 19.27 t/s
+[2026-11-22 16:53:18] 
+[🏆] ROUND 2 (KV F16 + ASSIMETRICO) CONCLUIDO COM SUCESSO!

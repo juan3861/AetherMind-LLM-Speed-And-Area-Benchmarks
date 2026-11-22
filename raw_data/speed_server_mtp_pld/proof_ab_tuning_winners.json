@@ -284,6 +284,148 @@
           "OPUS_07_maior_parenteses_valido_trap": true
         },
         "boot_seconds": 9.72
+      },
+      "B5_optimal_f16_asym": {
+        "profile_id": "B5_optimal_f16_asym",
+        "label": "GPU Otimizado KV:F16 (-fa 1 -t 7 -tb 14 -C 0x5555555 --cache-reuse 256 --prio 2 --poll 100)",
+        "flags": "-ngl 99 --fit off -c 4096 -cb -np 1 -t 7 -tb 14 -C 0x5555555 -fa 1 --cache-reuse 256 --prio 2 --prio-batch 2 --poll 100 --poll-batch 1",
+        "turn1_cold": {
+          "content": "",
+          "wall_ms": 6643.53,
+          "prompt_ms": 1777.23,
+          "predicted_ms": 4860.43,
+          "pp_tok_s": 202.56,
+          "tg_tok_s": 19.55,
+          "prompt_n": 360,
+          "predicted_n": 96
+        },
+        "turn2_reuse": {
+          "content": "",
+          "wall_ms": 5073.65,
+          "prompt_ms": 217.59,
+          "predicted_ms": 4850.87,
+          "pp_tok_s": 142.47,
+          "tg_tok_s": 19.58,
+          "prompt_n": 31,
+          "predicted_n": 96
+        },
+        "turn3_code": {
+          "content": "",
+          "wall_ms": 8347.98,
+          "prompt_ms": 209.47,
+          "predicted_ms": 8134.15,
+          "pp_tok_s": 119.35,
+          "tg_tok_s": 19.55,
+          "prompt_n": 25,
+          "predicted_n": 160
+        },
+        "avg_tg_global_tok_s": 19.97,
+        "rep_13_areas_passed": 13,
+        "rep_13_areas_total": 13,
+        "opus_passed": 2,
+        "opus_total": 2,
+        "opus_details": {
+          "OPUS_04_maior_retangulo_matriz_binaria": true,
+          "OPUS_07_maior_parenteses_valido_trap": true
+        },
+        "boot_seconds": 22.62
+      }
+    }
+  },
+  "k2_horizon_3_7b_q6_k": {
+    "model_name": "K2-Horizon-3.7B [Q6_K]",
+    "profiles": {
+      "Q6_B1_baseline_gpu": {
+        "profile_id": "Q6_B1_baseline_gpu",
+        "label": "Baseline GPU Padrão (-ngl 99 -t 8 -fa 1)",
+        "flags": "-ngl 99 --fit off -c 4096 -cb -np 1 -t 8 -fa 1",
+        "turn1_cold": {
+          "content": "",
+          "wall_ms": 6863.83,
+          "prompt_ms": 1849.95,
+          "predicted_ms": 5009.72,
+          "pp_tok_s": 194.6,
+          "tg_tok_s": 18.96,
+          "prompt_n": 360,
+          "predicted_n": 96
+        },
+        "turn2_reuse": {
+          "content": "",
+          "wall_ms": 5245.97,
+          "prompt_ms": 239.22,
+          "predicted_ms": 5003.25,
+          "pp_tok_s": 129.59,
+          "tg_tok_s": 18.99,
+          "prompt_n": 31,
+          "predicted_n": 96
+        },
+        "turn3_code": {
+          "content": "",
+          "wall_ms": 8617.92,
+          "prompt_ms": 230.59,
+          "predicted_ms": 8382.62,
+          "pp_tok_s": 108.42,
+          "tg_tok_s": 18.97,
+          "prompt_n": 25,
+          "predicted_n": 160
+        },
+        "avg_tg_global_tok_s": 19.28,
+        "rep_13_areas_passed": 11,
+        "rep_13_areas_total": 13,
+        "opus_passed": 3,
+        "opus_total": 3,
+        "opus_details": {
+          "OPUS_04_maior_retangulo_matriz_binaria": true,
+          "OPUS_05_bitmask_dp_tsp_aberto": true,
+          "OPUS_07_maior_parenteses_valido_trap": true
+        },
+        "boot_seconds": 25.58
+      },
+      "Q6_B5_optimal_f16_asym": {
+        "profile_id": "Q6_B5_optimal_f16_asym",
+        "label": "GPU Otimizado KV:F16 (-fa 1 -t 7 -tb 14 -C 0x5555555 --cache-reuse 256 --prio 2 --poll 100)",
+        "flags": "-ngl 99 --fit off -c 4096 -cb -np 1 -t 7 -tb 14 -C 0x5555555 -fa 1 --cache-reuse 256 --prio 2 --prio-batch 2 --poll 100 --poll-batch 1",
+        "turn1_cold": {
+          "content": "",
+          "wall_ms": 6855.66,
+          "prompt_ms": 1833.68,
+          "predicted_ms": 5003.99,
+          "pp_tok_s": 196.33,
+          "tg_tok_s": 18.98,
+          "prompt_n": 360,
+          "predicted_n": 96
+        },
+        "turn2_reuse": {
+          "content": "",
+          "wall_ms": 5246.08,
+          "prompt_ms": 238.16,
+          "predicted_ms": 5002.52,
+          "pp_tok_s": 130.17,
+          "tg_tok_s": 18.99,
+          "prompt_n": 31,
+          "predicted_n": 96
+        },
+        "turn3_code": {
+          "content": "",
+          "wall_ms": 8608.85,
+          "prompt_ms": 229.2,
+          "predicted_ms": 8374.73,
+          "pp_tok_s": 109.08,
+          "tg_tok_s": 18.99,
+          "prompt_n": 25,
+          "predicted_n": 160
+        },
+        "avg_tg_global_tok_s": 19.27,
+        "rep_13_areas_passed": 11,
+        "rep_13_areas_total": 13,
+        "opus_passed": 3,
+        "opus_total": 3,
+        "opus_details": {
+          "OPUS_04_maior_retangulo_matriz_binaria": true,
+          "OPUS_05_bitmask_dp_tsp_aberto": true,
+          "OPUS_07_maior_parenteses_valido_trap": true
+        },
+        "boot_seconds": 10.17
       }
     }
   }
