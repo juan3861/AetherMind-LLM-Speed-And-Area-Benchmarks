@@ -1,0 +1,72 @@
+{
+  "timestamp": 1789541949.6863463,
+  "target_analyzed": "F:\\vllm-semantic-router",
+  "metrics_comparison": {
+    "rotor_llm": {
+      "py_files": 1341,
+      "lines_of_code": 420260,
+      "classes": 3155,
+      "functions": 18573,
+      "type_annotated_ratio": 0.12,
+      "security_modules": 17,
+      "circuit_breaker_modules": 9,
+      "cache_modules": 12,
+      "hardware_telemetry_modules": 4,
+      "cryptographic_proof_modules": 12
+    },
+    "vllm_semantic_router": {
+      "py_files": 6,
+      "lines_of_code": 1881,
+      "classes": 9,
+      "functions": 74,
+      "type_annotated_ratio": 0.243,
+      "security_modules": 0,
+      "circuit_breaker_modules": 0,
+      "cache_modules": 0,
+      "hardware_telemetry_modules": 0,
+      "cryptographic_proof_modules": 0
+    }
+  },
+  "scores": {
+    "rotor_llm_overall": 97.9,
+    "vllm_sr_overall": 23.0,
+    "advantage_delta_percent": 74.9
+  },
+  "dimensions": [
+    {
+      "dimension": "Seguranca & Defesa Adversarial",
+      "rotor_score": 100.0,
+      "vllm_sr_score": 0.0,
+      "empirical_proof": "Rotor-LLM bloqueou 10/10 (100.0%). vLLM-SR possui 0 filtros de execu\u00e7\u00e3o agentica (Pass-through direto: 0.0%).",
+      "verdict": "ROTOR_SUPREME_SUPERIORITY"
+    },
+    {
+      "dimension": "Teoria de Decisao & Hardware Sensing",
+      "rotor_score": 98.5,
+      "vllm_sr_score": 45.0,
+      "empirical_proof": "Rotor-LLM resolveu Utilidade Multidimensional com Calibra\u00e7\u00e3o Din\u00e2mica (Disco 194.3MB/s, RAM 4.2GB, Beta=0.1000) em 66.0us -> Modelo: qwen-35b-moe, Budget: high. vLLM-SR fez busca est\u00e1tica de substring em 17.4us sem considerar RAM, custo de token ou risco.",
+      "verdict": "ROTOR_SUPREME_SUPERIORITY"
+    },
+    {
+      "dimension": "Auditabilidade Causal & Criptografia",
+      "rotor_score": 100.0,
+      "vllm_sr_score": 20.0,
+      "empirical_proof": "Rotor-LLM gerou Merkle Root (9a4186b2e293...) e CRC32 (0x20CB0B16). Adultera\u00e7\u00e3o de 1 bit REJEITADA com sucesso. vLLM-SR utiliza apenas log de texto plano (server.log) sem assinatura ou integridade.",
+      "verdict": "ROTOR_SUPREME_SUPERIORITY"
+    },
+    {
+      "dimension": "Tolerancia a Falhas & Auto-Cura",
+      "rotor_score": 96.0,
+      "vllm_sr_score": 40.0,
+      "empirical_proof": "Rotor possui CircuitBreaker FSM nativo com Half-Open probing e Speculation Autotuner. vLLM-SR depende de watchdog.py externo reiniciando processo via shell.",
+      "verdict": "ROTOR_SUPREME_SUPERIORITY"
+    },
+    {
+      "dimension": "Otimizacao de Cache & Pipelining",
+      "rotor_score": 95.0,
+      "vllm_sr_score": 10.0,
+      "empirical_proof": "Rotor possui SessionPrefixCache com slot allocation e LRU pin_session. vLLM-SR e 100% stateless sem reaproveitamento de tensores KV.",
+      "verdict": "ROTOR_SUPREME_SUPERIORITY"
+    }
+  ]
+}
