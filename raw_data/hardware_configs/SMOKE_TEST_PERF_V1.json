@@ -1,0 +1,49 @@
+{
+  "profile": "qwen35b_xeon_perf_v1",
+  "load_time_s": 23.75162386894226,
+  "affinity_mask": "0x5555550",
+  "affinity_cores": [
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26
+  ],
+  "priority": "16384",
+  "prompts": [
+    {
+      "name": "short_prompt",
+      "prompt_tokens": 21,
+      "predicted_tokens": 64,
+      "gen_tps": 5.0695604039329165,
+      "prompt_tps": 4.581123850028839,
+      "draft_gen": 56,
+      "draft_accepted": 34,
+      "acceptance_pct": 60.71428571428571,
+      "rss_gb": 12.733234405517578,
+      "wall_time_s": 17.050264596939087,
+      "sample_output": "<think>\n\n</think>\n\n**Multi-Token Prediction (MTP)** \u00e9 uma t\u00e9cnica de otimiza\u00e7\u00e3o em modelos de linguagem (LLMs) onde o modelo \u00e9 treinado para prever n\u00e3"
+    },
+    {
+      "name": "2k_prompt",
+      "prompt_tokens": 3256,
+      "predicted_tokens": 64,
+      "gen_tps": 8.339676341132476,
+      "prompt_tps": 22.899730890886673,
+      "draft_gen": 51,
+      "draft_accepted": 37,
+      "acceptance_pct": 72.54901960784314,
+      "rss_gb": 19.596858978271484,
+      "wall_time_s": 149.86417198181152,
+      "sample_output": "<think>\n\n</think>\n\nO benef\u00edcio principal do MTP (Multi-Token Prediction) destacado no texto \u00e9 a capacidade de mitigar o gargalo de largura de banda de"
+    }
+  ],
+  "final_ram_available_gb": 21.116806030273438
+}

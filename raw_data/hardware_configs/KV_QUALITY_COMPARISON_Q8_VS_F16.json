@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-09-07 02:33:03",
+  "exact_match": false,
+  "similarity_ratio": 0.07342143906020558,
+  "q8_0": {
+    "kv_type": "q8_0",
+    "load_time_s": 18.634822368621826,
+    "gen_tps": 7.6386488913609485,
+    "prompt_tps": 8.190725995775907,
+    "draft_n_generated": 211,
+    "draft_n_accepted": 149,
+    "acceptance_pct": 70.61611374407583,
+    "rss_gb": 16.59271240234375,
+    "wall_time_s": 63.54291081428528,
+    "output_text": "\n\n<think>\n\n</think>\n\nAqui est\u00e1 a implementa\u00e7\u00e3o rigorosa da classe `ThreadSafeLRUCache` seguindo os padr\u00f5es de Engenharia de Software de alta confiabilidade, utilizando Python 3 idiom\u00e1tico.\n\n### C\u00f3digo da Implementa\u00e7\u00e3o\n\n```python\nimport time\nimport threading\nfrom typing import Any, Optional\nfrom collections import OrderedDict\n\n\nclass ThreadSafeLRUCache:\n    \"\"\"\n    Uma implementa\u00e7\u00e3o de cache LRU (Least Recently Used) segura para threads\n    com suporte a expira\u00e7\u00e3o temporal (TTL).\n\n    Invariantes:\n    1. A capacidade m\u00e1xima \u00e9 fixa ap\u00f3s a inicializa\u00e7\u00e3o.\n    2. O acesso \u00e9 sincronizado via RLock para garantir atomicidade.\n    3. Chaves expiradas s\u00e3o removidas imediatamente ao serem acessadas ou inseridas.\n    4. A ordem de uso \u00e9 mantida via OrderedDict para O(1) de movimenta\u00e7\u00e3o.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        if capacity <= 0:\n            raise ValueError(\"Capacity must be a positive integer.\")\n        \n        self.capacity: int = capacity\n        self._cache: OrderedDict[str, Any] = OrderedDict()\n        self._timestamps"
+  },
+  "f16": {
+    "kv_type": "f16",
+    "load_time_s": 8.569037914276123,
+    "gen_tps": 10.954754073289022,
+    "prompt_tps": 24.558555002463315,
+    "draft_n_generated": 178,
+    "draft_n_accepted": 166,
+    "acceptance_pct": 93.25842696629213,
+    "rss_gb": 17.02655792236328,
+    "wall_time_s": 33.339189529418945,
+    "output_text": "\n\n<think>\nHere's a thinking process:\n\n1.  **Understand User Requirements:**\n   - **Role:** Compiler & Systems Engineer for \"Rotor\" architecture.\n   - **Language:** Python 3, strict and idiomatic.\n   - **Class:** `ThreadSafeLRUCache`\n   - **Invariant 1:** Fixed maximum capacity `capacity: int`.\n   - **Invariant 2:** Methods `get(key: str) -> Optional[Any]` and `put(key: str, value: Any, ttl_seconds: Optional[float] = None) -> None`.\n   - **Invariant 3:** Time-based expiration using `time.monotonic()`. Expired keys must be invalidated on access or insertion.\n   - **Invariant 4:** LRU eviction policy when capacity is reached. Discard oldest non-expired keys if none are expired.\n   - **Invariant 5:** Strict concurrent synchronization using `threading.RLock`.\n   - **Invariant 6:** Use `collections.OrderedDict` for O(1) ordering.\n   - **Invariant 7:** Complete type annotations and null value handling.\n   - **Output:** Complete class code + brief explanation of invariants.\n\n2."
+  },
+  "diff": "--- f16_output\n+++ q8_0_output\n@@ -1,19 +1,36 @@\n \n \n <think>\n-Here's a thinking process:\n \n-1.  **Understand User Requirements:**\n-   - **Role:** Compiler & Systems Engineer for \"Rotor\" architecture.\n-   - **Language:** Python 3, strict and idiomatic.\n-   - **Class:** `ThreadSafeLRUCache`\n-   - **Invariant 1:** Fixed maximum capacity `capacity: int`.\n-   - **Invariant 2:** Methods `get(key: str) -> Optional[Any]` and `put(key: str, value: Any, ttl_seconds: Optional[float] = None) -> None`.\n-   - **Invariant 3:** Time-based expiration using `time.monotonic()`. Expired keys must be invalidated on access or insertion.\n-   - **Invariant 4:** LRU eviction policy when capacity is reached. Discard oldest non-expired keys if none are expired.\n-   - **Invariant 5:** Strict concurrent synchronization using `threading.RLock`.\n-   - **Invariant 6:** Use `collections.OrderedDict` for O(1) ordering.\n-   - **Invariant 7:** Complete type annotations and null value handling.\n-   - **Output:** Complete class code + brief explanation of invariants.\n+</think>\n \n-2.+Aqui est\u00e1 a implementa\u00e7\u00e3o rigorosa da classe `ThreadSafeLRUCache` seguindo os padr\u00f5es de Engenharia de Software de alta confiabilidade, utilizando Python 3 idiom\u00e1tico.\n+\n+### C\u00f3digo da Implementa\u00e7\u00e3o\n+\n+```python\n+import time\n+import threading\n+from typing import Any, Optional\n+from collections import OrderedDict\n+\n+\n+class ThreadSafeLRUCache:\n+    \"\"\"\n+    Uma implementa\u00e7\u00e3o de cache LRU (Least Recently Used) segura para threads\n+    com suporte a expira\u00e7\u00e3o temporal (TTL).\n+\n+    Invariantes:\n+    1. A capacidade m\u00e1xima \u00e9 fixa ap\u00f3s a inicializa\u00e7\u00e3o.\n+    2. O acesso \u00e9 sincronizado via RLock para garantir atomicidade.\n+    3. Chaves expiradas s\u00e3o removidas imediatamente ao serem acessadas ou inseridas.\n+    4. A ordem de uso \u00e9 mantida via OrderedDict para O(1) de movimenta\u00e7\u00e3o.\n+    \"\"\"\n+\n+    def __init__(self, capacity: int):\n+        if capacity <= 0:\n+            raise ValueError(\"Capacity must be a positive integer.\")\n+        \n+        self.capacity: int = capacity\n+        self._cache: OrderedDict[str, Any] = OrderedDict()\n+        self._timestamps"
+}

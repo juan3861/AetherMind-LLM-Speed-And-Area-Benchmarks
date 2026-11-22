@@ -8,6 +8,8 @@
 
 ---
 
+> 🛠️ **NOVO — [`GUIA_MESTRE_CONFIGURACAO_HARDWARE.md`](GUIA_MESTRE_CONFIGURACAO_HARDWARE.md):** Matriz equilibrada definitiva de configuração (**GPU Vulkan**, **Híbrido** e **CPU Pura AVX2**) para **todas as escalas de LLMs (`0.36B` a `35B+`)**, incluindo variáveis `GGML_VK_*`, assimetria `-ctk q8_0 -ctv f16`, regras de `--repack` vs `--no-repack` e comandos prontos.
+
 ## 1. Hardware de Referência (Testbed Bare-Metal)
 
 | Componente | Especificação Verificada | Impacto na Velocidade |
@@ -88,6 +90,7 @@ Medições empíricas via `llama-bench` (`pp512` / `tg128`) e `llama-server` (`c
 
 | Arquivo / Pasta | O que Contém |
 | :--- | :--- |
+| **[`GUIA_MESTRE_CONFIGURACAO_HARDWARE.md`](GUIA_MESTRE_CONFIGURACAO_HARDWARE.md)** | **Guia Mestre Prático (GPU, Híbrido e CPU Pura):** matriz equilibrada de flags, variáveis `GGML_VK_*`, KV `f16` vs `q8_0`, `--repack` e comandos prontos para modelos de `0.36B` a `35B+`. |
 | **[`SPEED_AND_HARDWARE_TUNING_DOSSIER.md`](SPEED_AND_HARDWARE_TUNING_DOSSIER.md)** | Dossiê técnico completo de hardware (`PCIe BAR`, `Thread Scaling`, `MTP`, `CPU_REPACK`, `PLD`, `-fa`, `ShadowRouter 3ms`) e todas as tabelas detalhadas por modelo. |
 | **[`STANDALONE_AREA_HIGHLIGHTS_CATALOG.md`](STANDALONE_AREA_HIGHLIGHTS_CATALOG.md)** | Catálogo de destaques isolados por área (`Coding`, `Battery 50 ThinkON/OFF`, `Campeonatos`, `Titans`). |
 | **[`raw_data/speed_llama_bench/`](raw_data/speed_llama_bench/)** | Logs e JSONs puros do `llama-bench` (`arena_bench.log`, `bench_7b_gpu.log`, `bench_cpu_small_compare*.json`, `bench_cpu_r3.json`, `mobilellm_bench2.log`, `diag_speed.log`, sweeps). |
