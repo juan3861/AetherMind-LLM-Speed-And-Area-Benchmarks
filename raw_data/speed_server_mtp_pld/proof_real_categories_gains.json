@@ -1,0 +1,182 @@
+[
+  {
+    "cat": "1. Sub-1B (GPU Vulkan)",
+    "model": "MiniCPM5-1B-Opus [Q6_K]",
+    "baseline": {
+      "passed": 3,
+      "total": 3,
+      "avg_pp": 374.08,
+      "avg_tg": 44.5,
+      "total_wall_s": 10.34,
+      "errors": [],
+      "status": "OK",
+      "boot_s": 8.08
+    },
+    "optimized": {
+      "passed": 3,
+      "total": 3,
+      "avg_pp": 355.92,
+      "avg_tg": 44.71,
+      "total_wall_s": 10.34,
+      "errors": [],
+      "status": "OK",
+      "boot_s": 2.52
+    }
+  },
+  {
+    "cat": "2. 1.5B Fast-Code (GPU Vulkan)",
+    "model": "Qwen2.5-Coder-1.5B [Q4_K_M]",
+    "baseline": {
+      "passed": 3,
+      "total": 3,
+      "avg_pp": 207.49,
+      "avg_tg": 38.63,
+      "total_wall_s": 2.22,
+      "errors": [],
+      "status": "OK",
+      "boot_s": 7.61
+    },
+    "optimized": {
+      "passed": 3,
+      "total": 3,
+      "avg_pp": 204.05,
+      "avg_tg": 38.66,
+      "total_wall_s": 2.22,
+      "errors": [],
+      "status": "OK",
+      "boot_s": 3.58
+    }
+  },
+  {
+    "cat": "3. 3B-4B Pareto King (GPU Vulkan)",
+    "model": "K2-Horizon-3.7B [Q6_K]",
+    "baseline": {
+      "passed": 3,
+      "total": 3,
+      "avg_pp": 100.92,
+      "avg_tg": 19.7,
+      "total_wall_s": 14.11,
+      "errors": [],
+      "status": "OK",
+      "boot_s": 24.81
+    },
+    "optimized": {
+      "passed": 3,
+      "total": 3,
+      "avg_pp": 96.05,
+      "avg_tg": 19.68,
+      "total_wall_s": 14.21,
+      "errors": [],
+      "status": "OK",
+      "boot_s": 8.63
+    }
+  },
+  {
+    "cat": "4. 8B Generalista (GPU Vulkan)",
+    "model": "RLM-Qwen3-8B-v0.1 [Q4_K_M]",
+    "baseline": {
+      "passed": 3,
+      "total": 3,
+      "avg_pp": 59.0,
+      "avg_tg": 13.65,
+      "total_wall_s": 15.78,
+      "errors": [],
+      "status": "OK",
+      "boot_s": 31.01
+    },
+    "optimized": {
+      "passed": 3,
+      "total": 3,
+      "avg_pp": 60.59,
+      "avg_tg": 14.26,
+      "total_wall_s": 15.22,
+      "errors": [],
+      "status": "OK",
+      "boot_s": 10.15
+    }
+  },
+  {
+    "cat": "5. 14B Híbrido (GPU+CPU)",
+    "model": "DeepSeek-R1-Distill-14B [IQ3_M]",
+    "baseline": {
+      "passed": 0,
+      "total": 3,
+      "avg_pp": 0.0,
+      "avg_tg": 0.0,
+      "total_wall_s": 0.0,
+      "errors": [
+        "Q1_code:TimeoutError",
+        "Q2_math:TimeoutError",
+        "Q3_json:TimeoutError"
+      ],
+      "status": "OK",
+      "boot_s": 36.63
+    },
+    "optimized": {
+      "passed": 0,
+      "total": 3,
+      "avg_pp": 0.0,
+      "avg_tg": 0.0,
+      "total_wall_s": 0.0,
+      "errors": [
+        "Q1_code:TimeoutError",
+        "Q2_math:TimeoutError",
+        "Q3_json:TimeoutError"
+      ],
+      "status": "OK",
+      "boot_s": 11.63
+    }
+  },
+  {
+    "cat": "6. 16.8B MoE (CPU Assimetria KV)",
+    "model": "Ring-mini-2.0 [Q4_K_M]",
+    "baseline": {
+      "status": "CRASH_EXIT_1",
+      "boot_s": 0.0,
+      "passed": 0,
+      "total": 3,
+      "avg_pp": 0.0,
+      "avg_tg": 0.0,
+      "total_wall_s": 0.0,
+      "errors": [
+        "CRASH_EXIT_1"
+      ]
+    },
+    "optimized": {
+      "passed": 3,
+      "total": 3,
+      "avg_pp": 94.99,
+      "avg_tg": 23.29,
+      "total_wall_s": 16.8,
+      "errors": [],
+      "status": "OK",
+      "boot_s": 4.54
+    }
+  },
+  {
+    "cat": "7. 20B Heavy (CPU Repack AVX2)",
+    "model": "GPT-OSS-20B-Antidoom [IQ4_XS]",
+    "baseline": {
+      "passed": 3,
+      "total": 3,
+      "avg_pp": 29.22,
+      "avg_tg": 12.84,
+      "total_wall_s": 40.57,
+      "errors": [],
+      "status": "OK",
+      "boot_s": 165.48
+    },
+    "optimized": {
+      "status": "BOOT_TIMEOUT_180S",
+      "boot_s": 0.0,
+      "passed": 0,
+      "total": 3,
+      "avg_pp": 0.0,
+      "avg_tg": 0.0,
+      "total_wall_s": 0.0,
+      "errors": [
+        "BOOT_TIMEOUT_180S"
+      ]
+    }
+  }
+]

@@ -107,3 +107,19 @@ F:\tools\lc_b10749\llama-server.exe -m F:\data\models\Qwen3.6-35B-A3B-UD-Q4_K_M.
 - [`inference_profile.py`](raw_data/hardware_configs/inference_profile.py) — Registry com `Ring-mini-2.0` (`-ctk q8_0 -ctv f16 -fa 1`), `Ministral-3-3B` e `Phi-4-mini`
 - [`affinity_tools.py`](raw_data/hardware_configs/affinity_tools.py) — Cálculo dinâmico de máscaras (`0x5555550` / `0x5555555`)
 - [`proof_ab_tuning_winners.json`](raw_data/speed_server_mtp_pld/proof_ab_tuning_winners.json) — Provas A/B Round 1 & Round 2 nos campeões `K2-Horizon`
+
+---
+
+## 🧪 Prova Real Supervisionada: O Melhor de Cada Categoria (3 Perguntas Objetivas — Baseline vs. Guia Mestre)
+
+Teste executado ponta a ponta em [`proof_real_categories_gains.json`](raw_data/speed_server_mtp_pld/proof_real_categories_gains.json) ([`proof_real_categories_gains.log`](raw_data/speed_server_mtp_pld/proof_real_categories_gains.log)) validando **Código Python executável**, **Matemática** e **JSON estrito em Português**, com supervisão ativa de crashes, timeouts e boot:
+
+| Categoria / Campeão | Baseline (Boot / PP / TG / Acertos) | Otimizado Guia Mestre (Boot / PP / TG / Acertos) | Ganho & Diagnóstico Supervisionado |
+| :--- | :---: | :---: | :--- |
+| **1. Sub-1B (`MiniCPM5-1B-Opus [Q6_K]`)** | 8.08s / 374.1 / 44.50 t/s / **3/3** | **2.52s** / 355.9 / **44.71 t/s** / **3/3** | **Boot -68.8%**, zero erros. |
+| **2. 1.5B Fast-Code (`Qwen2.5-Coder-1.5B`)** | 7.61s / 207.5 / 38.63 t/s / **3/3** | **3.58s** / 204.1 / **38.66 t/s** / **3/3** | **Boot -53.0%**, `2.22s` total p/ 3 provas. |
+| **3. 3B–4B Pareto (`K2-Horizon-3.7B [Q6_K]`)** | 24.81s / 100.9 / 19.70 t/s / **3/3** | **8.63s** / 96.1 / 19.68 t/s / **3/3** | **Boot -65.2%**, 100% precisão mantida. |
+| **4. 8B Generalista (`RLM-Qwen3-8B-v0.1`)** | 31.01s / 59.0 / 13.65 t/s / **3/3** | **10.15s** / **60.6** / **14.26 t/s** / **3/3** | **Boot -67.3%**, **+4.5% TG**, menor latência (`15.22s`). |
+| **5. 14B Híbrido (`DeepSeek-R1-14B [IQ3_M]`)** | 36.63s / *Timeout 120s* / 0/3 | **11.63s** / *Timeout 120s* / 0/3 | ⚠️ **Bug detectado:** Boot caiu `-68.2%`, mas `-ngl 18` com `IQ3_M` na Vulkan estoura `120s` na geração. |
+| **6. 16.8B MoE (`Ring-mini-2.0 [Q4_K_M]`)** | ❌ `CRASH_EXIT_1` (`q8_0/q8_0 -fa 0`) | **4.54s / 94.99 / 23.29 t/s / 3/3** | 🏆 **Destravamento Total:** `-ctk q8_0 -ctv f16 -fa 1 -t 12 -C 0x5555550` subiu em `4.5s` a **23.29 tok/s**! |
+| **7. 20B Heavy (`GPT-OSS-20B-Antidoom`)** | 165.48s / 29.2 / **12.84 t/s** / **3/3** | ❌ `BOOT_TIMEOUT_180S` (`--repack`) | ⚠️ **Bug detectado:** `--repack` em `11.27 GB` leva `>180s` (~4–5 min) só para repacking no boot; **`--no-repack`** roda liso a `12.84 t/s`. |

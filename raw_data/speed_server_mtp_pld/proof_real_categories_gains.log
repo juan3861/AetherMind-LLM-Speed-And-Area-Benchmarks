@@ -1,0 +1,33 @@
+[2026-11-22 19:00:31] ================================================================================
+[2026-11-22 19:00:31] AETHERMIND — PROVA REAL DE GANHOS (7 CATEGORIAS x 3 PERGUNTAS)
+[2026-11-22 19:00:31] ================================================================================
+[2026-11-22 19:00:31] 
+>>> [1. Sub-1B (GPU Vulkan)] MiniCPM5-1B-Opus [Q6_K]
+[2026-11-22 19:00:51]   [BASELINE] Boot=8.08s | PP=374.08 t/s | TG=44.5 t/s | Wall=10.34s | Acertos=3/3 | Erros=[]
+[2026-11-22 19:01:06]   [OPTIMIZED] Boot=2.52s | PP=355.92 t/s | TG=44.71 t/s | Wall=10.34s | Acertos=3/3 | Erros=[]
+[2026-11-22 19:01:07] 
+>>> [2. 1.5B Fast-Code (GPU Vulkan)] Qwen2.5-Coder-1.5B [Q4_K_M]
+[2026-11-22 19:01:19]   [BASELINE] Boot=7.61s | PP=207.49 t/s | TG=38.63 t/s | Wall=2.22s | Acertos=3/3 | Erros=[]
+[2026-11-22 19:01:27]   [OPTIMIZED] Boot=3.58s | PP=204.05 t/s | TG=38.66 t/s | Wall=2.22s | Acertos=3/3 | Erros=[]
+[2026-11-22 19:01:29] 
+>>> [3. 3B-4B Pareto King (GPU Vulkan)] K2-Horizon-3.7B [Q6_K]
+[2026-11-22 19:02:09]   [BASELINE] Boot=24.81s | PP=100.92 t/s | TG=19.7 t/s | Wall=14.11s | Acertos=3/3 | Erros=[]
+[2026-11-22 19:02:34]   [OPTIMIZED] Boot=8.63s | PP=96.05 t/s | TG=19.68 t/s | Wall=14.21s | Acertos=3/3 | Erros=[]
+[2026-11-22 19:02:36] 
+>>> [4. 8B Generalista (GPU Vulkan)] RLM-Qwen3-8B-v0.1 [Q4_K_M]
+[2026-11-22 19:03:24]   [BASELINE] Boot=31.01s | PP=59.0 t/s | TG=13.65 t/s | Wall=15.78s | Acertos=3/3 | Erros=[]
+[2026-11-22 19:03:53]   [OPTIMIZED] Boot=10.15s | PP=60.59 t/s | TG=14.26 t/s | Wall=15.22s | Acertos=3/3 | Erros=[]
+[2026-11-22 19:03:54] 
+>>> [5. 14B Híbrido (GPU+CPU)] DeepSeek-R1-Distill-14B [IQ3_M]
+[2026-11-22 19:10:32]   [BASELINE] Boot=36.63s | PP=0.0 t/s | TG=0.0 t/s | Wall=0.0s | Acertos=0/3 | Erros=['Q1_code:TimeoutError', 'Q2_math:TimeoutError', 'Q3_json:TimeoutError']
+[2026-11-22 19:16:47]   [OPTIMIZED] Boot=11.63s | PP=0.0 t/s | TG=0.0 t/s | Wall=0.0s | Acertos=0/3 | Erros=['Q1_code:TimeoutError', 'Q2_math:TimeoutError', 'Q3_json:TimeoutError']
+[2026-11-22 19:16:49] 
+>>> [6. 16.8B MoE (CPU Assimetria KV)] Ring-mini-2.0 [Q4_K_M]
+[2026-11-22 19:17:29]   [BASELINE] FALHA AO SUBIR: CRASH_EXIT_1
+[2026-11-22 19:17:52]   [OPTIMIZED] Boot=4.54s | PP=94.99 t/s | TG=23.29 t/s | Wall=16.8s | Acertos=3/3 | Erros=[]
+[2026-11-22 19:17:53] 
+>>> [7. 20B Heavy (CPU Repack AVX2)] GPT-OSS-20B-Antidoom [IQ4_XS]
+[2026-11-22 19:21:21]   [BASELINE] Boot=165.48s | PP=29.22 t/s | TG=12.84 t/s | Wall=40.57s | Acertos=3/3 | Erros=[]
+[2026-11-22 19:24:30]   [OPTIMIZED] FALHA AO SUBIR: BOOT_TIMEOUT_180S
+[2026-11-22 19:24:30] 
+[🏁] PROVA REAL CONCLUIDA COM SUCESSO!
