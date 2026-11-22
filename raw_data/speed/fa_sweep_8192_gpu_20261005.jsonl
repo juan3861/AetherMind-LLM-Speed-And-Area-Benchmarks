@@ -1,0 +1,2 @@
+{"alias": "MiniCPM5-1B", "model": "MiniCPM5-1B-Q4_K_M.gguf", "device": "gpu", "fa": 0, "pp": {"8192": 173.037001}}
+{"alias": "MiniCPM5-1B", "model": "MiniCPM5-1B-Q4_K_M.gguf", "device": "gpu", "fa": 1, "pp": {"8192": 155.84202}}

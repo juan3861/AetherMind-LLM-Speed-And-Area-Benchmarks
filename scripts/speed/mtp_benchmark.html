@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ MTP Benchmark — Qwen 3.6 27B</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #080c14;
+      --bg2: #0d1220;
+      --bg3: #111827;
+      --card: #0f1929;
+      --border: #1e2d45;
+      --border2: #243550;
+      --accent: #3b82f6;
+      --accent2: #6366f1;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --text2: #94a3b8;
+      --text3: #475569;
+      --glow-blue: 0 0 30px rgba(59,130,246,0.3);
+      --glow-green: 0 0 30px rgba(16,185,129,0.3);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND GRID ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-left h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+    .header-left p { color: var(--text2); font-size: 0.82rem; margin-top: 3px; }
+    .server-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.8rem;
+    }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--red);
+      transition: background 0.3s;
+    }
+    .status-dot.online { background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
+    .status-dot.loading { background: var(--amber); animation: blink 0.8s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* ── MODE SELECTOR ── */
+    .mode-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .mode-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .mode-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.02));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .mode-card:hover::before { opacity: 1; }
+    .mode-card.active.baseline {
+      border-color: var(--accent);
+      box-shadow: var(--glow-blue), inset 0 0 30px rgba(59,130,246,0.06);
+    }
+    .mode-card.active.mtp {
+      border-color: var(--green);
+      box-shadow: var(--glow-green), inset 0 0 30px rgba(16,185,129,0.06);
+    }
+    .mode-card:hover:not(.active) { border-color: var(--border2); transform: translateY(-1px); }
+    .mode-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .baseline .mode-badge { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+    .mtp .mode-badge { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+    .mode-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .mode-card p { font-size: 0.78rem; color: var(--text2); line-height: 1.4; }
+    .mode-card .cmd-preview {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text3);
+      word-break: break-all;
+      line-height: 1.5;
+    }
+    .mode-card.active .cmd-preview { color: var(--text2); }
+
+    /* ── MAIN LAYOUT ── */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    /* ── CHAT PANEL ── */
+    .chat-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .panel-header h2 { font-size: 0.9rem; font-weight: 600; }
+    .panel-header span { font-size: 0.75rem; color: var(--text2); }
+    .output-area {
+      flex: 1;
+      min-height: 280px;
+      max-height: 360px;
+      overflow-y: auto;
+      padding: 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--text);
+      word-break: break-word;
+    }
+    .output-area::-webkit-scrollbar { width: 4px; }
+    .output-area::-webkit-scrollbar-track { background: transparent; }
+    .output-area::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+    .placeholder-text { color: var(--text3); font-style: italic; font-family: 'Inter', sans-serif; }
+
+    /* Streaming cursor */
+    .streaming-cursor {
+      display: inline-block;
+      width: 8px; height: 14px;
+      background: var(--accent);
+      border-radius: 1px;
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 0.8s infinite;
+    }
+    .mtp-mode .streaming-cursor { background: var(--green); }
+
+    /* ── PROMPT AREA ── */
+    .prompt-area {
+      padding: 14px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg3);
+    }
+    .prompt-row { display: flex; gap: 10px; align-items: flex-end; }
+    textarea#prompt {
+      flex: 1;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      resize: none;
+      min-height: 44px;
+      max-height: 120px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    textarea#prompt:focus { border-color: var(--accent); }
+    textarea#prompt::placeholder { color: var(--text3); }
+    button#sendBtn {
+      padding: 10px 22px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      min-width: 80px;
+    }
+    button#sendBtn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(99,102,241,0.5); }
+    button#sendBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── STATS PANEL ── */
+    .stats-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Live tok/s counter */
+    .toks-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .toks-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .toks-card.mtp-glow::before { background: radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 60%); }
+    .toks-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text2); font-weight: 600; margin-bottom: 6px; }
+    .toks-value {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+      margin: 4px 0;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      transition: color 0.3s;
+    }
+    .toks-value.green { color: var(--green); text-shadow: 0 0 20px rgba(16,185,129,0.5); }
+    .toks-unit { font-size: 0.8rem; color: var(--text2); font-weight: 500; }
+    .toks-timer { font-size: 0.72rem; color: var(--text3); margin-top: 6px; font-family: 'JetBrains Mono', monospace; }
+
+    /* Gauges */
+    .metrics-grid {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .metrics-grid h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text2); font-weight: 600; margin-bottom: 14px; }
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .metric-row:last-child { border-bottom: none; }
+    .metric-row .name { font-size: 0.78rem; color: var(--text2); }
+    .metric-row .val { font-size: 0.85rem; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+    .metric-row .val.good { color: var(--green); }
+    .metric-row .val.neutral { color: var(--text); }
+
+    /* Save buttons */
+    .save-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .save-btn {
+      padding: 10px 8px;
+      border-radius: 10px;
+      border: 1px solid;
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+    }
+    .save-btn.base { border-color: rgba(59,130,246,0.4); color: #60a5fa; }
+    .save-btn.base:hover { background: rgba(59,130,246,0.1); }
+    .save-btn.mtp { border-color: rgba(16,185,129,0.4); color: #34d399; }
+    .save-btn.mtp:hover { background: rgba(16,185,129,0.1); }
+    .save-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* ── COMPARISON PANEL ── */
+    .comparison-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .comparison-panel h2 { font-size: 0.9rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .comparison-panel h2 span { font-size: 1rem; }
+    .comp-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .comp-box {
+      background: var(--bg2);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .comp-box .clabel { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text2); margin-bottom: 6px; }
+    .comp-box .cval { font-size: 1.6rem; font-weight: 900; font-family: 'JetBrains Mono', monospace; }
+    .comp-box.base .cval { color: #60a5fa; }
+    .comp-box.mtp .cval { color: #34d399; }
+    .comp-box.gain .cval { color: var(--amber); }
+    .comp-box.gain.positive .cval { color: #34d399; }
+    .chart-wrapper { height: 160px; position: relative; }
+    .no-data-msg { text-align: center; color: var(--text3); font-size: 0.82rem; padding: 20px; }
+
+    /* ── PRESET PROMPTS ── */
+    .presets {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 10px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg3);
+    }
+    .preset-tag {
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border2);
+      font-size: 0.74rem;
+      color: var(--text2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .preset-tag:hover { border-color: var(--accent); color: var(--text); background: rgba(59,130,246,0.08); }
+
+    /* ── FOOTER STATUS BAR ── */
+    .status-bar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.76rem;
+      color: var(--text2);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .status-bar .sep { color: var(--border2); }
+
+    /* Animations */
+    @keyframes fadeSlide { from { opacity:0; transform: translateY(4px); } to { opacity:1; transform: translateY(0); } }
+    .fade-in { animation: fadeSlide 0.3s ease; }
+
+    @keyframes countUp { from { transform: scale(1.15); } to { transform: scale(1); } }
+    .count-bump { animation: countUp 0.15s ease; }
+
+    /* Glow rings on active mode */
+    .mode-card.active.baseline .mode-badge { box-shadow: 0 0 12px rgba(59,130,246,0.4); }
+    .mode-card.active.mtp .mode-badge { box-shadow: 0 0 12px rgba(16,185,129,0.4); }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <h1>⚡ MTP Benchmark Dashboard</h1>
+      <p>Qwen 3.6 27B — Teste de velocidade: Baseline vs Multi-Token Prediction</p>
+    </div>
+    <div class="server-status">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">Verificando servidor...</span>
+    </div>
+  </header>
+
+  <!-- MODE SELECTOR -->
+  <div class="mode-selector">
+    <div class="mode-card baseline active" id="modeBaseline" onclick="setMode('baseline')">
+      <div class="mode-badge">🔵 MODO ATIVO</div>
+      <h3>Baseline — Sem MTP</h3>
+      <p>Inferência padrão, sem predição especulativa de múltiplos tokens.</p>
+      <div class="cmd-preview">llama-server.exe -m Qwen3.6-27B-Q4_K_M.gguf --threads 14 --no-repack --port 8080</div>
+    </div>
+    <div class="mode-card mtp" id="modeMTP" onclick="setMode('mtp')">
+      <div class="mode-badge" style="color: #94a3b8; border-color: rgba(148,163,184,0.3); background: rgba(148,163,184,0.08);">⚪ INATIVO</div>
+      <h3>MTP Ativado 🚀</h3>
+      <p>Multi-Token Prediction com draft especulativo de até 4 tokens simultâneos.</p>
+      <div class="cmd-preview">llama-server.exe -m Qwen3.6-27B-Q4_K_M.gguf --threads 14 --no-repack --spec-type draft-mtp --spec-draft-n-max 4 --port 8080</div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+
+    <!-- CHAT PANEL -->
+    <div class="chat-panel" id="chatPanel">
+      <div class="panel-header">
+        <h2 id="panelTitle">🔵 Geração — Modo Baseline</h2>
+        <span id="tokenCount">0 tokens</span>
+      </div>
+      <div class="output-area" id="outputArea">
+        <span class="placeholder-text">Selecione um modo acima, inicie o servidor com o .bat correspondente e clique em Gerar.</span>
+      </div>
+      <div class="presets">
+        <span style="font-size:0.72rem; color:var(--text3); margin-right:4px;">Prompts rápidos:</span>
+        <div class="preset-tag" onclick="setPrompt('Explique como funciona o MTP (Multi-Token Prediction) em modelos de linguagem de grande escala.')">MTP explicação</div>
+        <div class="preset-tag" onclick="setPrompt('Escreva um conto de ficção científica sobre uma IA que descobre sentimentos.')">Conto ficção</div>
+        <div class="preset-tag" onclick="setPrompt('Liste 20 ideias de startups de tecnologia com potencial para 2025. Seja detalhado em cada uma.')">20 ideias startup</div>
+        <div class="preset-tag" onclick="setPrompt('Escreva um poema longo sobre o amanhecer no Brasil, com pelo menos 10 estrofes.')">Poema longo</div>
+        <div class="preset-tag" onclick="setPrompt('Crie um tutorial completo passo a passo para configurar um servidor Linux do zero com Nginx, SSL e firewall.')">Tutorial Linux</div>
+      </div>
+      <div class="prompt-area">
+        <div class="prompt-row">
+          <textarea id="prompt" rows="2" placeholder="Digite seu prompt aqui... (Enter para enviar, Shift+Enter para nova linha)">Explique como funciona o MTP (Multi-Token Prediction) em modelos de linguagem de grande escala. Seja bem detalhado.</textarea>
+          <button id="sendBtn" onclick="runBenchmark()">▶ Gerar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS PANEL -->
+    <div class="stats-panel">
+      <!-- TOK/S BIG DISPLAY -->
+      <div class="toks-card" id="toksCard">
+        <div class="toks-label">Velocidade de Geração</div>
+        <div class="toks-value" id="toksValue">—</div>
+        <div class="toks-unit">tokens / segundo</div>
+        <div class="toks-timer" id="toksTimer">Aguardando geração...</div>
+      </div>
+
+      <!-- METRICS -->
+      <div class="metrics-grid">
+        <h3>📊 Métricas da Sessão</h3>
+        <div class="metric-row">
+          <span class="name">Modo atual</span>
+          <span class="val neutral" id="metaMode">Baseline</span>
+        </div>
+        <div class="metric-row">
+          <span class="name">Tokens gerados</span>
+          <span class="val neutral" id="metaTokens">0</span>
+        </div>
+        <div class="metric-row">
+          <span class="name">Tempo total</span>
+          <span class="val neutral" id="metaTime">—</span>
+        </div>
+        <div class="metric-row">
+          <span class="name">Primeiro token</span>
+          <span class="val neutral" id="metaTTFT">—</span>
+        </div>
+        <div class="metric-row">
+          <span class="name">Modelo</span>
+          <span class="val neutral" style="font-size:0.68rem;">Qwen3.6-27B</span>
+        </div>
+        <div class="metric-row">
+          <span class="name">Porta</span>
+          <span class="val neutral">8080</span>
+        </div>
+      </div>
+
+      <!-- SAVE BUTTONS -->
+      <div class="save-btns">
+        <button class="save-btn base" id="saveBaseBtn" onclick="saveResult('baseline')" disabled>💾 Salvar Baseline</button>
+        <button class="save-btn mtp" id="saveMTPBtn" onclick="saveResult('mtp')" disabled>💾 Salvar MTP</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON PANEL -->
+  <div class="comparison-panel">
+    <h2><span>📈</span> Comparação de Velocidade</h2>
+    <div class="comp-row">
+      <div class="comp-box base">
+        <div class="clabel">🔵 Baseline</div>
+        <div class="cval" id="compBase">—</div>
+        <div style="font-size:0.72rem; color:var(--text3); margin-top:4px;">tok/s</div>
+      </div>
+      <div class="comp-box mtp">
+        <div class="clabel">🚀 MTP</div>
+        <div class="cval" id="compMTP">—</div>
+        <div style="font-size:0.72rem; color:var(--text3); margin-top:4px;">tok/s</div>
+      </div>
+      <div class="comp-box gain" id="gainBox">
+        <div class="clabel">⚡ Ganho</div>
+        <div class="cval" id="compGain">—</div>
+        <div style="font-size:0.72rem; color:var(--text3); margin-top:4px;">speedup</div>
+      </div>
+    </div>
+    <div class="chart-wrapper">
+      <canvas id="compChart"></canvas>
+      <div class="no-data-msg" id="noDataMsg">Salve resultados do Baseline e do MTP para ver a comparação 📊</div>
+    </div>
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar" style="margin-top:14px;" id="statusBar">
+    <span>🖥 Servidor: <span id="sbServer" style="color:var(--text)">http://127.0.0.1:8080</span></span>
+    <span class="sep">|</span>
+    <span>Modelo: <span style="color:var(--text)">Qwen3.6-27B-Q4_K_M</span></span>
+    <span class="sep">|</span>
+    <span>Última geração: <span id="sbLast" style="color:var(--text)">—</span></span>
+  </div>
+
+</div>
+
+<script>
+  // ── STATE ──
+  let currentMode = 'baseline';
+  let results = { baseline: null, mtp: null };
+  let isGenerating = false;
+  let chart = null;
+  let startTime = null;
+  let tokenBuffer = '';
+  let tokenCount = 0;
+  let firstTokenTime = null;
+
+  const SERVER = 'http://127.0.0.1:8080';
+
+  // ── INIT ──
+  checkServerHealth();
+  setInterval(checkServerHealth, 3000);
+
+  // Enter to send
+  document.getElementById('prompt').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); runBenchmark(); }
+  });
+
+  // ── SERVER HEALTH ──
+  async function checkServerHealth() {
+    try {
+      const r = await fetch(SERVER + '/health', { signal: AbortSignal.timeout(2000) });
+      const data = await r.json();
+      const dot = document.getElementById('statusDot');
+      const txt = document.getElementById('statusText');
+      if (data.status === 'ok' || r.ok) {
+        dot.className = 'status-dot online';
+        txt.textContent = 'Servidor Online ✓';
+      } else {
+        dot.className = 'status-dot loading';
+        txt.textContent = 'Carregando modelo...';
+      }
+    } catch {
+      document.getElementById('statusDot').className = 'status-dot';
+      document.getElementById('statusText').textContent = 'Servidor Offline';
+    }
+  }
+
+  // ── MODE SWITCH ──
+  function setMode(mode) {
+    currentMode = mode;
+    const baseCard = document.getElementById('modeBaseline');
+    const mtpCard = document.getElementById('modeMTP');
+    const toksCard = document.getElementById('toksCard');
+    const chatPanel = document.getElementById('chatPanel');
+    const toksVal = document.getElementById('toksValue');
+    const title = document.getElementById('panelTitle');
+    const metaMode = document.getElementById('metaMode');
+
+    if (mode === 'baseline') {
+      baseCard.classList.add('active');
+      baseCard.querySelector('.mode-badge').style.cssText = '';
+      baseCard.querySelector('.mode-badge').textContent = '🔵 MODO ATIVO';
+      baseCard.querySelector('.mode-badge').className = 'mode-badge';
+      mtpCard.classList.remove('active');
+      mtpCard.querySelector('.mode-badge').textContent = '⚪ INATIVO';
+      mtpCard.querySelector('.mode-badge').style.cssText = 'color:#94a3b8;border-color:rgba(148,163,184,0.3);background:rgba(148,163,184,0.08)';
+      toksCard.classList.remove('mtp-glow');
+      toksVal.classList.remove('green');
+      title.textContent = '🔵 Geração — Modo Baseline';
+      metaMode.textContent = 'Baseline (sem MTP)';
+    } else {
+      mtpCard.classList.add('active');
+      mtpCard.querySelector('.mode-badge').style.cssText = '';
+      mtpCard.querySelector('.mode-badge').textContent = '🚀 MODO ATIVO';
+      mtpCard.querySelector('.mode-badge').className = 'mode-badge';
+      baseCard.classList.remove('active');
+      baseCard.querySelector('.mode-badge').textContent = '⚪ INATIVO';
+      baseCard.querySelector('.mode-badge').style.cssText = 'color:#94a3b8;border-color:rgba(148,163,246,0.3);background:rgba(148,163,246,0.08)';
+      toksCard.classList.add('mtp-glow');
+      title.textContent = '🚀 Geração — MTP Ativado';
+      metaMode.textContent = 'MTP (draft-mtp n=4)';
+    }
+    resetOutput();
+  }
+
+  // ── PROMPT HELPERS ──
+  function setPrompt(text) {
+    document.getElementById('prompt').value = text;
+    document.getElementById('prompt').focus();
+  }
+
+  function resetOutput() {
+    document.getElementById('outputArea').innerHTML = '<span class="placeholder-text">Pronto. Clique em ▶ Gerar para iniciar.</span>';
+    document.getElementById('toksValue').textContent = '—';
+    document.getElementById('toksTimer').textContent = 'Aguardando geração...';
+    document.getElementById('tokenCount').textContent = '0 tokens';
+    document.getElementById('metaTokens').textContent = '0';
+    document.getElementById('metaTime').textContent = '—';
+    document.getElementById('metaTTFT').textContent = '—';
+    tokenCount = 0; tokenBuffer = ''; firstTokenTime = null;
+  }
+
+  // ── BENCHMARK RUN ──
+  async function runBenchmark() {
+    if (isGenerating) return;
+    const prompt = document.getElementById('prompt').value.trim();
+    if (!prompt) return;
+
+    isGenerating = true;
+    startTime = performance.now();
+    firstTokenTime = null;
+    tokenCount = 0;
+    tokenBuffer = '';
+
+    document.getElementById('sendBtn').disabled = true;
+    document.getElementById('sendBtn').textContent = '⏳';
+    document.getElementById('outputArea').innerHTML = '<span class="streaming-cursor"></span>';
+    document.getElementById('toksValue').textContent = '0.0';
+    document.getElementById('toksTimer').textContent = 'Gerando...';
+
+    try {
+      const response = await fetch(SERVER + '/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'Qwen3.6-27B',
+          messages: [
+            { role: 'system', content: 'Você é um assistente inteligente e detalhado. Responda em português.' },
+            { role: 'user', content: prompt }
+          ],
+          stream: true,
+          temperature: 0.7,
+          max_tokens: 512
+        })
+      });
+
+      if (response.status === 503) {
+        throw new Error('503 — Modelo ainda carregando na RAM (pode levar 1-2 min). Aguarde a mensagem "model loaded" no terminal e tente de novo.');
+      }
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status} — Erro no servidor. Verifique o terminal do .bat para detalhes.`);
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      const outputArea = document.getElementById('outputArea');
+      let accText = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split('\n');
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const data = line.slice(6).trim();
+          if (data === '[DONE]') continue;
+
+          try {
+            const json = JSON.parse(data);
+            const delta = json.choices?.[0]?.delta?.content;
+            if (delta) {
+              if (!firstTokenTime) {
+                firstTokenTime = performance.now();
+                const ttft = ((firstTokenTime - startTime) / 1000).toFixed(2);
+                document.getElementById('metaTTFT').textContent = ttft + 's';
+              }
+              tokenCount++;
+              accText += delta;
+              const elapsed = (performance.now() - (firstTokenTime || startTime)) / 1000;
+              const tps = elapsed > 0 ? (tokenCount / elapsed).toFixed(2) : '0.00';
+
+              // Update display
+              outputArea.innerHTML = escapeHtml(accText) + '<span class="streaming-cursor"></span>';
+              outputArea.scrollTop = outputArea.scrollHeight;
+
+              // Update stats
+              updateToksDisplay(tps);
+              document.getElementById('tokenCount').textContent = tokenCount + ' tokens';
+              document.getElementById('metaTokens').textContent = tokenCount;
+              document.getElementById('toksTimer').textContent = `${elapsed.toFixed(1)}s decorridos`;
+            }
+          } catch {}
+        }
+      }
+
+      // Final stats
+      const totalElapsed = (performance.now() - startTime) / 1000;
+      const genElapsed = firstTokenTime ? (performance.now() - firstTokenTime) / 1000 : totalElapsed;
+      const finalTps = genElapsed > 0 ? (tokenCount / genElapsed).toFixed(2) : '0.00';
+
+      outputArea.innerHTML = escapeHtml(accText);
+      updateToksDisplay(finalTps, true);
+      document.getElementById('toksTimer').textContent = `Concluído em ${totalElapsed.toFixed(1)}s — ${tokenCount} tokens`;
+      document.getElementById('metaTime').textContent = totalElapsed.toFixed(2) + 's';
+      document.getElementById('sbLast').textContent = new Date().toLocaleTimeString('pt-BR');
+
+      // Enable save button
+      const saveBtn = currentMode === 'baseline'
+        ? document.getElementById('saveBaseBtn')
+        : document.getElementById('saveMTPBtn');
+      saveBtn.disabled = false;
+      saveBtn._lastTps = parseFloat(finalTps);
+      saveBtn._lastTokens = tokenCount;
+
+    } catch (err) {
+      document.getElementById('outputArea').innerHTML = `<span style="color:var(--red)">❌ Erro: ${escapeHtml(err.message)}</span>`;
+      document.getElementById('toksValue').textContent = 'ERR';
+      document.getElementById('toksTimer').textContent = 'Verifique se o servidor está rodando';
+    }
+
+    isGenerating = false;
+    document.getElementById('sendBtn').disabled = false;
+    document.getElementById('sendBtn').textContent = '▶ Gerar';
+  }
+
+  function updateToksDisplay(tps, final = false) {
+    const el = document.getElementById('toksValue');
+    el.textContent = parseFloat(tps).toFixed(1);
+    if (currentMode === 'mtp') {
+      el.classList.add('green');
+    } else {
+      el.classList.remove('green');
+    }
+    el.classList.remove('count-bump');
+    void el.offsetWidth;
+    el.classList.add('count-bump');
+  }
+
+  // ── SAVE RESULT ──
+  function saveResult(mode) {
+    const tps = parseFloat(document.getElementById('toksValue').textContent);
+    const tokens = parseInt(document.getElementById('metaTokens').textContent);
+    if (isNaN(tps) || tps <= 0) return;
+
+    results[mode] = { tps, tokens };
+
+    if (mode === 'baseline') {
+      document.getElementById('compBase').textContent = tps.toFixed(1);
+    } else {
+      document.getElementById('compMTP').textContent = tps.toFixed(1);
+    }
+
+    updateComparison();
+  }
+
+  function updateComparison() {
+    const { baseline, mtp } = results;
+    if (!baseline && !mtp) return;
+
+    document.getElementById('noDataMsg').style.display = 'none';
+
+    if (baseline && mtp) {
+      const gain = mtp.tps / baseline.tps;
+      const pct = ((gain - 1) * 100).toFixed(0);
+      const gainEl = document.getElementById('compGain');
+      gainEl.textContent = `+${pct}%`;
+      document.getElementById('gainBox').classList.add('positive');
+    }
+
+    renderChart();
+  }
+
+  function renderChart() {
+    const ctx = document.getElementById('compChart').getContext('2d');
+    const labels = [];
+    const data = [];
+    const colors = [];
+
+    if (results.baseline) {
+      labels.push('Baseline (sem MTP)');
+      data.push(results.baseline.tps);
+      colors.push('rgba(59,130,246,0.8)');
+    }
+    if (results.mtp) {
+      labels.push('MTP Ativado 🚀');
+      data.push(results.mtp.tps);
+      colors.push('rgba(16,185,129,0.85)');
+    }
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Tokens / Segundo',
+          data,
+          backgroundColor: colors,
+          borderColor: colors.map(c => c.replace('0.8', '1').replace('0.85', '1')),
+          borderWidth: 1,
+          borderRadius: 8,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => ` ${ctx.parsed.y.toFixed(2)} tok/s`
+            }
+          }
+        },
+        scales: {
+          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { size: 11 } } },
+          y: {
+            grid: { color: 'rgba(255,255,255,0.05)' },
+            ticks: { color: '#94a3b8', font: { size: 11 }, callback: v => v + ' t/s' },
+            beginAtZero: true
+          }
+        },
+        animation: { duration: 600, easing: 'easeOutQuart' }
+      }
+    });
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\n/g, '<br>');
+  }
+</script>
+</body>
+</html>

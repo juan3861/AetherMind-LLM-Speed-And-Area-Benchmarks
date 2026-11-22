@@ -1,0 +1,62 @@
+{
+  "model": "iq4_xs",
+  "path": "F:\\data\\models\\Qwen3.8-9B-Heretic-IQ4_XS.gguf",
+  "results": [
+    {
+      "label": "t14_plain",
+      "args": "-t 14",
+      "tg_tok_s": 7.09,
+      "pp_tok_s": 31.88,
+      "elapsed_s": 110.8,
+      "raw_tail": "5 bpw    |   4.98 GiB |     9.20 B | CPU        |      14 |           pp512 |         31.88 \u00b1 0.48 |\n| qwen35 9B IQ4_XS - 4.25 bpw    |   4.98 GiB |     9.20 B | CPU        |      14 |           tg128 |          7.09 \u00b1 0.06 |\n\nbuild: dfc29b64e (10749)\nload_backend: loaded RPC backend from F:\\tools\\lc_b10749\\ggml-rpc.dll\nload_backend: loaded CPU backend from F:\\tools\\lc_b10749\\ggml-cpu-haswell.dll\n"
+    },
+    {
+      "label": "t14_fa",
+      "args": "-t 14 -fa 1",
+      "tg_tok_s": 7.2,
+      "pp_tok_s": 31.69,
+      "elapsed_s": 87.8,
+      "raw_tail": " 4.98 GiB |     9.20 B | CPU        |      14 |   1 |           pp512 |         31.69 \u00b1 0.21 |\n| qwen35 9B IQ4_XS - 4.25 bpw    |   4.98 GiB |     9.20 B | CPU        |      14 |   1 |           tg128 |          7.20 \u00b1 0.03 |\n\nbuild: dfc29b64e (10749)\nload_backend: loaded RPC backend from F:\\tools\\lc_b10749\\ggml-rpc.dll\nload_backend: loaded CPU backend from F:\\tools\\lc_b10749\\ggml-cpu-haswell.dll\n"
+    },
+    {
+      "label": "t14_ub512",
+      "args": "-t 14 -ub 512",
+      "tg_tok_s": 5.73,
+      "pp_tok_s": 28.95,
+      "elapsed_s": 101.6,
+      "raw_tail": "5 bpw    |   4.98 GiB |     9.20 B | CPU        |      14 |           pp512 |         28.95 \u00b1 3.79 |\n| qwen35 9B IQ4_XS - 4.25 bpw    |   4.98 GiB |     9.20 B | CPU        |      14 |           tg128 |          5.73 \u00b1 1.05 |\n\nbuild: dfc29b64e (10749)\nload_backend: loaded RPC backend from F:\\tools\\lc_b10749\\ggml-rpc.dll\nload_backend: loaded CPU backend from F:\\tools\\lc_b10749\\ggml-cpu-haswell.dll\n"
+    },
+    {
+      "label": "t14_ub512_fa",
+      "args": "-t 14 -ub 512 -fa 1",
+      "tg_tok_s": 7.05,
+      "pp_tok_s": 31.28,
+      "elapsed_s": 91.7,
+      "raw_tail": " 4.98 GiB |     9.20 B | CPU        |      14 |   1 |           pp512 |         31.28 \u00b1 0.28 |\n| qwen35 9B IQ4_XS - 4.25 bpw    |   4.98 GiB |     9.20 B | CPU        |      14 |   1 |           tg128 |          7.05 \u00b1 0.02 |\n\nbuild: dfc29b64e (10749)\nload_backend: loaded RPC backend from F:\\tools\\lc_b10749\\ggml-rpc.dll\nload_backend: loaded CPU backend from F:\\tools\\lc_b10749\\ggml-cpu-haswell.dll\n"
+    },
+    {
+      "label": "t14_fa_kvq8",
+      "args": "-t 14 -fa 1 -ctk q8_0 -ctv q8_0",
+      "tg_tok_s": 7.11,
+      "pp_tok_s": 31.08,
+      "elapsed_s": 89.7,
+      "raw_tail": "|      14 |   q8_0 |   q8_0 |   1 |           pp512 |         31.08 \u00b1 0.18 |\n| qwen35 9B IQ4_XS - 4.25 bpw    |   4.98 GiB |     9.20 B | CPU        |      14 |   q8_0 |   q8_0 |   1 |           tg128 |          7.11 \u00b1 0.06 |\n\nbuild: dfc29b64e (10749)\nload_backend: loaded RPC backend from F:\\tools\\lc_b10749\\ggml-rpc.dll\nload_backend: loaded CPU backend from F:\\tools\\lc_b10749\\ggml-cpu-haswell.dll\n"
+    },
+    {
+      "label": "t12_fa",
+      "args": "-t 12 -fa 1",
+      "tg_tok_s": 7.08,
+      "pp_tok_s": 32.33,
+      "elapsed_s": 87.9,
+      "raw_tail": " 4.98 GiB |     9.20 B | CPU        |      12 |   1 |           pp512 |         32.33 \u00b1 0.73 |\n| qwen35 9B IQ4_XS - 4.25 bpw    |   4.98 GiB |     9.20 B | CPU        |      12 |   1 |           tg128 |          7.08 \u00b1 0.09 |\n\nbuild: dfc29b64e (10749)\nload_backend: loaded RPC backend from F:\\tools\\lc_b10749\\ggml-rpc.dll\nload_backend: loaded CPU backend from F:\\tools\\lc_b10749\\ggml-cpu-haswell.dll\n"
+    },
+    {
+      "label": "t16_fa",
+      "args": "-t 16 -fa 1",
+      "tg_tok_s": 7.12,
+      "pp_tok_s": 33.73,
+      "elapsed_s": 85.9,
+      "raw_tail": " 4.98 GiB |     9.20 B | CPU        |      16 |   1 |           pp512 |         33.73 \u00b1 0.04 |\n| qwen35 9B IQ4_XS - 4.25 bpw    |   4.98 GiB |     9.20 B | CPU        |      16 |   1 |           tg128 |          7.12 \u00b1 0.13 |\n\nbuild: dfc29b64e (10749)\nload_backend: loaded RPC backend from F:\\tools\\lc_b10749\\ggml-rpc.dll\nload_backend: loaded CPU backend from F:\\tools\\lc_b10749\\ggml-cpu-haswell.dll\n"
+    }
+  ]
+}

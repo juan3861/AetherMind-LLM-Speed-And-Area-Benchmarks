@@ -1,0 +1,12 @@
+{"alias": "MiniCPM5-1B", "model": "MiniCPM5-1B-Q4_K_M.gguf", "device": "cpu", "fa": 0, "pp": {"512": 322.745928, "2048": 257.40896}}
+{"alias": "MiniCPM5-1B", "model": "MiniCPM5-1B-Q4_K_M.gguf", "device": "cpu", "fa": 1, "pp": {"512": 306.680994, "2048": 261.565011}}
+{"alias": "MiniCPM5-1B", "model": "MiniCPM5-1B-Q4_K_M.gguf", "device": "gpu", "fa": 0, "pp": {"512": 323.692196, "2048": 270.714532}}
+{"alias": "MiniCPM5-1B", "model": "MiniCPM5-1B-Q4_K_M.gguf", "device": "gpu", "fa": 1, "pp": {"512": 379.524727, "2048": 284.056703}}
+{"alias": "MiniCPM5-2B", "model": "MiniCPM5-2B-Q4_K_M.gguf", "device": "cpu", "fa": 0, "pp": {"512": 117.281326, "2048": 108.73701}}
+{"alias": "MiniCPM5-2B", "model": "MiniCPM5-2B-Q4_K_M.gguf", "device": "cpu", "fa": 1, "pp": {"512": 133.120649, "2048": 109.601764}}
+{"alias": "MiniCPM5-2B", "model": "MiniCPM5-2B-Q4_K_M.gguf", "device": "gpu", "fa": 0, "pp": {"512": 122.034652, "2048": 106.710885}}
+{"alias": "MiniCPM5-2B", "model": "MiniCPM5-2B-Q4_K_M.gguf", "device": "gpu", "fa": 1, "pp": {"512": 133.768956, "2048": 109.765416}}
+{"alias": "Qwen2.5-1.5B", "model": "Qwen2.5-1.5B-Instruct-Q4_K_M.gguf", "device": "cpu", "fa": 0, "pp": {"512": 190.235617, "2048": 181.445982}}
+{"alias": "Qwen2.5-1.5B", "model": "Qwen2.5-1.5B-Instruct-Q4_K_M.gguf", "device": "cpu", "fa": 1, "pp": {"512": 199.157579, "2048": 171.316134}}
+{"alias": "Qwen2.5-1.5B", "model": "Qwen2.5-1.5B-Instruct-Q4_K_M.gguf", "device": "gpu", "fa": 0, "pp": {"512": 187.482221, "2048": 178.674959}}
+{"alias": "Qwen2.5-1.5B", "model": "Qwen2.5-1.5B-Instruct-Q4_K_M.gguf", "device": "gpu", "fa": 1, "pp": {"512": 207.42601, "2048": 176.770102}}

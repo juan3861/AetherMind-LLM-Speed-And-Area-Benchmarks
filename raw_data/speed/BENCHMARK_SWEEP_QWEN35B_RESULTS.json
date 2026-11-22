@@ -1,0 +1,58 @@
+[
+  {
+    "threads": 6,
+    "kv_type": "f16",
+    "load_time_s": 64.41264000000956,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "prompt_tok_s": null,
+    "gen_tok_s": null,
+    "ttft_ms": null,
+    "total_ms": 60031.70059999684,
+    "ram_peak_mb": 11874.65625,
+    "success": false,
+    "error": "timed out"
+  },
+  {
+    "threads": 8,
+    "kv_type": "f16",
+    "load_time_s": 71.65498210000806,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "prompt_tok_s": null,
+    "gen_tok_s": null,
+    "ttft_ms": null,
+    "total_ms": 60035.478200006764,
+    "ram_peak_mb": 11218.953125,
+    "success": false,
+    "error": "timed out"
+  },
+  {
+    "threads": 10,
+    "kv_type": "f16",
+    "load_time_s": 69.21661540000059,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "prompt_tok_s": null,
+    "gen_tok_s": null,
+    "ttft_ms": null,
+    "total_ms": 60002.729599989834,
+    "ram_peak_mb": 11885.359375,
+    "success": false,
+    "error": "timed out"
+  },
+  {
+    "threads": 12,
+    "kv_type": "f16",
+    "load_time_s": 69.47190600000613,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "prompt_tok_s": null,
+    "gen_tok_s": null,
+    "ttft_ms": null,
+    "total_ms": 60016.37270000356,
+    "ram_peak_mb": 11453.70703125,
+    "success": false,
+    "error": "timed out"
+  }
+]

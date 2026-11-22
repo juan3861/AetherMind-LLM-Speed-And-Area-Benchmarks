@@ -1,0 +1,164 @@
+put:
+================================================================================
+
+ [ROTOR HIGH-CALIBER BENCHMARK MATRIX] Multi-Model Empirical Evaluation
+
+ Host: Intel Xeon E5-2697 v3 (14C/28T, 32GB RAM)
+
+================================================================================
+
+
+
+===========================================================================
+
+ [EVALUATING] Ring-mini 2.0 (Q4_K_M)
+
+ File: F:\data\models\Ring-mini-2.0-Q4_K_M.gguf
+
+ Config: Threads=10, Extra=[]
+
+===========================================================================
+
+  -> Spawned PID=20384. Waiting for server ready...
+
+  -> READY in 39.9s | RAM RSS: 1118.9 MB. Dispatching inference (timeout=300s)...
+
+  -> [RESULT SUCCESS]
+
+     Generation Speed: 20.82 tok/s
+
+     Prompt Speed:     30.61 tok/s (TTFT: 1045 ms)
+
+     RAM RSS Peak:     5194.0 MB
+
+     Tokens Out:       48 tokens
+
+     Sample Output:    We are asked for two concise bullet points explaining the difference between a process and a thread in operating systems...
+
+
+
+===========================================================================
+
+ [EVALUATING] GPT-OSS 20B (Q4_K_M)
+
+ File: F:\data\models\gpt-oss-20b-Q4_K_M.gguf
+
+ Config: Threads=10, Extra=[]
+
+===========================================================================
+
+  -> Spawned PID=38920. Waiting for server ready...
+
+  -> READY in 50.8s | RAM RSS: 4082.0 MB. Dispatching inference (timeout=300s)...
+
+  -> [RESULT SUCCESS]
+
+     Generation Speed: 13.10 tok/s
+
+     Prompt Speed:     18.05 tok/s (TTFT: 4766 ms)
+
+     RAM RSS Peak:     10076.8 MB
+
+     Tokens Out:       48 tokens
+
+     Sample Output:    ...
+
+
+
+===========================================================================
+
+ [EVALUATING] Qwen3.6-35B-A3B MoE (Baseline)
+
+ File: F:\data\models\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf
+
+ Config: Threads=10, Extra=[]
+
+===========================================================================
+
+  -> Spawned PID=36232. Waiting for server ready...
+
+  -> READY in 70.8s | RAM RSS: 4149.6 MB. Dispatching inference (timeout=300s)...
+
+  -> [RESULT SUCCESS]
+
+     Generation Speed: 1.62 tok/s
+
+     Prompt Speed:     1.29 tok/s (TTFT: 23236 ms)
+
+     RAM RSS Peak:     11502.8 MB
+
+     Tokens Out:       48 tokens
+
+     Sample Output:    ...
+
+
+
+===========================================================================
+
+ [EVALUATING] Qwen3.6-35B-A3B MoE (MTP Draft Head)
+
+ File: F:\data\models\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf
+
+ Config: Threads=10, Extra=['-md', 'F:\\data\\models\\mtp-Q4_K_M.gguf', '--spec-type', 'draft-mtp', '--spec-draft-n-max', '2']
+
+===========================================================================
+
+  -> Spawned PID=36784. Waiting for server ready...
+
+  -> READY in 34.5s | RAM RSS: 4955.6 MB. Dispatching inference (timeout=300s)...
+
+  -> [RESULT SUCCESS]
+
+     Generation Speed: 7.05 tok/s
+
+     Prompt Speed:     11.11 tok/s (TTFT: 2699 ms)
+
+     RAM RSS Peak:     12631.6 MB
+
+     Tokens Out:       48 tokens
+
+     Sample Output:    ...
+
+
+
+===========================================================================
+
+ [EVALUATING] Agents-A1 (IQ4_XS)
+
+ File: F:\data\models\agents-a1-IQ4_XS.gguf
+
+ Config: Threads=10, Extra=[]
+
+===========================================================================
+
+  -> Spawned PID=35900. Waiting for server ready...
+
+  -> READY in 70.6s | RAM RSS: 2841.3 MB. Dispatching inference (timeout=300s)...
+
+  -> [RESULT SUCCESS]
+
+     Generation Speed: 1.56 tok/s
+
+     Prompt Speed:     2.41 tok/s (TTFT: 12430 ms)
+
+     RAM RSS Peak:     9302.8 MB
+
+     Tokens Out:       48 tokens
+
+     Sample Output:    ...
+
+
+
+================================================================================
+
+ [ALL TESTS COMPLETED] Summary saved to: F:\rotor-llm\BENCHMARK_HIGH_CALIBER_RESULTS.json
+
+================================================================================
+
+
+
+
+===== [AGENT] 2026-09-17T01:46:40 title= tool=
+
+
+===== [TASK] 2026-09-17T01:46:52 title=Checking RAM and process 

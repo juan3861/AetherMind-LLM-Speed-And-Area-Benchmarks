@@ -1,0 +1,47 @@
+[
+  {
+    "name": "qwen2.5-coder-1.5b",
+    "path": "F:\\data\\models\\qwen2.5-coder-1.5b-instruct-q4_k_m.gguf",
+    "size_gb": 1.04,
+    "pp128_tok_s": null,
+    "tg64_tok_s": null,
+    "raw_stdout": "it_target\": 0,\n    \"fit_min_ctx\": 0,\n    \"n_prompt\": 0,\n    \"n_gen\": 64,\n    \"n_depth\": 0,\n    \"test_time\": \"2026-09-24T15:05:08Z\",\n    \"avg_ns\": 3361898000,\n    \"stddev_ns\": 0,\n    \"avg_ts\": 19.036865,\n    \"stddev_ts\": 0.000000,\n    \"samples_ns\": [ 3361898000 ],\n    \"samples_ts\": [ 19.0369 ]\n  }\n]\n"
+  },
+  {
+    "name": "MiniCPM5-2B",
+    "path": "F:\\data\\models\\MiniCPM5-2B-Q4_K_M.gguf",
+    "size_gb": 1.45,
+    "pp128_tok_s": null,
+    "tg64_tok_s": null,
+    "raw_stdout": "it_target\": 0,\n    \"fit_min_ctx\": 0,\n    \"n_prompt\": 0,\n    \"n_gen\": 64,\n    \"n_depth\": 0,\n    \"test_time\": \"2026-09-24T15:05:24Z\",\n    \"avg_ns\": 3944328000,\n    \"stddev_ns\": 0,\n    \"avg_ts\": 16.225831,\n    \"stddev_ts\": 0.000000,\n    \"samples_ns\": [ 3944328000 ],\n    \"samples_ts\": [ 16.2258 ]\n  }\n]\n"
+  },
+  {
+    "name": "granite-4.2-3b",
+    "path": "F:\\data\\models\\granite-4.2-3b-Q4_K_M.gguf",
+    "size_gb": 2.09,
+    "pp128_tok_s": null,
+    "tg64_tok_s": null,
+    "raw_stdout": "fit_target\": 0,\n    \"fit_min_ctx\": 0,\n    \"n_prompt\": 0,\n    \"n_gen\": 64,\n    \"n_depth\": 0,\n    \"test_time\": \"2026-09-24T15:05:45Z\",\n    \"avg_ns\": 4892226600,\n    \"stddev_ns\": 0,\n    \"avg_ts\": 13.081978,\n    \"stddev_ts\": 0.000000,\n    \"samples_ns\": [ 4892226600 ],\n    \"samples_ts\": [ 13.082 ]\n  }\n]\n"
+  },
+  {
+    "name": "Ministral-3-3B",
+    "path": "F:\\data\\models\\Ministral-3-3B-Reasoning-2512.Q4_K_M.gguf",
+    "size_gb": 2.0,
+    "pp128_tok_s": null,
+    "tg64_tok_s": null,
+    "raw_stdout": "it_target\": 0,\n    \"fit_min_ctx\": 0,\n    \"n_prompt\": 0,\n    \"n_gen\": 64,\n    \"n_depth\": 0,\n    \"test_time\": \"2026-09-24T15:06:06Z\",\n    \"avg_ns\": 4359644500,\n    \"stddev_ns\": 0,\n    \"avg_ts\": 14.680096,\n    \"stddev_ts\": 0.000000,\n    \"samples_ns\": [ 4359644500 ],\n    \"samples_ts\": [ 14.6801 ]\n  }\n]\n"
+  },
+  {
+    "name": "Phi-4-mini-instruct",
+    "path": "F:\\data\\models\\Phi-4-mini-instruct.Q4_K_M.gguf",
+    "size_gb": 2.32,
+    "pp128_tok_s": null,
+    "tg64_tok_s": null,
+    "raw_stdout": "fit_target\": 0,\n    \"fit_min_ctx\": 0,\n    \"n_prompt\": 0,\n    \"n_gen\": 64,\n    \"n_depth\": 0,\n    \"test_time\": \"2026-09-24T15:06:30Z\",\n    \"avg_ns\": 4817479700,\n    \"stddev_ns\": 0,\n    \"avg_ts\": 13.284955,\n    \"stddev_ts\": 0.000000,\n    \"samples_ns\": [ 4817479700 ],\n    \"samples_ts\": [ 13.285 ]\n  }\n]\n"
+  },
+  {
+    "name": "Qwen3.6-35B-A3B-UD",
+    "size_gb": 21.11,
+    "error": "Command '['F:\\\\tools\\\\lc_b10749\\\\llama-bench.exe', '-m', 'F:\\\\data\\\\models\\\\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf', '-p', '128', '-n', '64', '-t', '14', '-r', '1', '-o', 'json']' timed out after 180 seconds"
+  }
+]

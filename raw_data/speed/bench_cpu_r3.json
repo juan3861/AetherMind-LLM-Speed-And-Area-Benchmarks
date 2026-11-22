@@ -1,0 +1,149 @@
+{
+  "qwen25-1.5b": {
+    "file": "Qwen2.5-1.5B-Instruct-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 19.73,
+        "pp_tok_s": 78.48,
+        "elapsed_s": 60.3,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 7.72,
+        "pp_tok_s": 98.61,
+        "elapsed_s": 74.2,
+        "error": null
+      }
+    ],
+    "best_tg": 19.73,
+    "best_tg_threads": "7",
+    "best_pp": 78.48
+  },
+  "qwen3-1.7b": {
+    "file": "Qwen3-1.7B-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 14.36,
+        "pp_tok_s": 72.84,
+        "elapsed_s": 72.2,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 7.5,
+        "pp_tok_s": 98.91,
+        "elapsed_s": 76.8,
+        "error": null
+      }
+    ],
+    "best_tg": 14.36,
+    "best_tg_threads": "7",
+    "best_pp": 72.84
+  },
+  "minicpm4-0.5b": {
+    "file": "MiniCPM4-0.5B-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 34.73,
+        "pp_tok_s": 275.38,
+        "elapsed_s": 24.1,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 5.77,
+        "pp_tok_s": 279.2,
+        "elapsed_s": 76.3,
+        "error": null
+      }
+    ],
+    "best_tg": 34.73,
+    "best_tg_threads": "7",
+    "best_pp": 275.38
+  },
+  "minicpm5-1b": {
+    "file": "MiniCPM5-1B-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 23.46,
+        "pp_tok_s": 138.44,
+        "elapsed_s": 42.1,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 18.21,
+        "pp_tok_s": 220.4,
+        "elapsed_s": 34.8,
+        "error": null
+      }
+    ],
+    "best_tg": 23.46,
+    "best_tg_threads": "7",
+    "best_pp": 138.44
+  },
+  "minicpm5-2b": {
+    "file": "MiniCPM5-2B-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 15.71,
+        "pp_tok_s": 64.07,
+        "elapsed_s": 81.8,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 3.98,
+        "pp_tok_s": 47.38,
+        "elapsed_s": 169.8,
+        "error": null
+      }
+    ],
+    "best_tg": 15.71,
+    "best_tg_threads": "7",
+    "best_pp": 64.07
+  },
+  "nemotron-r1.5b": {
+    "file": "nvidia_OpenReasoning-Nemotron-1.5B-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 12.4,
+        "pp_tok_s": 76.71,
+        "elapsed_s": 63.0,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 10.53,
+        "pp_tok_s": 101.55,
+        "elapsed_s": 61.1,
+        "error": null
+      }
+    ],
+    "best_tg": 12.4,
+    "best_tg_threads": "7",
+    "best_pp": 76.71
+  },
+  "mobilellm-r15-950m": {
+    "file": "mobilellm-r1.5-950m-q4_k_m.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": null,
+        "pp_tok_s": null,
+        "elapsed_s": 3.5,
+        "error": " ------: | --------------: | -------------------: | | load_backend: loaded RPC backend from F:\\tools\\lc_b10749\\ggml-rpc.dll | load_backend: loaded CPU backend from F:\\tools\\lc_b10749\\ggml-cpu-haswell.dll | llama_bench: error: failed to load model 'E:\\models\\gguf\\cpu_bench\\mobilellm-r1.5-950m-q4_k_m.gguf' | "
+      }
+    ],
+    "best_tg": null,
+    "best_tg_threads": null,
+    "best_pp": null
+  }
+}

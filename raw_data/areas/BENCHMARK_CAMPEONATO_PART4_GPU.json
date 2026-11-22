@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "generated_at": "2026-09-25T09:23:35-0300",
+    "engine": "F:\\tools\\lc_b10749\\llama-server.exe",
+    "threads": "14",
+    "ctx_size": "4096",
+    "ngl": 0,
+    "temperature": 0.0,
+    "seed": 42,
+    "golden_rule_tok_s": 7.0,
+    "golden_rule_metric": "steady_gen_tok_s_median",
+    "quick": false
+  },
+  "results": [
+    {
+      "id": "qwen38_9b_heretic_iq4xs_gpu",
+      "name": "Qwen3.8-9B-Distill-Heretic-Uncensored IQ4_XS (RX 580, offload total)",
+      "role_under_test": "L1 universal grande (rota GPU Vulkan)",
+      "path": "F:/data/models/Qwen3.8-9B-Heretic-IQ4_XS.gguf",
+      "status": "SUCCESS",
+      "jinja": true,
+      "finish_mode_check": {
+        "declared": "direct",
+        "template_kwargs": {
+          "enable_thinking": false
+        },
+        "thinking_budget": 0,
+        "observed_reasoning_len": 0,
+        "observed_finish_reason": "stop",
+        "verdict": "MODE_CONFIRMED"
+      },
+      "n_probes_scored": 10,
+      "n_probes_unusable_truncated": 0,
+      "unusable_probe_ids": [],
+      "denominator_note": "metricas funcionais dividem apenas por sondas PONTUAVEIS; truncamento no teto maximo sai do denominador (regua 9)",
+      "load_time_s": 13.33,
+      "cold_ttft_ms": 2482.62,
+      "cold_prompt_tok_s": 10.88,
+      "cold_gen_tok_s": 12.05,
+      "steady_gen_tok_s_median": 14.17,
+      "steady_samples": [
+        14.164567088111252,
+        14.171857390623629,
+        14.168341941912946
+      ],
+      "ram_peak_mb": 7069.26,
+      "golden_rule_tok_s": 7.0,
+      "golden_rule_metric": "steady_gen_tok_s_median (keep-alive = realidade operacional)",
+      "passes_golden_rule": true,
+      "dimensions": {
+        "json": {
+          "pass": 2,
+          "total": 2,
+          "pct": 100.0
+        },
+        "tool": {
+          "pass": 2,
+          "total": 2,
+          "pct": 100.0
+        },
+        "instruction": {
+          "pass": 2,
+          "total": 2,
+          "pct": 100.0
+        },
+        "math": {
+          "pass": 1,
+          "total": 2,
+          "pct": 50.0
+        },
+        "coding": {
+          "pass": 2,
+          "total": 2,
+          "pct": 100.0
+        }
+      },
+      "resolved_without_escalation_pct": 90.0,
+      "stability_pct": 90.0,
+      "probes": [
+        {
+          "id": "json_flat",
+          "dim": "json",
+          "scored": true,
+          "status": "SCORED",
+          "first_attempt_pass": true,
+          "stable_pass": true,
+          "detail": "OK",
+          "max_tokens_final": 96,
+          "escalated": false,
+          "n_attempts": 2,
+          "n_unusable": 0,
+          "latency_ms": null
+        },
+        {
+          "id": "json_nested",
+          "dim": "json",
+          "scored": true,
+          "status": "SCORED",
+          "first_attempt_pass": true,
+          "stable_pass": true,
+          "detail": "OK",
+          "max_tokens_final": 128,
+          "escalated": false,
+          "n_attempts": 2,
+          "n_unusable": 0,
+          "latency_ms": null
+        },
+        {
+          "id": "tool_timer",
+          "dim": "tool",
+          "scored": true,
+          "status": "SCORED",
+          "first_attempt_pass": true,
+          "stable_pass": true,
+          "detail": "OK",
+          "max_tokens_final": 96,
+          "escalated": false,
+          "n_attempts": 2,
+          "n_unusable": 0,
+          "latency_ms": null
+        },
+        {
+          "id": "tool_weather",
+          "dim": "tool",
+          "scored": true,
+          "status": "SCORED",
+          "first_attempt_pass": true,
+          "stable_pass": true,
+          "detail": "OK",
+          "max_tokens_final": 96,
+          "escalated": false,
+          "n_attempts": 2,
+          "n_unusable": 0,
+          "latency_ms": null
+        },
+        {
+          "id": "instr_bullets",
+          "dim": "instruction",
+          "scored": true,
+          "status": "SCORED",
+          "first_attempt_pass": true,
+          "stable_pass": true,
+          "detail": "OK",
+          "max_tokens_final": 160,
+          "escalated": false,
+          "n_attempts": 2,
+          "n_unusable": 0,
+          "latency_ms": null
+        },
+        {
+          "id": "instr_one_word",
+          "dim": "instruction",
+          "scored": true,
+          "status": "SCORED",
+          "first_attempt_pass": true,
+          "stable_pass": true,
+          "detail": "OK",
+          "max_tokens_final": 16,
+          "escalated": false,
+          "n_attempts": 2,
+          "n_unusable": 0,
+          "latency_ms": null
+        },
+        {
+          "id": "math_discount",
+          "dim": "math",
+          "scored": true,
+          "status": "SCORED",
+          "first_attempt_pass": true,
+          "stable_pass": true,
+          "detail": "OK",
+          "max_tokens_final": 32,
+          "escalated": false,
+          "n_attempts": 2,
+          "n_unusable": 0,
+          "latency_ms": null
+        },
+        {
+          "id": "math_trap",
+          "dim": "math",
+          "scored": true,
+          "status": "SCORED",
+          "first_attempt_pass": false,
+          "stable_pass": false,
+          "detail": "NUMERO=1.0;esperado=5.0",
+          "max_tokens_final": 32,
+          "escalated": false,
+          "n_attempts": 2,
+          "n_unusable": 0,
+          "latency_ms": null
+        },
+        {
+          "id": "code_write",
+          "dim": "coding",
+          "scored": true,
+          "status": "SCORED",
+          "first_attempt_pass": true,
+          "stable_pass": true,
+          "detail": "EXEC_OK",
+          "max_tokens_final": 220,
+          "escalated": false,
+          "n_attempts": 2,
+          "n_unusable": 0,
+          "latency_ms": null
+        },
+        {
+          "id": "code_debug",
+          "dim": "coding",
+          "scored": true,
+          "status": "SCORED",
+          "first_attempt_pass": true,
+          "stable_pass": true,
+          "detail": "EXEC_OK",
+          "max_tokens_final": 240,
+          "escalated": false,
+          "n_attempts": 2,
+          "n_unusable": 0,
+          "latency_ms": null
+        }
+      ]
+    }
+  ]
+}

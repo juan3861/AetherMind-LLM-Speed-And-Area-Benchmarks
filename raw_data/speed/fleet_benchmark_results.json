@@ -1,0 +1,47 @@
+[
+  {
+    "name": "DeepSeek-R1-Distill-Qwen-14B-IQ3_M",
+    "category": "14B Reasoning (Distilled)",
+    "quant": "IQ3_M",
+    "size_gb": 6.44,
+    "pp64_speed": 62.772948,
+    "tg32_speed": 9.343179,
+    "sanity_sample": "Sanity error: Command '['F:\\\\tools\\\\lc_vulkan\\\\llama-cli.exe', '-m', 'F:\\\\data\\\\models\\\\DeepSeek-R1-Distill-Qwen-14B-IQ3_M.gguf', '-p', \"Mestre Ruan perguntou: 'Voce esta pronto para operar? Responda de forma clara e objetiva.'\", '-n', '40', '--temp', '0.6', '-c', '2048', '-ngl', '99', '-fa', '1', '-t', '6', '-ctk', 'q4_0', '-ctv', 'q4_0', '--no-warmup']' timed out after 60 seconds"
+  },
+  {
+    "name": "Qwen2.5-14B-della.Q3_K_M",
+    "category": "14B Triple-Merge (DELLA)",
+    "quant": "Q3_K_M",
+    "size_gb": 6.83,
+    "pp64_speed": 57.595811,
+    "tg32_speed": 10.332848,
+    "sanity_sample": "Sanity error: Command '['F:\\\\tools\\\\lc_vulkan\\\\llama-cli.exe', '-m', 'D:\\\\AetherMind_Models\\\\Qwen2.5-14B-della.Q3_K_M.gguf', '-p', \"Mestre Ruan perguntou: 'Voce esta pronto para operar? Responda de forma clara e objetiva.'\", '-n', '40', '--temp', '0.6', '-c', '2048', '-ngl', '99', '-fa', '1', '-t', '6', '-ctk', 'q4_0', '-ctv', 'q4_0', '--no-warmup']' timed out after 60 seconds"
+  },
+  {
+    "name": "UncensoredLM-DeepSeek-R1-Distill-14B-IQ3_M",
+    "category": "14B Uncensored / Heretic",
+    "quant": "IQ3_M",
+    "size_gb": 6.2,
+    "pp64_speed": 65.690708,
+    "tg32_speed": 9.695174,
+    "sanity_sample": "Sanity error: Command '['F:\\\\tools\\\\lc_vulkan\\\\llama-cli.exe', '-m', 'D:\\\\AetherMind_Models\\\\uncensoredai_UncensoredLM-DeepSeek-R1-Distill-Qwen-14B-IQ3_M.gguf', '-p', \"Mestre Ruan perguntou: 'Voce esta pronto para operar? Responda de forma clara e objetiva.'\", '-n', '40', '--temp', '0.6', '-c', '2048', '-ngl', '99', '-fa', '1', '-t', '6', '-ctk', 'q4_0', '-ctv', 'q4_0', '--no-warmup']' timed out after 60 seconds"
+  },
+  {
+    "name": "CoderO1-DeepSeekR1-Coder-14B-Preview.Q3_K_M",
+    "category": "14B Coding + Reasoning (SCE Merge)",
+    "quant": "Q3_K_M",
+    "size_gb": 6.84,
+    "pp64_speed": 57.131195,
+    "tg32_speed": 10.326496,
+    "sanity_sample": "Sanity error: Command '['F:\\\\tools\\\\lc_vulkan\\\\llama-cli.exe', '-m', 'D:\\\\AetherMind_Models\\\\CoderO1-DeepSeekR1-Coder-14B-Preview.Q3_K_M.gguf', '-p', \"Mestre Ruan perguntou: 'Voce esta pronto para operar? Responda de forma clara e objetiva.'\", '-n', '40', '--temp', '0.6', '-c', '2048', '-ngl', '99', '-fa', '1', '-t', '6', '-ctk', 'q4_0', '-ctv', 'q4_0', '--no-warmup']' timed out after 60 seconds"
+  },
+  {
+    "name": "Qwen3.8-9B-Heretic-IQ4_XS (Baseline)",
+    "category": "9B Uncensored Baseline",
+    "quant": "IQ4_XS",
+    "size_gb": 4.99,
+    "pp64_speed": 132.018622,
+    "tg32_speed": 14.641926,
+    "sanity_sample": "Sanity error: Command '['F:\\\\tools\\\\lc_vulkan\\\\llama-cli.exe', '-m', 'F:\\\\data\\\\models\\\\Qwen3.8-9B-Heretic-IQ4_XS.gguf', '-p', \"Mestre Ruan perguntou: 'Voce esta pronto para operar? Responda de forma clara e objetiva.'\", '-n', '40', '--temp', '0.6', '-c', '2048', '-ngl', '99', '-fa', '1', '-t', '6', '-ctk', 'q4_0', '-ctv', 'q4_0', '--no-warmup']' timed out after 60 seconds"
+  }
+]

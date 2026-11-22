@@ -1,0 +1,42 @@
+[
+  {
+    "id": "official_baseline",
+    "name": "Qwen3.6-35B Official (Baseline)",
+    "status": "SUCCESS",
+    "load_time_s": 75.14,
+    "ttft_ms": 8495.1,
+    "gen_tok_s": 4.27,
+    "total_ms": 19554.2,
+    "ram_peak_mb": 10775.0
+  },
+  {
+    "id": "official_mtp",
+    "name": "Qwen3.6-35B Official (+ MTP Head)",
+    "status": "SUCCESS",
+    "load_time_s": 61.04,
+    "ttft_ms": 30735.2,
+    "gen_tok_s": 2.97,
+    "total_ms": 46602.0,
+    "ram_peak_mb": 11892.8
+  },
+  {
+    "id": "ud_baseline",
+    "name": "Qwen3.6-35B UD (Baseline)",
+    "status": "SUCCESS",
+    "load_time_s": 95.11,
+    "ttft_ms": 6031.6,
+    "gen_tok_s": 4.81,
+    "total_ms": 16009.7,
+    "ram_peak_mb": 11422.5
+  },
+  {
+    "id": "ud_mtp",
+    "name": "Qwen3.6-35B UD (+ MTP Head)",
+    "status": "SUCCESS",
+    "load_time_s": 77.09,
+    "ttft_ms": 55202.7,
+    "gen_tok_s": 2.19,
+    "total_ms": 76701.4,
+    "ram_peak_mb": 12631.3
+  }
+]
