@@ -1,0 +1,143 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_220315",
+  "model_id": "ring-mini-2.0",
+  "metrics": {
+    "total_cases": 10,
+    "passed_cases": 8,
+    "failed_cases": 2,
+    "autonomy_l1": 0.8,
+    "escalation_avoidance": 0.8,
+    "cost_to_solved_task": 120.84,
+    "mean_tok_s": 25.99,
+    "mean_ttft_ms": 469.2,
+    "total_e2e_seconds": 104.84,
+    "total_tokens_generated": 2560
+  },
+  "category_scores": {
+    "planning": 0.8
+  },
+  "cases": [
+    {
+      "case_id": "p01",
+      "category": "planning",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Identificados 7 passos estruturados (minimo 5)",
+      "e2e_seconds": 12.551,
+      "tok_per_sec": 23.71,
+      "ttft_ms": 1758.5,
+      "ram_mb": null,
+      "output_snippet": "We are creating a 5-step sequential plan for migrating a monolithic application to microservices without downtime.  The "
+    },
+    {
+      "case_id": "p02",
+      "category": "planning",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Apenas 1 passos detectados (minimo 4)",
+      "e2e_seconds": 10.282,
+      "tok_per_sec": 25.85,
+      "ttft_ms": 401.2,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre as 4 etapas essenciais em um plano de resposta a incidentes de segurança de dados,"
+    },
+    {
+      "case_id": "p03",
+      "category": "planning",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Identificados 7 passos estruturados (minimo 3)",
+      "e2e_seconds": 10.539,
+      "tok_per_sec": 24.99,
+      "ttft_ms": 321.6,
+      "ram_mb": null,
+      "output_snippet": "We are going to design a safe rollback plan for a database deployment that includes:  1. Addition of indices  2. Renamin"
+    },
+    {
+      "case_id": "p04",
+      "category": "planning",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Identificados 4 passos estruturados (minimo 4)",
+      "e2e_seconds": 9.975,
+      "tok_per_sec": 26.39,
+      "ttft_ms": 295.0,
+      "ram_mb": null,
+      "output_snippet": "We are listing 4 steps for a rigorous latency benchmark in a server cluster.  The steps should be logical and cover the "
+    },
+    {
+      "case_id": "p05",
+      "category": "planning",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Identificados 12 passos estruturados (minimo 4)",
+      "e2e_seconds": 10.153,
+      "tok_per_sec": 25.93,
+      "ttft_ms": 304.5,
+      "ram_mb": null,
+      "output_snippet": "We are going to define a testing strategy for a new REST API in four ordered phases: Unit, Integration, Load, and Securi"
+    },
+    {
+      "case_id": "p06",
+      "category": "planning",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Identificados 13 passos estruturados (minimo 3)",
+      "e2e_seconds": 10.079,
+      "tok_per_sec": 26.37,
+      "ttft_ms": 388.8,
+      "ram_mb": null,
+      "output_snippet": "We are dealing with a legacy database server that needs to be deprovisioned and deactivated securely.  Steps should be t"
+    },
+    {
+      "case_id": "p07",
+      "category": "planning",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Apenas 3 passos detectados (minimo 5)",
+      "e2e_seconds": 10.447,
+      "tok_per_sec": 25.19,
+      "ttft_ms": 305.6,
+      "ram_mb": null,
+      "output_snippet": "We are creating a checklist for promoting a quantized LLM (Large Language Model) for production.  The checklist should c"
+    },
+    {
+      "case_id": "p08",
+      "category": "planning",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Identificados 10 passos estruturados (minimo 3)",
+      "e2e_seconds": 9.594,
+      "tok_per_sec": 27.31,
+      "ttft_ms": 244.5,
+      "ram_mb": null,
+      "output_snippet": "We are creating a contingency plan for a catastrophic failure of the primary datacenter.  The plan should be direct, con"
+    },
+    {
+      "case_id": "p09",
+      "category": "planning",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Identificados 10 passos estruturados (minimo 3)",
+      "e2e_seconds": 9.822,
+      "tok_per_sec": 26.9,
+      "ttft_ms": 327.6,
+      "ram_mb": null,
+      "output_snippet": "We are dealing with a regression in performance in a staging environment. The goal is to describe the resolution flow in"
+    },
+    {
+      "case_id": "p10",
+      "category": "planning",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Identificados 12 passos estruturados (minimo 4)",
+      "e2e_seconds": 9.706,
+      "tok_per_sec": 27.28,
+      "ttft_ms": 344.9,
+      "ram_mb": null,
+      "output_snippet": "We are structuring a 4-week training and capacity-building plan for adopting Clean Architecture.  The plan should be dir"
+    }
+  ]
+}

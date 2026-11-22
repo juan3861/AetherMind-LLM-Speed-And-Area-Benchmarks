@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-09-12T01:49:29.952766",
+  "status": "SUCESSO_TOTAL",
+  "tests": {
+    "models_catalog": {
+      "status": "PASSOU",
+      "latency_ms": 29.7,
+      "total_models": 42
+    },
+    "buffered_chat": {
+      "status": "PASSOU",
+      "e2e_ms": 6334.5,
+      "ttft_ms": 856.854,
+      "tok_per_sec": 23.500175326111194,
+      "backend": "ring-mini-fast",
+      "domain": "terminal",
+      "level": "L1"
+    },
+    "streaming_chat": {
+      "status": "PASSOU",
+      "first_chunk_ms": 2598.0,
+      "total_stream_ms": 2603.1,
+      "chunks_count": 15,
+      "has_done": true
+    }
+  },
+  "metrics": {}
+}

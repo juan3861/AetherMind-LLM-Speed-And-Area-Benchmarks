@@ -5,6 +5,67 @@
 
 ---
 
+## 📌 Adendo Integral: Todos os Modelos Adicionais de Velocidade Pura (Extraídos de `scratch/`, `evidence/bench/` & `benchmark/reports/`)
+
+Esta seção consolida **100% dos modelos testados apenas para velocidade** encontrados nos logs brutos de `F:\rotor-llm\scratch\`, `F:\rotor-llm\evidence\bench\` e `F:\rotor-llm\benchmark\reports\`:
+
+### A. Arena GPU Vulkan (`arena_bench.log` & `bench_7b_gpu.log` — RX 580 8GB, `-ngl 45 / 99`)
+| Modelo (`.gguf`) | Tamanho | Parâmetros | `pp512` (Prefill) | `tg128` (Geração) | Arquivo Fonte |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **`Qwen2-VL-2B-Instruct-Q4_K_M`** | 934.69 MiB | 1.54 B | **675.18 tok/s** | **43.67 tok/s** | [`arena_bench.log`](raw_data/speed_llama_bench/arena_bench.log) |
+| **`Phi-4-mini-instruct-Q4_K_M`** | 2.31 GiB | 3.84 B | **290.91 tok/s** | **29.05 tok/s** | [`arena_bench.log`](raw_data/speed_llama_bench/arena_bench.log) |
+| **`Qwen3-VL-4B-Instruct-Q4_K_M`** | 2.32 GiB | 4.02 B | **245.33 tok/s** | **23.92 tok/s** | [`arena_bench.log`](raw_data/speed_llama_bench/arena_bench.log) |
+| **`Qwen2.5-VL-7B-Instruct-Q4_K_M`** | 4.36 GiB | 7.62 B | **157.39 tok/s** | **23.29 tok/s** | [`arena_bench.log`](raw_data/speed_llama_bench/arena_bench.log) |
+| **`DeepSeek-R1-Distill-Qwen-7B-Q4_K_M`** | 4.36 GiB | 7.62 B | **157.49 tok/s** | **23.28 tok/s** | [`arena_bench.log`](raw_data/speed_llama_bench/arena_bench.log) |
+| **`Qwen2.5-7B-Instruct-Q4_K_M`** (`-ngl 45`) | 4.36 GiB | 7.62 B | **157.31 tok/s** | **23.21 tok/s** | [`bench_7b_gpu.log`](raw_data/speed_llama_bench/bench_7b_gpu.log) |
+| **`Qwen2.5-7B-Instruct-Q4_K_M`** (`-ngl 99`) | 4.36 GiB | 7.62 B | **157.88 tok/s** | **23.18 tok/s** | [`bench_7b_gpu.log`](raw_data/speed_llama_bench/bench_7b_gpu.log) |
+
+### B. `llama-server` Contexto 8192 (`server_bench.jsonl` — GPU `-ngl 45` vs CPU `-ngl 0`)
+| Tag / Modelo | Backend | Load (s) | Prompt (`PP`) | Geração (`TG`) | VRAM Peak | Fonte |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **`LFM2.5-8B-A1B-Q4_K_M`** (`LFM2.5-GPU`) | Vulkan `-ngl 45` | 28.82s | 10.29 tok/s *(p=38)* | **30.10 tok/s** | 5106.5 MB (62.3%) | [`server_bench.jsonl`](raw_data/speed_server_mtp_pld/server_bench.jsonl) |
+| **`LFM2.5-8B-A1B-Q4_K_M`** (`LFM2.5-CPU`) | CPU `-ngl 0` | 4.59s | 4.91 tok/s *(p=38)* | **15.87 tok/s** | 166.2 MB (2.0%) | [`server_bench.jsonl`](raw_data/speed_server_mtp_pld/server_bench.jsonl) |
+| **`Qwen3-8B-Q4_K_M`** (`Qwen3-8B-GPU`) | Vulkan `-ngl 45` | 14.68s | 34.29 tok/s *(p=38)* | **19.92 tok/s** | 5734.8 MB (70.0%) | [`server_bench.jsonl`](raw_data/speed_server_mtp_pld/server_bench.jsonl) |
+
+### C. Varredura Completa CPU AVX2 — 19 Modelos Leves (`7T`, `14T`, `28T`)
+Extraído de [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json), [`round1`](raw_data/speed_llama_bench/bench_cpu_small_compare_round1.json), [`round2`](raw_data/speed_llama_bench/bench_cpu_small_compare_round2.json), [`bench_cpu_r3.json`](raw_data/speed_llama_bench/bench_cpu_r3.json) e [`mobilellm_bench2.log`](raw_data/speed_llama_bench/mobilellm_bench2.log):
+
+| Modelo | Arquivo `.gguf` | `7T` TG / PP | `14T` TG / PP | `28T` TG / PP |
+| :--- | :--- | :---: | :---: | :---: |
+| **`MiniCPM4-0.5B`** | `MiniCPM4-0.5B-Q4_K_M.gguf` | **63.58** / 488.57 | **57.19** / 686.01 | 19.32 / **715.35** |
+| **`SmolLM2-360M-Instruct`** | `SmolLM2-360M-Instruct-Q4_K_M.gguf` | **56.19** / 252.64 *(R1)* | 46.78 / 277.40 | 18.44 / **323.26** |
+| **`Qwen2.5-0.5B-Instruct`** | `Qwen2.5-0.5B-Instruct-Q4_K_M.gguf` | **49.52** / 243.38 *(R1)* | 46.45 / **297.66** | 23.46 / 284.29 |
+| **`Qwen3-0.6B`** | `Qwen3-0.6B-Q4_K_M.gguf` | **47.47** / 339.75 | 33.79 / **439.48** | 10.38 / 290.59 |
+| **`LFM2-1.2B`** | `LFM2-1.2B-Q4_K_M.gguf` | 38.03 / 178.87 | **41.21** / 245.61 | 18.59 / **299.34** |
+| **`Llama-3.2-1B-Instruct`** | `Llama-3.2-1B-Instruct-Q4_K_M.gguf` | 36.87 / 199.24 | **38.63** / 271.33 | 19.43 / **325.14** |
+| **`deepseek-coder-1.3b-instruct`** | `deepseek-coder-1.3b-instruct-Q4_K_M.gguf` | **31.86** / 133.28 *(R2)* | 29.45 / 154.67 | 12.36 / **163.04** |
+| **`Qwen3.5-0.8B`** | `Qwen3.5-0.8B-Q4_K_M.gguf` | **31.53** / 194.17 | 27.41 / **241.66** | 9.06 / 218.18 |
+| **`gemma-3-1b-it`** | `gemma-3-1b-it-Q4_K_M.gguf` | **28.55** / 78.96 | 28.21 / 131.26 | 6.08 / **136.25** |
+| **`Qwen2.5-1.5B-Instruct`** | `Qwen2.5-1.5B-Instruct-Q4_K_M.gguf` | 26.82 / 137.46 | **27.18** / 192.08 | 9.24 / **222.84** |
+| **`SmolLM2-1.7B-Instruct`** | `SmolLM2-1.7B-Instruct-Q4_K_M.gguf` | 24.04 / 109.36 | **26.22** / 151.66 | 9.15 / **167.48** |
+| **`Qwen3-1.7B`** | `Qwen3-1.7B-Q4_K_M.gguf` | **25.40** / 123.59 | 24.50 / 172.92 | 8.67 / **194.67** |
+| **`MiniCPM5-1B`** | `MiniCPM5-1B-Q4_K_M.gguf` | **23.46** / 138.44 *(r3)* | 18.21 / **220.40** | — |
+| **`Falcon-H1-1.5B`** | `Falcon-H1-1.5B-Q4_K_M.gguf` | 19.85 / 122.36 | **21.18** / 118.77 | 8.47 / **198.02** |
+| **`gemma-4-E2B-it`** | `gemma-4-E2B-it-IQ4_XS.gguf` | **17.84** / 96.44 *(R1)* | 16.99 / 117.93 | 6.53 / **137.36** |
+| **`MiniCPM5-2B`** | `MiniCPM5-2B-Q4_K_M.gguf` | **15.71** / 64.07 *(r3)* | 3.98 / 47.38 *(r3)* | — |
+| **`MobileLLM-R1.5 (949M)`** | `Llama4 Q4_K_M` (`582.77 MiB`) | **14.96** / 112.38 | — | — |
+| **`granite-4.0-micro`** | `granite-4.0-micro-Q4_K_M.gguf` | **14.27** / 56.35 | 10.54 / 69.81 | 5.17 / **74.66** |
+| **`OpenReasoning-Nemotron-1.5B`** | `nvidia_OpenReasoning-Nemotron-1.5B-Q4_K_M.gguf` | **12.40** / 76.71 *(r3)* | 10.53 / **101.55** | — |
+
+### D. Triagem Fase A (`benchmark/reports/triagem_fase_a_*.json`) & Latência `ShadowRouter`
+| Modelo (`Triagem Fase A`) | Casos Passados | `mean_tok_s` | `mean_ttft_ms` | Tokens Gerados | Arquivo Fonte |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **`ring-mini-2.0`** | 1/5 | **25.57 tok/s** | **666.6 ms** | 2,560 | [`triagem_fase_a_ring-mini-2_0`](raw_data/triage_and_fleet/triagem_fase_a_ring-mini-2_0_20260911_221054.json) |
+| **`ministral-3-3b`** | **12/15** | **15.34 tok/s** | **663.4 ms** | 1,290 | [`triagem_fase_a_ministral-3-3b`](raw_data/triage_and_fleet/triagem_fase_a_ministral-3-3b_20260912_003732.json) |
+| **`phi-4-mini`** | 2/5 | **14.99 tok/s** | **844.3 ms** | 31 | [`triagem_fase_a_phi-4-mini`](raw_data/triage_and_fleet/triagem_fase_a_phi-4-mini_20260912_003541.json) |
+| **`granite-3.1-2b`** | **3/3** | **10.48 tok/s** | 5,071.8 ms | 158 | [`triagem_fase_a_granite-3_1-2b`](raw_data/triage_and_fleet/triagem_fase_a_granite-3_1-2b_20260911_195507.json) |
+| **`qwen3.5-4b`** | 1/5 | **9.42 tok/s** | 1,773.7 ms | 1,280 | [`triagem_fase_a_qwen3_5-4b`](raw_data/triage_and_fleet/triagem_fase_a_qwen3_5-4b_20260912_002847.json) |
+
+> **ShadowRouter Decision Latency (`shadow_latency_pilot_report_20261006.md`):** Piloto com 200 amostras em host `QUIET` (`14C/28T`) comprovou mediana de decisão de **3.033 ms** (faixa `2.880–3.143 ms`, `190/200 < 5.0 ms`).
+
+---
+
+
 ## 0. Hardware Testbeds, Constraints & Measurement Methodology
 
 ### 0.1 Reference Hardware
@@ -32,7 +93,7 @@ Empirical attempts to offload models with single contiguous tensors exceeding **
 ## 1. Pure `llama-bench` Speed Rankings (GPU Vulkan vs CPU AVX2) & Log Telemetry
 
 ### 1.1 GPU Vulkan (`-ngl 45 / 99 / 999`) `llama-bench` & `llama-cli` Rankings
-Sources: `raw_data/speed/pp_sweep.jsonl`, `raw_data/speed/arena_bench.log`, `raw_data/speed/fleet_benchmark_results.json`, `raw_data/speed/server_bench.jsonl`, `F:\rotor-llm\scratch\bench_7b_gpu.log`.
+Sources: `raw_data/speed_llama_bench/pp_sweep.jsonl`, `raw_data/speed_server_mtp_pld/arena_bench.log`, `raw_data/triage_and_fleet/fleet_benchmark_results.json`, `raw_data/speed_server_mtp_pld/server_bench.jsonl`, `F:\rotor-llm\scratch\bench_7b_gpu.log`.
 
 | Rank (TG) | Model | Params / Quant | Size | Config (`ngl` / `ctx` / test) | PP (`tok/s`) | TG (`tok/s`) | Source |
 |---:|---|---|---:|---|---:|---:|---|
@@ -61,7 +122,7 @@ Sources: `raw_data/speed/pp_sweep.jsonl`, `raw_data/speed/arena_bench.log`, `raw
 ---
 
 ### 1.2 CPU AVX2 (`-ngl 0`) `llama-bench` Rankings (Edge, Small & Mid Fleet)
-Sources: `raw_data/speed/bench_cpu_small_compare.json`, `raw_data/speed/bench_cpu_r3.json`, `raw_data/speed/thread_sweep_gated_20261003.jsonl`, `raw_data/speed/pp_sweep.jsonl`, `raw_data/speed/BENCHMARK_FLEET_XEON_E5.json`, `F:\rotor-llm\scratch\mobilellm_bench2.log`.
+Sources: `raw_data/speed_llama_bench/bench_cpu_small_compare.json`, `raw_data/speed_llama_bench/bench_cpu_r3.json`, `raw_data/speed_llama_bench/thread_sweep_gated_20261003.jsonl`, `raw_data/speed_llama_bench/pp_sweep.jsonl`, `raw_data/triage_and_fleet/BENCHMARK_FLEET_XEON_E5.json`, `F:\rotor-llm\scratch\mobilellm_bench2.log`.
 
 | Rank (Best TG) | Model | Quant | Best TG (`tok/s`) | Optimal `t` (TG) | Best PP (`tok/s`) | PP Threads | Source |
 |---:|---|---|---:|---:|---:|---:|---|
@@ -101,7 +162,7 @@ Sources: `raw_data/speed/bench_cpu_small_compare.json`, `raw_data/speed/bench_cp
 ---
 
 ### 1.3 Parsed `F:\data\llama_bench_*.log` Telemetry (16 Server-Bench Logs)
-All 16 logs ran under CPU AVX2 (`n_threads = 12`, `flash_attn = auto`, `CPU_Mapped` without `CPU_REPACK`; llama.cpp logs internal default buffer assignment as `offloaded N/N layers to GPU` when compiled CPU-only). Parsed stats are saved in `raw_data/speed/parsed_logs_telemetry.json`.
+All 16 logs ran under CPU AVX2 (`n_threads = 12`, `flash_attn = auto`, `CPU_Mapped` without `CPU_REPACK`; llama.cpp logs internal default buffer assignment as `offloaded N/N layers to GPU` when compiled CPU-only). Parsed stats are saved in `raw_data/speed_server_mtp_pld/parsed_logs_telemetry.json`.
 
 | Log File | Model & Quant | Arch | Size (BPW) | Config (`t` / `fa` / `layers`) | Weighted PP (`tok/s`) | PP Range (`n` reqs / tok) | Weighted TG (`tok/s`) | TG Range (`n` reqs / tok) | Status |
 |---|---|---|---|---|---:|---|---:|---|---|
@@ -166,7 +227,7 @@ This 6-model × 2-device sweep (`LLM_BENCHMARK_AND_PRUNING_REGISTRY.md` §6.24.3
 
 ## 2. `gpt-oss-20b` Optimization Journey (Baseline → Threads → `CPU_REPACK` → PLD Tuned → `31.29 tok/s`)
 
-Sources: `F:\rotor-llm\scratch\bench_gpt_oss_20b.log`, `raw_data/speed/proof_gpt20b_antidoom_live.json`, `proof_gpt20b_optimization_battle.json`, `proof_gpt20b_threads_benchmark.json`, `proof_gpt20b_aceleracao_total.json`, `proof_gpt20b_pld_tuned.json`, `proof_gpt20b_repack_paid.json`, `F:\data\repack_live.log`, `F:\data\server_pld_tuned.log`.
+Sources: `F:\rotor-llm\scratch\bench_gpt_oss_20b.log`, `raw_data/speed_server_mtp_pld/proof_gpt20b_antidoom_live.json`, `proof_gpt20b_optimization_battle.json`, `proof_gpt20b_threads_benchmark.json`, `proof_gpt20b_aceleracao_total.json`, `proof_gpt20b_pld_tuned.json`, `proof_gpt20b_repack_paid.json`, `F:\data\repack_live.log`, `F:\data\server_pld_tuned.log`.
 
 | Stage | Variant & Key Flags | `PP` (`tok/s`) | `TG` (`tok/s`) | Notes & Empirical Audit |
 |---|---|---:|---:|---|
@@ -185,7 +246,7 @@ Sources: `F:\rotor-llm\scratch\bench_gpt_oss_20b.log`, `raw_data/speed/proof_gpt
 ## 3. `MTP` Context Curve & Official vs Unsloth Dynamic (`UD`) Speedups (`Qwen3.5/3.6-35B-A3B` & `Qwen3.8-27B`)
 
 ### 3.1 Official vs Unsloth Dynamic (`UD`) Duel (`Qwen3.6-35B-A3B`, Cold Start & Warm RAM)
-Sources: `raw_data/speed/BENCHMARK_OFFICIAL_VS_UD_RESULTS.json`, `F:\rotor-llm\scratch\_recovered_benchmark_matrix.txt`, `bench_*.log`.
+Sources: `raw_data/speed_server_mtp_pld/BENCHMARK_OFFICIAL_VS_UD_RESULTS.json`, `F:\rotor-llm\scratch\_recovered_benchmark_matrix.txt`, `bench_*.log`.
 
 | Configuration | State | Load (`s`) | TTFT (`ms`) | PP (`tok/s`) | TG (`tok/s`) | RAM Peak (`MB`) | Draft Acceptance |
 |---|---|---:|---:|---:|---:|---:|---|
@@ -200,7 +261,7 @@ Sources: `raw_data/speed/BENCHMARK_OFFICIAL_VS_UD_RESULTS.json`, `F:\rotor-llm\s
 - **Warm-RAM MTP Acceleration:** With model pages warm in RAM (`keep-alive`), `UD + MTP` jumps from `1.62 t/s` to **`7.05 tok/s` (`4.35×` speedup)** and drops TTFT by `-88.4%` (`23.24s -> 2.70s`), crossing the `7.0 tok/s` Golden Rule.
 
 ### 3.2 `MTP` Draft Length & Thread Sweep: `Qwen3.6-35B-A3B-UD` (MoE) vs `Qwen3.8-27B` (Dense)
-Sources: `raw_data/speed/relatorio_benchmark_mtp.json`, `raw_data/speed/iq3xxs_bench.json`, `F:\data\models\benchmark_live.log` (`--no-repack`, `ctx 2048`, 3 passes after warmup).
+Sources: `raw_data/speed_server_mtp_pld/relatorio_benchmark_mtp.json`, `raw_data/speed_llama_bench/iq3xxs_bench.json`, `F:\data\models\benchmark_live.log` (`--no-repack`, `ctx 2048`, 3 passes after warmup).
 
 | Model | Arch / Size | Mode (`spec_type` / `draft_n` / `t`) | Avg TG (`tok/s`) | Max TG (`tok/s`) | Speedup vs Baseline | Verdict |
 |---|---|---|---:|---:|---:|---|
@@ -222,7 +283,7 @@ Sources: `raw_data/speed/relatorio_benchmark_mtp.json`, `raw_data/speed/iq3xxs_b
 > **Why MTP wins on `35B-A3B` MoE but loses on `27B` Dense:** On `35B-A3B` (only 3B active parameters per forward pass), verifying `n=1..4` speculative tokens in a single batched target pass is cheap relative to memory reads. On dense `27B` (all 27B parameters active per token on CPU), batched verification is compute-bound and costs more than sequential decoding.
 
 ### 3.3 `MTP` Inference Profile & Context Curve (`Qwen3.6-35B-A3B-UD-Q4_K_M`, `t=12`, Mask `0x5555550`, `KV=q8_0`)
-Sources: `raw_data/speed/INFERENCE_PROFILE_BENCHMARK.json` & `raw_data/speed/MTP_CONTEXT_CURVE_BENCHMARK.json`.
+Sources: `raw_data/speed_server_mtp_pld/INFERENCE_PROFILE_BENCHMARK.json` & `raw_data/speed_server_mtp_pld/MTP_CONTEXT_CURVE_BENCHMARK.json`.
 
 #### Inference Profile (`INFERENCE_PROFILE_BENCHMARK.json`)
 | Config | `spec_n` | Load (`s`) | `ctx_short` TG (`t/s`) | `ctx_short` PP (`t/s`) | `ctx_medium` TG (`t/s`) | `ctx_medium` PP (`t/s`) |
@@ -247,7 +308,7 @@ Sources: `raw_data/speed/INFERENCE_PROFILE_BENCHMARK.json` & `raw_data/speed/MTP
 ## 4. Thread Scaling, Flash Attention (`-fa`), and `PP` Batching Sweeps
 
 ### 4.1 Thread Scaling Asymmetric Law (14C / 28T Xeon E5-2697 v3)
-Sources: `raw_data/speed/thread_sweep_gated_20261003.jsonl`, `bench_cpu_small_compare.json`, `bench_cpu_r3.json`, `LLM_BENCHMARK_AND_PRUNING_REGISTRY.md` §6.25.2.
+Sources: `raw_data/speed_llama_bench/thread_sweep_gated_20261003.jsonl`, `bench_cpu_small_compare.json`, `bench_cpu_r3.json`, `LLM_BENCHMARK_AND_PRUNING_REGISTRY.md` §6.25.2.
 
 | Model Class | Model | `t=7` (`PP` / `TG`) | `t=10` (`PP` / `TG`) | `t=14` (`PP` / `TG`) | `t=20` or `t=28` (`PP` / `TG`) | Optimal `(PP, TG)` Pair |
 |---|---|---:|---:|---:|---:|---|
@@ -264,7 +325,7 @@ Sources: `raw_data/speed/thread_sweep_gated_20261003.jsonl`, `bench_cpu_small_co
 - **Host-Gate Audit (`§6.25.2.1.1`):** Replacing the flawed `bench_share` gate with `oversub <= 0.85` reclassified `13/20` cells as `QUIET` (`3` `MINOR_LOAD`, `4` `CONTAMINATED`), reproducing the exact same law on `QUIET`-only cells (`8B MoE` `+49.9%` PP, `7B dense` `+61.3%` PP, `7B reasoning` `+52.9%` PP).
 
 ### 4.2 Flash Attention (`-fa 0` vs `-fa 1`) Sweep (`fa_sweep_r1`, `fa_sweep_r5`, `fa_sweep_8192_gpu`, `parity_results`)
-Sources: `raw_data/speed/fa_sweep_r1_20261005.jsonl`, `fa_sweep_r5_20261005.jsonl`, `fa_sweep_8192_gpu_20261005.jsonl`, `parity_results.jsonl`.
+Sources: `raw_data/speed_llama_bench/fa_sweep_r1_20261005.jsonl`, `fa_sweep_r5_20261005.jsonl`, `fa_sweep_8192_gpu_20261005.jsonl`, `parity_results.jsonl`.
 
 | Model | Device | `p=512` (`fa=0 -> fa=1`, `r5`) | Ratio (`r5`) | `p=2048` (`fa=0 -> fa=1`, `r5`) | Ratio (`r5`) | `p=8192` (`fa=0 -> fa=1`, `r3`) | Ratio (`8192`) |
 |---|---|---|---:|---|---:|---|---:|
@@ -288,7 +349,7 @@ Across 5 of 6 models (`pp64`, `pp512`, `pp2048`), prefill throughput peaks at **
 ## 5. Fleet Memory, Quantization (`IQ3_M` vs `Q4_K_M` vs `IQ4_XS` vs `Q8_0`) & Bandwidth Analysis
 
 ### 5.1 `Qwen3-30B-A3B` MoE: `IQ3_M` vs `Q4_K_M` (`CPU_REPACK` RAM Cliff)
-Sources: `raw_data/speed/proof_qwen3_moe_iq3_vs_q4km.json`, `F:\data\q4km_test.log`.
+Sources: `raw_data/speed_server_mtp_pld/proof_qwen3_moe_iq3_vs_q4km.json`, `F:\data\q4km_test.log`.
 
 | Variant | File Size | `CPU_REPACK` Needed? | Extra Buffer Required | Total Commit vs 31.84 GiB Host | Load Time | Working Set | PP (`tok/s`) | TG (`tok/s`) | Pass Rate / Status |
 |---|---|---|---|---|---|---:|---:|---:|---|
@@ -324,6 +385,6 @@ Sources: `raw_data/speed/proof_qwen3_moe_iq3_vs_q4km.json`, `F:\data\q4km_test.l
 ---
 
 ## 6. Repository Artifacts Index (Speed Partition)
-- **`raw_data/speed/`** (31 files): Raw JSON/JSONL/TXT benchmark artifacts, `arena_bench.log`, `relatorio_benchmark_mtp.json`, `iq3xxs_bench.json`, `sweep_iq4_xs_focused.json`, `sweep_q8_0.json`, and `parsed_logs_telemetry.json` (parsed summary of all 16 `F:\data\llama_bench_*.log` + 13 `F:\rotor-llm\scratch\bench_*.log` / `mobilellm_bench*.log` + 4 tuning logs).
+- **`raw_data/speed_server_mtp_pld/`** (31 files): Raw JSON/JSONL/TXT benchmark artifacts, `arena_bench.log`, `relatorio_benchmark_mtp.json`, `iq3xxs_bench.json`, `sweep_iq4_xs_focused.json`, `sweep_q8_0.json`, and `parsed_logs_telemetry.json` (parsed summary of all 16 `F:\data\llama_bench_*.log` + 13 `F:\rotor-llm\scratch\bench_*.log` / `mobilellm_bench*.log` + 4 tuning logs).
 - **`scripts/speed/`** (17 files): All standalone speed, `MTP`, `PP`, `FA`, thread-sweep, and `gpt-oss-20b` scripts & `.bat`/`.html` launchers.
 - **`registry_docs/`** (4 files): Canonical rotor-llm registry and hardware audit documents (`LLM_BENCHMARK_AND_PRUNING_REGISTRY.md`, `INVENTARIO_E_BENCHMARKS_COMPLETO_DE_TODOS_OS_MODELOS.md`, `RELATORIO_TECNICO_GPU_CPU_E_BENCHMARKS.md`, `ROTOR_FLEET_STATE.md`).

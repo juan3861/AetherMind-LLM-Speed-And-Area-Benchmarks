@@ -1,0 +1,143 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_215702",
+  "model_id": "ring-mini-2.0",
+  "metrics": {
+    "total_cases": 10,
+    "passed_cases": 10,
+    "failed_cases": 0,
+    "autonomy_l1": 1.0,
+    "escalation_avoidance": 1.0,
+    "cost_to_solved_task": 124.46,
+    "mean_tok_s": 22.57,
+    "mean_ttft_ms": 649.8,
+    "total_e2e_seconds": 124.46,
+    "total_tokens_generated": 2560
+  },
+  "category_scores": {
+    "terminal": 1.0
+  },
+  "cases": [
+    {
+      "case_id": "cli01",
+      "category": "terminal",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'get-process' encontrado",
+      "e2e_seconds": 18.496,
+      "tok_per_sec": 16.86,
+      "ttft_ms": 3345.2,
+      "ram_mb": null,
+      "output_snippet": "We are to find all processes with CPU usage above 10%.  In PowerShell, we can use the Get-Process cmdlet and then filter"
+    },
+    {
+      "case_id": "cli02",
+      "category": "terminal",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'get-nettcpconnection' encontrado",
+      "e2e_seconds": 16.475,
+      "tok_per_sec": 16.58,
+      "ttft_ms": 1078.6,
+      "ram_mb": null,
+      "output_snippet": "We are to list all active network connections on port 8080 using PowerShell.  One common way is to use the `Get-NetTCPCo"
+    },
+    {
+      "case_id": "cli03",
+      "category": "terminal",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'get-childitem' encontrado",
+      "e2e_seconds": 12.595,
+      "tok_per_sec": 21.04,
+      "ttft_ms": 456.6,
+      "ram_mb": null,
+      "output_snippet": "We are going to use the `Get-ChildItem` cmdlet to list files in a directory, then sort them by size in descending order "
+    },
+    {
+      "case_id": "cli04",
+      "category": "terminal",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'stop-process' encontrado",
+      "e2e_seconds": 11.264,
+      "tok_per_sec": 23.16,
+      "ttft_ms": 234.6,
+      "ram_mb": null,
+      "output_snippet": "We are asked for the PowerShell command to forcefully end a process by its PID.  In PowerShell, we can use the `Stop-Pro"
+    },
+    {
+      "case_id": "cli05",
+      "category": "terminal",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'get-filehash' encontrado",
+      "e2e_seconds": 9.948,
+      "tok_per_sec": 26.31,
+      "ttft_ms": 238.8,
+      "ram_mb": null,
+      "output_snippet": "We are to calculate the SHA256 hash of a file on disk using PowerShell.  The most straightforward way is to use the `Get"
+    },
+    {
+      "case_id": "cli06",
+      "category": "terminal",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'test-netconnection' encontrado",
+      "e2e_seconds": 9.989,
+      "tok_per_sec": 26.16,
+      "ttft_ms": 224.8,
+      "ram_mb": null,
+      "output_snippet": "We are going to use PowerShell's built-in cmdlets to test if a remote TCP port is open.  One common way is to use the `T"
+    },
+    {
+      "case_id": "cli07",
+      "category": "terminal",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'get-psdrive' encontrado",
+      "e2e_seconds": 11.712,
+      "tok_per_sec": 22.24,
+      "ttft_ms": 233.6,
+      "ram_mb": null,
+      "output_snippet": "We are to find a PowerShell command that displays the free space and total space in GB for all disk drives.  The require"
+    },
+    {
+      "case_id": "cli08",
+      "category": "terminal",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'select-string' encontrado",
+      "e2e_seconds": 11.926,
+      "tok_per_sec": 21.88,
+      "ttft_ms": 255.5,
+      "ram_mb": null,
+      "output_snippet": "We are going to provide two methods: one using ripgrep (which is a fast alternative to grep) and one using Select-String"
+    },
+    {
+      "case_id": "cli09",
+      "category": "terminal",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'compress-archive' encontrado",
+      "e2e_seconds": 10.575,
+      "tok_per_sec": 24.61,
+      "ttft_ms": 201.0,
+      "ram_mb": null,
+      "output_snippet": "We are in PowerShell and want to create a zip file that compresses an entire folder.  The command we can use is `Compres"
+    },
+    {
+      "case_id": "cli10",
+      "category": "terminal",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'environment' encontrado",
+      "e2e_seconds": 9.746,
+      "tok_per_sec": 26.84,
+      "ttft_ms": 229.6,
+      "ram_mb": null,
+      "output_snippet": "We are going to define a persistent environment variable for the current user in Windows using PowerShell.  Since the re"
+    }
+  ]
+}

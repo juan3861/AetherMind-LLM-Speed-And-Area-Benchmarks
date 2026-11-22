@@ -1,0 +1,49 @@
+========================================================================================================
+RANKING DE QUALIDADE — ordenado por TOKENS POR ACERTO (menor = melhor)
+coluna 'trunc' = tarefas que estouraram max_tokens (fora do denominador)
+========================================================================================================
+modelo                      acertos trunc  tok/acerto    tempo   math   code   ext   dev   fa
+--------------------------------------------------------------------------------------------------------
+Qwen25-Coder-7B-CPU       9/9           0         51    22.3s    5/5    3/3   1/1   CPU     
+Phi4-mini-GPU (FIX)       5/9           0         92     8.5s    2/5    2/3   1/1   GPU     
+Qwen3-1.7B-GPU            9/9           0        312    69.3s    5/5    3/3   1/1   GPU     
+R1-Distill-7B-CPU         9/9           0        321   315.7s    5/5    3/3   1/1   CPU     
+MiniCPM5-2B-GPU (FIX)     8/8           1        325    78.1s    5/5    3/3   0/1   GPU     
+LFM25-8B-GPU (FIX)        8/9           0        369    80.0s    4/5    3/3   1/1   GPU     
+Qwen3-8B-CPU (FIX)        8/8           1        472   426.9s    5/5    2/3   1/1   CPU     
+M5-1B-CPU                 4/9           0        706    85.9s    3/5    1/3   0/1   CPU     
+M5-1B-CPU-v2              3/6           3       1785   173.4s    2/5    1/3   0/1   CPU     
+Nemotron-1.5B-GPU         4/9           0       2484   229.5s    4/5    0/3   0/1   GPU     
+--------------------------------------------------------------------------------------------------------
+  n/N = acertos / tarefas PONTUAVEIS (truncamentos removidos do denominador)
+  tok/acerto usa o total de tokens do modelo, incluindo o gasto em reasoning truncado
+
+EFEITO DA CORRECAO DO VERIFICADOR (mesmo modelo, instrumento antigo -> corrigido):
+  LFM25-8B               6/9 -> 8/9 (+2)        tok/acerto 484 -> 369
+  MiniCPM5-2B            8/9 -> 8/9 (+0)        tok/acerto 151 -> 325
+  Phi4-mini              2/9 -> 5/9 (+3)        tok/acerto 241 -> 92
+  Qwen3-8B               8/9 -> 8/9 (+0)        tok/acerto 410 -> 472
+
+AUDITORIA DE TRUNCAMENTO (teto max_tokens atingido -> content VAZIO):
+  MiniCPM5-1B_GPU_faauto             truncados 5/9 ['m1', 'm3', 'm4', 'c2', 'c3'] | pontuavel 4/4 (100%) | bruto 0.444 | cap=1200
+  MiniCPM5-1B_CPU_faauto             truncados 4/9 ['m4', 'm5', 'c2', 'e1'] | pontuavel 4/5 (80%) | bruto 0.444 | cap=1200
+  MiniCPM5-1B_GPU_faon               truncados 4/9 ['m2', 'c2', 'c3', 'e1'] | pontuavel 3/5 (60%) | bruto 0.333 | cap=1200
+  M5-1B-CPU-v2                       truncados 3/9 ['m2', 'm4', 'c2'] | pontuavel 3/6 (50%) | bruto 0.333 | cap=1200
+  MiniCPM5-1B_GPU_faoff              truncados 3/9 ['m3', 'm4', 'c2'] | pontuavel 4/6 (67%) | bruto 0.444 | cap=1200
+  MiniCPM5-2B-GPU-FIX                truncados 1/9 ['e1'] | pontuavel 8/8 (100%) | bruto 0.889 | cap=1200
+  Qwen3-8B-CPU-FIX                   truncados 1/9 ['c2'] | pontuavel 8/8 (100%) | bruto 0.889 | cap=1200
+
+MATRIZ DE PARIDADE — mesmo peso/quant/temp, variando device e -fa:
+  tag                                 dev    fa   ngl trunc  tokens/acerto    tempo
+  --- MiniCPM5-1B
+  MiniCPM5-1B_CPU_faauto              CPU  auto     0     0           1562   151.6s
+  MiniCPM5-1B_CPU_thinkOFF            CPU  auto     0     0            139     6.0s
+  MiniCPM5-1B_GPU_faauto              GPU  auto   999     0           1748   130.7s
+  MiniCPM5-1B_GPU_thinkOFF            GPU  auto   999     0            139     5.5s
+  MiniCPM5-1B_GPU_faoff               GPU   off   999     0           1251   124.9s
+  MiniCPM5-1B_GPU_faon                GPU    on   999     0           1900   105.5s
+  --- Qwen2.5-Coder-7B-Instruct
+  Coder7B_CPU_thinkOFF                CPU  auto     0     0             51    20.9s
+  Coder7B_GPU_thinkOFF                GPU  auto   999     0             51    10.6s
+  --- DeepSeek-R1-Distill-Qwen-7B
+  R1Distill7B_CPU_thinkOFF            CPU  auto     0     0            319   260.7s

@@ -1,0 +1,132 @@
+==================================================================================================
+PARIDADE GPUxCPU — AS 6 OBJECOES DA REVISAO EXTERNA  |  rotor-llm  02/10/2026
+host: Xeon E5-2697 v3 14C/28T  |  RX 580 8192 MiB (driver AMD 26.5.2)
+==================================================================================================
+
+PERGUNTA DIRETA: 'O Qwen2.5-Coder-7B daquele ranking rodou mesmo em CPU?'
+RESPOSTA: SIM — re-medido com device gravado, binario lc_b10749 (zero DLLs de device).
+
+--------------------------------------------------------------------------------------------------
+OBJ.1 — DUAS ARQUITETURAS IDENTICAS NAO PODEM DIFERIR 2x NO MESMO BACKEND
+--------------------------------------------------------------------------------------------------
+modelo                dev  prefill t/s   gen t/s  acertos  tok/acerto    tempo
+------------------------------------------------------------------------------
+Coder-7B              CPU        43.05      9.30      9/9          51    20.9s
+Coder-7B(orig)        CPU        39.93      8.52      9/9          51    22.3s
+Coder-7B              GPU        65.21     22.77      9/9          51    10.6s
+R1-Distill            CPU        40.84      9.02      8/9         319   260.7s
+R1-Dist(orig)         CPU        39.23      8.41      9/9         321   315.7s
+
+VEREDICTO: PARIDADE (9,30 vs 9,02 t/s de geracao). A divergencia de 2x NAO existe.
+A diferenca de 'tok/acerto' e VERBOSIDADE (457 vs 2886 tok = 6,3x), nao velocidade.
+A revisao estava certa em suspeitar; errada na causa (nao era GPU disfarcada de CPU).
+
+--------------------------------------------------------------------------------------------------
+OBJ.2 — MiniCPM5-1B: 0/9 GPU vs 4/9 CPU, mesmo peso/quant/temp
+--------------------------------------------------------------------------------------------------
+CAUSA-RAIZ (srv_MiniCPM5-1B-CPU.log, 13 linhas — o processo saiu antes de abrir socket):
+  E llama_init_from_model: failed to initialize the context:
+      vk::Device::createCommandPool: ErrorDeviceLost
+  E srv llama_server: exiting due to model loading error
+FOI FADIGA DE DRIVER, nao o modelo nem o backend: pos-reboot o MESMO binario carrega ngl 999.
+
+celula                      dev  -fa acertos  trunc  pontuavel   REAL   tok/ac
+------------------------------------------------------------------------------
+MiniCPM5-1B_CPU_faauto      CPU auto     4/9     4/9        4/5    80%     1562
+MiniCPM5-1B_GPU_faauto      GPU auto     4/9     5/9        4/4   100%     1748
+MiniCPM5-1B_GPU_faon        GPU   on     3/9     4/9        3/5    60%     1900
+MiniCPM5-1B_GPU_faoff       GPU  off     4/9     3/9        4/6    67%     1251
+MiniCPM5-1B_CPU_thinkOFF    CPU auto     4/9     0/9        4/9    44%      139
+MiniCPM5-1B_GPU_thinkOFF    GPU auto     4/9     0/9        4/9    44%      139
+
+VEREDICTO: -fa NAO tem efeito sistematico (on 3/9, off=auto 4/9 com n=9 => ruido).
+  As linhas thinkOFF nao tem truncamento nenhum: 4/9 com 556 tokens em ~5,5s.
+  As linhas antigas tinham 3-5 truncamentos: excluindo-os, o modelo acerta 60-100%
+  do que conseguiu responder. O veredicto '0/9' era do SERVIDOR, e o resto era do INSTRUMENTO.
+  A hipotese da revisao (-fa/backend Polaris) NAO se confirma. Hipoteses refutadas com dado.
+
+--------------------------------------------------------------------------------------------------
+OBJ.3 — '4 GB de VRAM'
+--------------------------------------------------------------------------------------------------
+  --list-devices  -> Vulkan0: Radeon RX 580 Series (8192 MiB, 7367 MiB free)
+  vulkaninfo      -> deviceID 0x67df, DISCRETE_GPU, driver 26.5.2, apiVersion 1.3.260
+  => 8192 MiB. '4 GB' era erro de transcricao — texto RETIRADO.
+  A hipotese do KV cache (da revisao) segue a mais coerente: PENDENTE varrer -c medindo VRAM.
+
+--------------------------------------------------------------------------------------------------
+OBJ.4 — THREADS vs CORES
+--------------------------------------------------------------------------------------------------
+  RESOLVIDO: 14 fisicos / 28 logicos. NUMBER_OF_PROCESSORS=28 e o LOGICO.
+  14 threads e correto (= n fisicos). 28 = oversubscribe 2x em hyperthreads, PIORA geracao.
+  wmic foi REMOVIDO do Windows: o gate agora le CIM, nao a env var.
+
+--------------------------------------------------------------------------------------------------
+OBJ.5 — A BATERIA DE 9 TAREFAS
+--------------------------------------------------------------------------------------------------
+  ACEITO: 8/9 vs 9/9 e UMA tarefa = ruido, nao evidencia. Pior: as tarefas triviais
+  (17x23, palindromo) todos acertam — nao discriminam. PENDENTE: 50-100 tarefas com
+  subconjunto dificil separado e intervalo Wilson. Pre-requisito ja pronto: max_tokens
+  configuravel + truncamento fora do denominador (senao a bateria maior repete o bug).
+
+--------------------------------------------------------------------------------------------------
+OBJ.6 — Qwen2.5-VL-7B 'derrotado'
+--------------------------------------------------------------------------------------------------
+  ACEITO: derrotado em prefill/VRAM, nunca em qualidade de visao.
+  DESBLOQUEADO: pesos (4.683 MB) + mmproj (853 MB) estao integros; os .part* eram
+  downloads abandonados ja concluidos (7,85 GB removidos). PENDENTE: bateria de visao.
+
+==================================================================================================
+ACHADOS NOVOS (que a revisao nao tinha como ver)
+==================================================================================================
+
+[A] BUG GRAVE DE INSTRUMENTO — truncamento de reasoning contado como ERRO
+    Causa provada no chat_template do GGUF:
+      {%- elif enable_thinking is true %}{{- '<think>\n' }}
+    O modelo gasta o teto INTEIRO dentro de <think> -> finish_reason=length ->
+    `content` VAZIO (o reasoning vai em `reasoning_content`). O verificador lia
+    'nenhum numero/JSON/codigo' e contava ERRO. Truncamento NAO e erro do modelo.
+
+    modelo                      trunc  pontuavel   REAL        antes
+    --------------------------------------------------------------
+    MiniCPM5-1B_GPU_faauto        5/9        4/4   100%    4/9 (44%)
+    MiniCPM5-1B_CPU_faauto        4/9        4/5    80%    4/9 (44%)
+    MiniCPM5-1B_GPU_faon          4/9        3/5    60%    3/9 (33%)
+    M5-1B-CPU-v2                  3/9        3/6    50%    3/9 (33%)
+    MiniCPM5-1B_GPU_faoff         3/9        4/6    67%    4/9 (44%)
+    MiniCPM5-2B-GPU-FIX           1/9        8/8   100%    8/9 (89%)
+    Qwen3-8B-CPU-FIX              1/9        8/8   100%    8/9 (89%)
+
+    MiniCPM5-2B e Qwen3-8B sao 9/9 PONTUAVEIS, nao 8/9. Ambos punidos pelo mesmo bug.
+    Custo de tokens do MiniCPM5-1B cai 26x (6991 -> 556) so desligando o thinking.
+    Com thinking off os erros ficam INFORMATIVOS: m2 devolve 0.15 (a taxa) em vez de 36;
+    m3 devolve 120 (a distancia) em vez de 80; m4 devolve 6 (operario-dia) em vez de 2.
+    Ele CALCULA certo e responde a PERGUNTA ERRADA — modo de falha totalmente diferente.
+
+[B] ACHADO PRINCIPAL — a RX 580 e muito pior em PREFILL que em GERACAO
+
+    Coder-7B      prefill t/s   gen t/s  speedup vs CPU   prefill % do tempo
+    ------------------------------------------------------------------------
+    CPU                 43.05      9.30               -                35.8%
+    GPU                 65.21     22.77               -                48.0%
+    SPEEDUP             1.51x     2.45x
+
+    No Coder-7B o PREFILL e 35,8% da latencia (CPU) e 48,0% (GPU). Quanto MAIS CONCISO
+    o modelo, mais o prefill domina — e e o modelo conciso que serve para agente.
+    <=> Para agente o gargalo NAO e tok/s de geracao: e o PREFILL por passo de recuperacao.
+        Reduzir contexto e trechos recuperados vale mais que escolher +2 t/s de geracao.
+        (No R1-Distill, que gera 2261 tok, o prefill e so 2,7% — o oposto.)
+    A GPU nao escala prefill como escala geracao: hipotese a testar = batched prefill (`-b`/`-ub`).
+
+[C] MODEL_TABLE com numeros trocados entre dispositivos (bug silencioso de roteamento)
+    qwen25-coder-7b-cpu estava carimbado com tg 23,18 / pp 157,88 — numeros da GPU.
+    O roteador acreditava que o caminho CPU era 2,5x mais rapido do que e.
+    CORRIGIDO: tg 9,30 / pp 43,05 (CPU) | tg 22,77 / pp 65,21 (GPU, re-medido).
+    pp caiu de 157,88 -> 65,21 porque a arena media prefill em batch grande; prompt
+    realista de agente e ~330 tok. REGIMES DIFERENTES NAO SE COMPARAM.
+    Travado por 2 assercoes novas no test_agi_layer1.py.
+
+==================================================================================================
+ESTADO: suite 48 ok / 0 falhas | 7,85 GB liberados | commit a96e413 | registry sob git
+PENDENTE (nesta ordem): bateria 50-100 tarefas c/ intervalo; varredura -c x VRAM;
+                        bateria de visao (VL-7B + mmproj ja em disco); varrer -b/-ub no prefill.
+==================================================================================================

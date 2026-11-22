@@ -1,0 +1,203 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260912_003732",
+  "model_id": "ministral-3-3b",
+  "metrics": {
+    "total_cases": 15,
+    "passed_cases": 12,
+    "failed_cases": 3,
+    "autonomy_l1": 0.8,
+    "escalation_avoidance": 0.8,
+    "cost_to_solved_task": 120.51,
+    "mean_tok_s": 15.34,
+    "mean_ttft_ms": 663.4,
+    "total_e2e_seconds": 96.51,
+    "total_tokens_generated": 1290
+  },
+  "category_scores": {
+    "math": 0.8
+  },
+  "cases": [
+    {
+      "case_id": "m01",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 2.0 nao encontrado no texto: '12'",
+      "e2e_seconds": 2.019,
+      "tok_per_sec": 13.47,
+      "ttft_ms": 1834.7,
+      "ram_mb": null,
+      "output_snippet": "12"
+    },
+    {
+      "case_id": "m02",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 5.0 identificado",
+      "e2e_seconds": 1.089,
+      "tok_per_sec": 15.67,
+      "ttft_ms": 884.3,
+      "ram_mb": null,
+      "output_snippet": "5 minutos."
+    },
+    {
+      "case_id": "m03",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 2.0 identificado",
+      "e2e_seconds": 0.54,
+      "tok_per_sec": 15.77,
+      "ttft_ms": 465.7,
+      "ram_mb": null,
+      "output_snippet": "2"
+    },
+    {
+      "case_id": "m04",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 435.0 identificado",
+      "e2e_seconds": 11.706,
+      "tok_per_sec": 13.8,
+      "ttft_ms": 757.2,
+      "ram_mb": null,
+      "output_snippet": "Para calcular o número total de apertos de mão em uma sala com 30 pessoas, onde cada pessoa se acolhe com as outras exat"
+    },
+    {
+      "case_id": "m05",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 192.0 identificado",
+      "e2e_seconds": 9.431,
+      "tok_per_sec": 15.67,
+      "ttft_ms": 664.3,
+      "ram_mb": null,
+      "output_snippet": "Vamos calcular o valor final do produto:  1. Aumento de 20%:    - Valor inicial: 200 reais    - Aumento: 200 * 0.20 = 40"
+    },
+    {
+      "case_id": "m06",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 15.0 nao encontrado no texto: '7'",
+      "e2e_seconds": 0.688,
+      "tok_per_sec": 16.72,
+      "ttft_ms": 609.3,
+      "ram_mb": null,
+      "output_snippet": "7"
+    },
+    {
+      "case_id": "m07",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 5050.0 identificado",
+      "e2e_seconds": 1.749,
+      "tok_per_sec": 15.99,
+      "ttft_ms": 491.7,
+      "ram_mb": null,
+      "output_snippet": "A soma dos primeiros 100 números inteiros positivos é 5050."
+    },
+    {
+      "case_id": "m08",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 4.0 nao encontrado no texto: 'x = 8'",
+      "e2e_seconds": 0.794,
+      "tok_per_sec": 16.02,
+      "ttft_ms": 529.2,
+      "ram_mb": null,
+      "output_snippet": "x = 8"
+    },
+    {
+      "case_id": "m09",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 400.0 identificado",
+      "e2e_seconds": 14.82,
+      "tok_per_sec": 15.16,
+      "ttft_ms": 695.3,
+      "ram_mb": null,
+      "output_snippet": "Para resolver o problema, seguiremos os passos abaixo:  1. **Convertendo a velocidade para m/s:**    - 72 km/h = 72 * (1"
+    },
+    {
+      "case_id": "m10",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 2520.0 identificado",
+      "e2e_seconds": 3.494,
+      "tok_per_sec": 16.15,
+      "ttft_ms": 435.7,
+      "ram_mb": null,
+      "output_snippet": "O menor número inteiro positivo divisível por todos os números de 1 a 10 é o mínimo comum múltiplo (MCM) desses números."
+    },
+    {
+      "case_id": "m11",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 0.42 identificado",
+      "e2e_seconds": 16.566,
+      "tok_per_sec": 15.1,
+      "ttft_ms": 858.4,
+      "ram_mb": null,
+      "output_snippet": "Para calcular a probabilidade de não chover em nenhum dos dois dias, usamos a fórmula de probabilidade para eventos inde"
+    },
+    {
+      "case_id": "m12",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 10.0 identificado",
+      "e2e_seconds": 6.835,
+      "tok_per_sec": 15.31,
+      "ttft_ms": 279.1,
+      "ram_mb": null,
+      "output_snippet": "A palavra \"ARARA\" tem 5 letras, com a seguinte composição: 3 A's e 2 R's.  O número de anagramas distintos é dado pela f"
+    },
+    {
+      "case_id": "m13",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 5040.0 identificado",
+      "e2e_seconds": 1.443,
+      "tok_per_sec": 16.74,
+      "ttft_ms": 229.3,
+      "ram_mb": null,
+      "output_snippet": "O valor de 7! (fatorial de 7) é 5040."
+    },
+    {
+      "case_id": "m14",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 384.0 identificado",
+      "e2e_seconds": 13.597,
+      "tok_per_sec": 14.35,
+      "ttft_ms": 553.2,
+      "ram_mb": null,
+      "output_snippet": "O oitavo termo de uma progressão geométrica é calculado pela fórmula:  \\[ a_n = a_1 \\times r^{(n-1)} \\]  Onde: - \\( a_n "
+    },
+    {
+      "case_id": "m15",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 52.0 identificado",
+      "e2e_seconds": 11.245,
+      "tok_per_sec": 14.11,
+      "ttft_ms": 662.8,
+      "ram_mb": null,
+      "output_snippet": "Para encontrar o valor de \\( x^2 + y^2 \\) dado que \\( x + y = 10 \\) e \\( x \\cdot y = 24 \\), podemos usar a seguinte iden"
+    }
+  ]
+}

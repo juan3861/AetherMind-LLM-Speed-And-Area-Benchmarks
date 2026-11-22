@@ -1,0 +1,63 @@
+==============================================================================
+ CAMPEONATO FASE 1.4 | CPU pura | 14 threads | ctx 4096 | temp 0.0 | porta 11499
+ Alvos: ['qwen38_9b_heretic', 'rlm8b_q4km']
+==============================================================================
+
+==============================================================================
+ [MODELO] Qwen3.8-9B-Distill-Heretic-Uncensored Q8_0
+==============================================================================
+  -> load=43.03s | cold: TTFT=3929.91ms | gen=3.73 tok/s | RAMpeak pos-load=8410.38MB | jinja=True
+  -> steady: mediana=4.21 tok/s (3 amostras)
+  -> finish_mode declarado=direct | kwargs={'enable_thinking': False} | reasoning_obs=0 | MODE_CONFIRMED
+     [OK ] json_flat          OK
+     [OK ] json_nested        OK
+     [OK ] tool_timer         OK
+     [OK ] tool_weather       OK
+     [OK ] instr_bullets      OK
+     [OK ] instr_one_word     OK
+     [OK ] math_discount      OK
+     [OK ] math_trap          OK
+     [OK ] code_write         EXEC_OK
+     [OK ] code_debug         EXEC_OK
+  => VEREDITO VELOCIDADE: REPROVADO (4.21 tok/s vs piso 7.0) | sem escalacao=100.0% | estabilidade=100.0%
+
+==============================================================================
+ [MODELO] RLM-Qwen3-8B-v0.1 Q4_K_M
+==============================================================================
+  -> load=25.44s | cold: TTFT=1046.54ms | gen=6.95 tok/s | RAMpeak pos-load=5120.92MB | jinja=True
+  -> steady: mediana=8.13 tok/s (3 amostras)
+  -> finish_mode declarado=direct | kwargs=- | reasoning_obs=0 | MODE_CONFIRMED
+     [OK ] json_flat          OK
+     [FAIL] json_nested        SOMA_ERRADA:40
+     [FAIL] tool_timer         ARG_VALOR:esperava=1800;obtive=30
+     [OK ] tool_weather       OK
+     [OK ] instr_bullets      OK
+     [FAIL] instr_one_word     RESPOSTA='iata'
+     [FAIL] math_discount      NUMERO=80.0;esperado=68.0 (escalou teto)
+     [OK ] math_trap          OK (escalou teto)
+     [OK ] code_write         EXEC_OK
+     [OK ] code_debug         EXEC_OK
+  => VEREDITO VELOCIDADE: APROVADO (8.13 tok/s vs piso 7.0) | sem escalacao=60.0% | estabilidade=60.0%
+
+##############################################################################
+# CAMPEONATO DE MODELOS PEQUENOS - TABELA CONSOLIDADA
+##############################################################################
+Modelo                              steady    cold  TTFTms   RAMpk  semEsc%  estab%  Regra
+------------------------------------------------------------------------------------------
+Qwen3.8-9B-Distill-Heretic-Uncens     4.21    3.73    3930    9973    100.0   100.0   FAIL
+RLM-Qwen3-8B-v0.1 Q4_K_M              8.13    6.95    1047    5349     60.0    60.0   PASS
+
+DIMENSOES FUNCIONAIS (% de passagem na 1a tentativa, denominador = sondas pontuaveis):
+  Qwen3.8-9B-Distill-Heretic-Uncen  coding:100.0%(2/2) | instruction:100.0%(2/2) | json:100.0%(2/2) | math:100.0%(2/2) | tool:100.0%(2/2)
+                                    finish_mode=direct (MODE_CONFIRMED, reasoning_obs=0)
+  RLM-Qwen3-8B-v0.1 Q4_K_M          coding:100.0%(2/2) | instruction:50.0%(1/2) | json:50.0%(1/2) | math:50.0%(1/2) | tool:50.0%(1/2)
+                                    finish_mode=direct (MODE_CONFIRMED, reasoning_obs=0)
+
+FALHAS DETALHADAS (para nao esconder evidencia negativa):
+  rlm8b_q4km      json_nested       SOMA_ERRADA:40
+  rlm8b_q4km      tool_timer        ARG_VALOR:esperava=1800;obtive=30
+  rlm8b_q4km      instr_one_word    RESPOSTA='iata'
+  rlm8b_q4km      math_discount     NUMERO=80.0;esperado=68.0
+##############################################################################
+
+Evidencia salva em: F:/rotor-llm/BENCHMARK_CAMPEONATO_RESULTS_PART2.json

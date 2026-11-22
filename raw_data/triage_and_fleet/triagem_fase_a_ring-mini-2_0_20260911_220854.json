@@ -1,0 +1,203 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_220854",
+  "model_id": "ring-mini-2.0",
+  "metrics": {
+    "total_cases": 15,
+    "passed_cases": 2,
+    "failed_cases": 13,
+    "autonomy_l1": 0.1333,
+    "escalation_avoidance": 0.1333,
+    "cost_to_solved_task": 252.41,
+    "mean_tok_s": 25.32,
+    "mean_ttft_ms": 562.8,
+    "total_e2e_seconds": 148.41,
+    "total_tokens_generated": 3506
+  },
+  "category_scores": {
+    "tools": 0.1333
+  },
+  "cases": [
+    {
+      "case_id": "t01",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Nenhum bloco JSON detectado",
+      "e2e_seconds": 13.898,
+      "tok_per_sec": 21.99,
+      "ttft_ms": 2264.6,
+      "ram_mb": null,
+      "output_snippet": "We are given a sentence: \"Buscar voos de SP para RJ no dia 15/10/2026 para 2 passageiros\"  We need to extract:    origin"
+    },
+    {
+      "case_id": "t02",
+      "category": "tools",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Todas as chaves esperadas estao presentes no JSON",
+      "e2e_seconds": 3.92,
+      "tok_per_sec": 23.17,
+      "ttft_ms": 451.9,
+      "ram_mb": null,
+      "output_snippet": "We are to generate a tool call in JSON format as specified.  The tool is \"get_weather\", and the arguments are: city \"Cur"
+    },
+    {
+      "case_id": "t03",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Expecting value: line 1 column 2 (char 1)",
+      "e2e_seconds": 10.501,
+      "tok_per_sec": 25.63,
+      "ttft_ms": 540.8,
+      "ram_mb": null,
+      "output_snippet": "We are given a log string: \"[ERROR] 2026-09-11 02:30:15 - Database connection timeout at 192.168.1.50:5432\"  We need to "
+    },
+    {
+      "case_id": "t04",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Expecting ',' delimiter: line 17 column 4 (char 306)",
+      "e2e_seconds": 11.06,
+      "tok_per_sec": 24.43,
+      "ttft_ms": 605.5,
+      "ram_mb": null,
+      "output_snippet": "We are going to create a JSON schema that validates an object with the following properties:  - username: string, minimu"
+    },
+    {
+      "case_id": "t05",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Extra data: line 1 column 32 (char 31)",
+      "e2e_seconds": 11.126,
+      "tok_per_sec": 24.47,
+      "ttft_ms": 689.8,
+      "ram_mb": null,
+      "output_snippet": "We are converting a table of two people into a JSON array of objects.  The input is given as:     Nome: Ana, Idade: 28; "
+    },
+    {
+      "case_id": "t06",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Expecting value: line 1 column 2 (char 1)",
+      "e2e_seconds": 10.958,
+      "tok_per_sec": 24.23,
+      "ttft_ms": 421.4,
+      "ram_mb": null,
+      "output_snippet": "We are given a string that contains information about a book: \"Titulo: Dom Casmurro, Autor: Machado de Assis, Ano: 1899\""
+    },
+    {
+      "case_id": "t07",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Extra data: line 8 column 2 (char 118)",
+      "e2e_seconds": 9.813,
+      "tok_per_sec": 26.69,
+      "ttft_ms": 242.7,
+      "ram_mb": null,
+      "output_snippet": "We are to generate a JSON representation of a function call to `execute_shell` with the given command.  The function cal"
+    },
+    {
+      "case_id": "t08",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Extra data: line 2 column 4 (char 13)",
+      "e2e_seconds": 4.324,
+      "tok_per_sec": 25.49,
+      "ttft_ms": 539.0,
+      "ram_mb": null,
+      "output_snippet": "We are creating a JSON payload with the specified keys and values.  The requirements are:    - \"status\": \"success\"    - "
+    },
+    {
+      "case_id": "t09",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Expecting value: line 1 column 2 (char 1)",
+      "e2e_seconds": 11.474,
+      "tok_per_sec": 23.55,
+      "ttft_ms": 629.0,
+      "ram_mb": null,
+      "output_snippet": "We are given a string: \"Conectar em 10.0.0.1 porta 8080 via tcp\"  We need to extract:    - ip: the IP address (in this c"
+    },
+    {
+      "case_id": "t10",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Nenhum bloco JSON detectado",
+      "e2e_seconds": 10.117,
+      "tok_per_sec": 26.01,
+      "ttft_ms": 300.3,
+      "ram_mb": null,
+      "output_snippet": "We are converting the given metrics into a JSON format.  The metrics are:    CPU: 45.2%    RAM: 16.4GB    Disco: 120GB l"
+    },
+    {
+      "case_id": "t11",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Extra data: line 10 column 2 (char 123)",
+      "e2e_seconds": 9.847,
+      "tok_per_sec": 26.67,
+      "ttft_ms": 269.0,
+      "ram_mb": null,
+      "output_snippet": "We are to format a tool call for `send_email` with parameters: recipient, subject, and body, all in JSON format.  The ex"
+    },
+    {
+      "case_id": "t12",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Nenhum bloco JSON detectado",
+      "e2e_seconds": 9.963,
+      "tok_per_sec": 26.54,
+      "ttft_ms": 334.0,
+      "ram_mb": null,
+      "output_snippet": "We are given a URL: \"https://api.empresa.com/v1/users?limit=10&page=2\"  We need to extract:    base_url: the base part o"
+    },
+    {
+      "case_id": "t13",
+      "category": "tools",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Todas as chaves esperadas estao presentes no JSON",
+      "e2e_seconds": 9.889,
+      "tok_per_sec": 27.28,
+      "ttft_ms": 527.4,
+      "ram_mb": null,
+      "output_snippet": "We are to generate a JSON object with the specified fields.  The fields are:    - \"sucesso\": a boolean (true or false)  "
+    },
+    {
+      "case_id": "t14",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Nenhum bloco JSON detectado",
+      "e2e_seconds": 10.176,
+      "tok_per_sec": 25.83,
+      "ttft_ms": 287.4,
+      "ram_mb": null,
+      "output_snippet": "We are given a string: \"Localizado em Lat -23.5505, Long -46.6333\"  We need to extract the latitude and longitude and fo"
+    },
+    {
+      "case_id": "t15",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Nenhum bloco JSON detectado",
+      "e2e_seconds": 9.54,
+      "tok_per_sec": 27.77,
+      "ttft_ms": 338.7,
+      "ram_mb": null,
+      "output_snippet": "We are creating a JSON representation of a purchase order.  The required fields are: produto (product), quantidade (quan"
+    }
+  ]
+}

@@ -1,86 +1,98 @@
-# AetherMind Standalone LLM Speed & Area-Highlight Benchmarks
+# AetherMind — Benchmarks de Velocidade Pura, Tuning de Hardware & Destaques por Área
 
-**Bare-metal inference speed telemetry, `llama.cpp` engine tuning (`MTP`, `PLD`, `FA`, `CPU_REPACK`, Thread Scaling, Vulkan vs. AVX2), and standalone area-focused model evaluations** extracted from `F:\rotor-llm\` and `F:\data\`.
+**Repositório dedicado exclusivamente a telemetria de velocidade de inferência (`tok/s`, `PP`, `TG`, `TTFT`), estudos de otimização do motor `llama.cpp` (`MTP`, `PLD`, `CPU_REPACK`, `-fa`, Thread Affinity, Vulkan vs. AVX2) e destaques isolados por área**, extraído integralmente de `F:\rotor-llm\` e `F:\data\`.
 
-> **Repository Separation Notice (For Humans & LLMs)**
-> - **This Repository (`AetherMind-LLM-Speed-And-Area-Benchmarks`):** Focuses on **standalone inference speed**, **hardware/engine optimization sweeps** (`llama-bench`, `llama-server`, `MTP` context curves, `PLD` n-gram speculation, `-fa` sweeps, `CPU_REPACK` RAM cliffs, thread-affinity scaling), and **area-highlighted standalone evaluations** (Coding Duels, Battery 50 `ThinkON vs. ThinkOFF`, Early Fleet Championships, High-Caliber/Titan single runs).
-> - **Companion Repository ([`juan3861/AetherMind-LLM-Benchmark-Lab`](https://github.com/juan3861/AetherMind-LLM-Benchmark-Lab)):** Houses the **multi-model cross-scale cognitive tournaments** (`35` bare-metal edge/mid models across `13 Cognitive Areas` / `39 Tests` and `10 Opus Hard` algorithmic challenges with `Lambda-RLM` recursive rescue).
-
----
-
-## 1. Hardware Testbeds & Operational Laws
-
-| Component | Verified Specification | Hardware Constraint & Tuning Implication |
-|---|---|---|
-| **CPU Host** | **Intel Xeon E5-2697 v3** (Haswell-EP, **14 Physical Cores / 28 Logical Threads**, 2.60 GHz, `AVX2/FMA/F16C/BMI2/REPACK`) | Dual-regime scaling: prefill (`PP`) scales up to `t=20–28`, whereas token generation (`TG`) saturates DRAM bandwidth and degrades under HyperThreading contention beyond `t=7–14`. |
-| **System RAM** | **31.84 GiB (~32 GB) DDR4 Quad-Channel** | Hard ceiling for `CPU_REPACK` + `mmap` commit (`31.18 GB` commit on `Qwen3-30B-Q4_K_M` crashes; `IQ3_M` without repack runs cleanly in `29.28 GB`). |
-| **Discrete GPU** | **AMD Radeon RX 580 Series** (Polaris 20 / GCN4, **8192 MiB / 8 GB GDDR5 VRAM**, ~7367 MiB idle free, Vulkan `1.3.260`, Adrenalin `26.5.2`, `warp size: 64`, `fp16: 0`, `int dot: 0`, `matrix cores: none`) | Delivers **`3.67×–4.51×` faster prefill** and **`1.57×–4.40×` faster TG** over CPU when tensors fit, but faces a **Windows 256 MB PCIe BAR (No-ReBAR) cliff**—models with contiguous tensor allocations `> 256 MB` throw `VK_ERROR_OUT_OF_HOST_MEMORY`. |
-| **Inference Engines** | `llama.cpp` builds `dfc29b64e (10749)` CPU AVX2 (`ggml-cpu-haswell.dll`) & `6a1a922d2 (10819)` Vulkan (`ggml-vulkan.dll`), `llama-bench.exe`, `llama-server.exe`, `llama-cli.exe`, plus Native PyTorch FP32 (`DoryForCausalLM`) | Builds `10749+` enable `--spec-type draft-mtp` and `CPU_REPACK` (`--no-repack` toggle). |
-
-### Operational Laws
-1. **The `7.0 tok/s` Golden Rule (`Regra de Ouro`):** Interactive/agentic local loops require `>= 7.0 tok/s` steady token generation (`TG`). Checkpoints falling below this floor on target hardware are flagged or pruned.
-2. **Strict `PP` vs. `TG` Separation:** Aggregated `tokens_total / wall_s` hides slow decoding behind fast prefill. All tables below isolate prompt processing (`PP`) from token generation (`TG`), and in Quality Battery runs isolate `completion_tokens` from `prefill_tokens`.
+> **Separação Clara dos Repositórios:**
+> - **Este Repositório ([`AetherMind-LLM-Speed-And-Area-Benchmarks`](https://github.com/juan3861/AetherMind-LLM-Speed-And-Area-Benchmarks)):** Focado em **velocidade pura (`llama-bench`, `llama-server`)**, **tuning de hardware/engine** e **modelos testados isoladamente por área ou triagem de velocidade**.
+> - **Repositório de Torneios Cognitivos ([`AetherMind-LLM-Benchmark-Lab`](https://github.com/juan3861/AetherMind-LLM-Benchmark-Lab)):** Focado nos **torneios multi-modelo completos (100M a 35B+)** avaliados nas **13 Áreas Cognitivas (39 provas)** e **10 Desafios Opus Hard** com `Lambda-RLM`.
 
 ---
 
-## 2. Top Speed & Engine Tuning Highlights
+## 1. Hardware de Referência (Testbed Bare-Metal)
 
-| Tuning / Speed Category | Winner / Case Study | Exact Benchmark Numbers | Key Hardware & Engine Insight |
-|---|---|---|---|
-| **Fastest GPU Vulkan (`pp512 / tg128`)** | **`MiniCPM5-1B-Q4_K_M`** (`ngl=999, t=14`) | **`1,111.39 tok/s` PP** / **`51.57 tok/s` TG** (`4.17×` PP & `4.15×` TG vs. CPU) | RX 580 Vulkan dominates compute-bound prefill (`3.67×–4.51×` across all 6 swept models). `LFM2.5-8B-A1B` MoE leads 7–8B GPU TG at **`31.31 tok/s`** (`342.46` `pp2048`). |
-| **Fastest CPU AVX2 (`-ngl 0`)** | **`MiniCPM4-0.5B-Q4_K_M`** | **`63.58 tok/s` TG (`t=7`)** / **`715.35 tok/s` PP (`t=28`)** | Sub-1B edge leader on DDR4. At 8B MoE scale on CPU, `LFM2.5-8B-A1B` achieves **`24.11 tok/s` TG (`t=10`)** and `129.36 tok/s` PP (`t=20`). |
-| **Best `MTP` Context Curve Gain** | **`Qwen3.6-35B-A3B-UD-Q4_K_M` + `MTP`** (`t=12`, `0x5555550`, `KV=q8_0`) | `MTP_1`: **`9.96`** (`+35.9%`, `90.9%` acc) @ short / **`9.49`** (`+26.5%`, `88.1%` acc) @ 2K / `8.21` @ 5K<br>`MTP_2`: **`10.78 tok/s`** (`+35.4%`, `INFERENCE_PROFILE`) & **`8.42 tok/s`** @ 5K (`+22.7%` vs `6.86` baseline)<br>`draft=4, t=8`: **`7.53 avg / 10.23 peak tok/s`**; Warm `draft=2, t=10`: `1.62 -> 7.05` (`4.35×`, `96.88%` acc) | **MoE vs. Dense split:** With only 3B active params, batched `MTP` verification is memory-cheap and keeps 35B MoE above `7.0 tok/s` through 5K ctx. On dense `Qwen3.8-27B`, `MTP` regresses (`2.15 -> 1.31–2.01 tok/s`). `UD-Q4_K_M` also beats Official `Q4_K_M` cold (`4.81` vs `4.27 tok/s`, `-29.0%` TTFT). |
-| **`gpt-oss-20b` `CPU_REPACK` & PLD Tuning** | **`gpt-oss-20b-antidoom.i1-IQ4_XS`** (`11.25 GiB`, `t=10`, `0x15555`) | Baseline `Q4_K_M`: `18.05 PP / 13.10 TG` → `antidoom`: `26.36 PP / 9.48 TG` → `10C` affinity: `26.89 PP / 10.47 TG` → PLD tuned: `22.36 PP / 8.73 TG` (`10.96%` acc) → **`CPU_REPACK` (`10,422.42 MiB`): `31.29 tok/s` PP / `10.94 tok/s` TG** | Enabling AVX2 `CPU_REPACK` lifts prefill to a **`31.29 tok/s`** record (`+73.4%` vs baseline) and peaks `antidoom` TG at `10.94 tok/s` (`repack_live.log`; note `proof_gpt20b_repack_paid.json` logged PP `31.29` into `generation_speed`). |
-| **`Qwen3-30B-A3B`: `IQ3_M` vs. `Q4_K_M` `CPU_REPACK`** | **`Qwen3-30B-A3B-IQ3_M`** (`13.11 GB`) | **`IQ3_M`: `7.05 tok/s` TG / `14.66` PP** (`29.28 GB` working set, `3/3` pass)<br>`Q4_K_M` (`17.35 GB`): **`FAIL` (`31.18 GB` commit)** | `Q4_K_M` triggers a **`13.83 GB` `CPU_REPACK` buffer** allocation that breaches the 31.84 GiB host RAM limit. `IQ3_M` avoids repack and passes the `7.0 tok/s` Golden Rule. |
-| **Flash Attention (`-fa off` vs. `-fa on`)** | Multi-model `-r 5` & `8192` ctx sweep | Neutral (`0.944×–1.049×`) up to `p=2048`; at **`p=8192` GPU**, `-fa 1` is **`-10%` slower (`155.84` vs `173.04 tok/s`)** | Polaris Vulkan FA kernel degrades at long context (`8192`); `-fa` also has **zero accuracy impact** (`9/9` identical CPU/GPU parity on `Qwen2.5-Coder-7B`). |
-| **Thread Scaling & Quantization Bandwidth** | `(optimal_pp, optimal_tg)` Law & `Qwen3.8-9B` | Small/mid models peak at **`(PP: t=20..28, TG: t=7..14)`**; `Qwen3.8-9B` `Q8_0` (`9.10 GiB`) `4.00 tok/s` → `IQ4_XS` (`4.98 GiB`) **`7.20 tok/s` CPU / `14.64 tok/s` GPU** | Prefill gains `+43%` to `+61%` from `t=7` to `t=20`, while small-model TG collapses `-31%` to `-70%` at `t=20–28` due to HT contention. Halving payload size scales dense CPU TG linearly (`1.77×`). |
+| Componente | Especificação Verificada | Impacto na Velocidade |
+| :--- | :--- | :--- |
+| **CPU Host** | **Intel Xeon E5-2697 v3** (Haswell-EP, **14 Núcleos Físicos / 28 Threads**, 2.60 GHz, `AVX2/FMA/F16C/BMI2`) | Prefill (`PP`) escala até `20–28` threads; Geração (`TG`) satura banda DDR4 e degrada com HyperThreading acima de `7–14` threads. |
+| **Memória RAM** | **31.84 GiB (~32 GB) DDR4 Quad-Channel** | Teto físico para `CPU_REPACK` + `mmap` (`Qwen3-30B-Q4_K_M` estoura `31.18 GB`; `IQ3_M` roda limpo em `29.28 GB`). |
+| **GPU Discreta** | **AMD Radeon RX 580 Series** (Polaris 20, **8 GB GDDR5**, Vulkan `1.3.260`, Adrenalin `26.5.2`) | Até **4.5× mais rápida** em `PP` e **4.4× em `TG`** que a CPU quando cabe na VRAM; limitada no Windows pela janela **PCIe BAR de 256 MB** (sem ReBAR). |
+| **Motores** | `llama.cpp` (`b10749` AVX2, `b10819` Vulkan, `llama-bench.exe`, `llama-server.exe`) | **Regra de Ouro:** loops agênticos locais exigem **`>= 7.0 tok/s`** de geração sustentada (`TG`). |
 
 ---
 
-## 3. Area-by-Area Highlight Winners
+## 2. Tabela Mestra de Velocidade — GPU Vulkan (AMD RX 580 8GB)
 
-### Coding & Software Engineering
-- **Overall Heavy Coder (13 Areas + Opus under Lambda-RLM):** **`gemma-4-12B-coder-fable5-composer2.5-v1`** (`Q4_K_M`, 6.87 GB, Xeon AVX2 @ `4.46 tok/s`) — **`33/39 (84.62%)`** baseline + **`4/10` Opus**, climbing to **`38/39 (97.44%, 12/13 perfect)` + `6/10` Opus** (`OPUS_04, 05, 06, 07, 08, 09`) under Lambda-RLM rescue (`proof_reteste_18_titas_fable_dual.json`). *Why:* Highest raw algorithmic synthesis across standalone 12B coders, best suited for offline/L2 tasks.
-- **Pareto Concise Coding Champion (Battery 50 & 9-Task):** **`Qwen2.5-Coder-7B-Instruct`** (`Q4_K_M`, 4.36 GB, Xeon AVX2 @ `9.30 tok/s`) — **`9/9 (100%)`** at **`14.1 gen tok/correct`**, and **`88.67%` (`133/150`, IC95 `[86%, 92%]`)** across 50×3 runs (`54/57` Code, `57/66` Math, `22/27` Extract) at **`18.2 gen tok/correct`** in just `8m01s`. *Why:* `13.8×–15.6×` fewer generated tokens per correct solution than reasoning models while clearing `9 tok/s` on CPU.
-- **8B vs. 9B Algorithmic Code & Opus Duel Winner:** **`RLM-Qwen3-8B-v0.1`** (`Q4_K_M`, 4.68 GB, RX 580 Vulkan) — **`9/10 -> 10/10` (`202.06s`)** in the AST/pytest Code Duel and **`2/10 -> 3/10`** in Opus Hard (`OPUS_04, 08, 10`), beating `Qwen3.8-9B-Heretic-IQ4_XS` (`8/10 -> 10/10` in `266.40s`, `1/10` Opus).
-- **Fastest Code Fast-Path (Sub-2B):** **`Qwen2.5-Coder-1.5B-Instruct`** (`Q4_K_M`, 1.04 GB, Xeon AVX2) — **`25.54 tok/s` steady** (`460.28 ms` TTFT, `95.59–158.75` PP) with **`100%` Coding (`2/2`), JSON (`2/2`), Tool (`2/2`), and Instruction (`2/2`)** (`0/2` Math).
-- **Architectural Outlier:** **`ProCreations-Dory-Beam-4B`** (`DoryForCausalLM` nGPT `Q5_K_M`) — **`29/39 -> 32/39`** + **`OPUS_06` zero-shot** despite running unoptimized FP32 PyTorch (`0.14–0.22 tok/s`) due to missing mainline `llama.cpp` nGPT kernels.
+Medições empíricas via `llama-bench` (`pp512` / `tg128`) e `llama-server` (`ctx=8192`) com offload Vulkan:
 
-### Math, Reasoning & Quality Battery 50
-- **Battery 50 Accuracy & Determinism King (`ThinkON`):** **`Qwen3-8B` (Thinking ON)** (`Q4_K_M`, Xeon AVX2) — **`98.00%` (`147/150`, `sd=0.0`, `100%` of scorable)** with **`66/66 (100%)` Math** and **`27/27 (100%)` Extract** (`3` `c6` code truncations), at `283.2 gen tok/correct` (`93m52s`).
-- **Battery 50 Token-Efficiency Toggle (`ThinkOFF`):** **`Qwen3-8B` (Thinking OFF)** — **`90.67%` (`136/150`)** at **`16.4 gen tok/correct`** (**`17.3×` leaner** than ThinkON, beating `Coder-7B`'s `18.2`), achieving **`57/57 (100%)` Code**, **`27/27 (100%)` Extract**, and `0` truncations, while dropping only in multi-step `Math` (`52/66`).
-- **Strongest R1 Distill Alternative:** **`DeepSeek-R1-Distill-Qwen-7B`** (`Q4_K_M`, Xeon AVX2) — **`92.00%` (`[83%, 100%]`)** on Battery 50 (`66/66` Math, `55/57` Code, `17/27` Extract) and **`9/9` (`100%`)** on the 9-task baseline, at `250.6–288.7 gen tok/correct`.
-- **Lambda-RLM Reasoning Rescues:**
-  - **`ai9stars/G9v3-3B`** (`Q4_K_M`, 1.77 GB, RX 580 Vulkan @ `20.06–21.74 tok/s` bare-metal): **`27/39 (69.23%) -> 38/39 (97.44%)`** (`12/13` areas `3/3`!) + `1/10` Opus (`OPUS_08`).
-  - **`unsloth-Phi-4-reasoning-14B`** (`Q4_K_M`, 8.43 GB, Xeon AVX2 @ `1.83–2.50 tok/s`): **`3/39 (7.7%) -> 31/39 (79.5%)`** (`+28` rescued from `<think>` token exhaustion) + `1/10` Opus.
-  - **`Qwen3-1.7B-Q6_K`** (`22/39 -> 36/39`, `0/10 -> 4/10` Opus) and **`IBM-Grok4-UltraFast-Coder-1B`** (`1/39 -> 25–30/39`, `3/10` Opus in retest).
-
-### Multi-Area Early Championship & 13-Area Generalists
-- **CPU Early Championship Overall Winner:** **`Qwen3-4B-Instruct-2507-RLM-SFT-v3`** (`Q4_K_M`, Xeon AVX2 `-t 14`) — **`10/10 (100%)`** across all 5 Campeonato dimensions (`JSON`, `Tool`, `Instruction`, `Math`, `Code`) with **`0` truncations** and **`11.01 tok/s` steady** (`>7.0` PASS).
-- **Sub-3B Gateway Champion:** **`MiniCPM5-2B`** (`Q4_K_M`, 1.45 GB, Xeon AVX2) — **`100% (8/8` scorable, `2` truncations)**, **`407.27 ms` TTFT**, **`17.43 tok/s` steady**, and the **only sub-4B model to pass `math_trap`**.
-- **GPU Uncensored L1 Generalist:** **`Qwen3.8-9B-Distill-Heretic-Uncensored`** (`IQ4_XS`, 4.99 GB, RX 580 Vulkan `-ngl 99 -fa 1`) — **`9/10 (90%)`** Campeonato at **`14.17 tok/s` steady** (`2.01×` CPU `IQ4_XS`), plus **`33/39 (84.62%)`** on the 13-Area suite.
-- **13-Area Bare-Metal Generalist Champion:** **`RLM-Qwen3-8B-v0.1`** (`Q4_K_M`, 4.68 GB, RX 580 Vulkan `-ngl 33`) — **`37/39 (94.87%)`** across 13 cognitive areas (`11/13` perfect `3/3`) at **`8.29 tok/s` effective** (`7.78` raw).
-
-### High-Caliber, Titans & Challengers
-- **High-Caliber L1 Speed King (16.8B MoE):** **`Ring-mini 2.0`** (`Q4_K_M`, 9.23 GB, Xeon AVX2 `-t 10`) — **`20.82 tok/s` TG / `30.61` PP** (`1,045 ms` TTFT, `5,194 MB` RAM), fitting 100% in RAM as the fastest high-caliber interactive loop model.
-- **High-Caliber L2 Balanced Brain (20B Dense):** **`GPT-OSS 20B`** (`Q4_K_M`, 10.82 GB, Xeon AVX2 `-t 10`) — **`13.10 tok/s` TG / `18.05` PP** (`10,077 MB` RAM), clearing the `7.0 tok/s` floor out of the box.
-- **High-Caliber L2 Deep Brain (35B MoE + MTP):** **`Qwen3.6-35B-A3B-UD-Q4_K_M + MTP`** (`21.11 + 1.51 GB`) — **`7.05 tok/s` TG (`11.11` PP, `2,699 ms` TTFT)** when warm in RAM (`4.35×` speedup over `1.62 tok/s` unwarmed baseline).
-- **Standalone 30B/26B MoE Titans:** **`Qwen_Qwen3-30B-A3B` (`Q4_K_M`, 17.35 GB)** hits **`8.14 tok/s` TG** (`21/39` areas, **`2/10` Opus** `OPUS_04, 05`), while **`gemma-4-26B-A4B-it-Claude-Opus-Distill-v2`** scores **`29/39 (74.36%)`** areas + `1/10` Opus (`OPUS_08`).
-- **Challenger Approvals (`>= 7.0 tok/s`):** `qwen2.5-coder-1.5b-instruct` (`23.25 tok/s` TG / `158.75` PP), `MiniCPM5-2B` (`15.19` TG / `89.02` PP), `granite-4.2-3b` (`13.47` TG / `68.35` PP). *(Blacklisted failures: `Agents-A1-IQ4_XS` at `1.56 tok/s`, `IBM Granite-4.0-h-small` at `2.11 tok/s`, dense `Qwen3.8-27B` at `1.68–2.15 tok/s`.)*
-
-### High-Speed Edge & Micro (`<= 1.5B`)
-- **CPU Micro Speed King:** **`MiniCPM4-0.5B-Q4_K_M`** — **`63.58 tok/s` TG (`t=7`) / `715.35 tok/s` PP (`t=28`)**.
-- **GPU Micro Speed King:** **`MiniCPM5-1B-Q4_K_M`** — **`51.57 tok/s` TG / `1,111.39 tok/s` PP** (Vulkan `ngl=999`).
-- **Ultra-Compact Edge Runners (CPU AVX2):** `SmolLM2-360M` (`50.41 tok/s`), `Qwen2.5-0.5B` (`48.06 tok/s` TG; `61.33%` Battery 50 in `86.2s` for 150 runs), `Qwen3-0.6B` (`47.47 tok/s`), `LFM2-1.2B` (`41.21 tok/s`), `Llama-3.2-1B` (`38.63 tok/s`), `NasledieLab-Qwen3.5-0.8B-Karpy` (`25.00 tok/s` weighted TG / `167.18` PP), `MobileLLM-R1.5-950M` (`14.96 tok/s`).
+| Modelo | Quant | Tamanho | Config | Prompt (`PP`) | Geração (`TG`) | Fonte Bruta |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **`MiniCPM5-1B`** | `Q4_K_M` | ~0.75 GB | `ngl=999, t=14` | **1,111.39 tok/s** | **51.57 tok/s** | [`pp_sweep.jsonl`](raw_data/speed_llama_bench/pp_sweep.jsonl) |
+| **`Qwen2-VL-2B-Instruct`** | `Q4_K_M` | 934.7 MiB | `ngl=45` | **675.18 tok/s** | **43.67 tok/s** | [`arena_bench.log`](raw_data/speed_llama_bench/arena_bench.log) |
+| **`LFM2.5-8B-A1B` (MoE)** | `Q4_K_M` | ~4.6 GB | `ngl=999 / ctx=8192` | **342.46 tok/s** | **30.10–31.31 tok/s** | [`pp_sweep.jsonl`](raw_data/speed_llama_bench/pp_sweep.jsonl) · [`server_bench.jsonl`](raw_data/speed_server_mtp_pld/server_bench.jsonl) |
+| **`Phi-4-mini-instruct`** | `Q4_K_M` | 2.31 GiB | `ngl=45` | **290.91 tok/s** | **29.05 tok/s** | [`arena_bench.log`](raw_data/speed_llama_bench/arena_bench.log) |
+| **`Qwen3-VL-4B-Instruct`** | `Q4_K_M` | 2.32 GiB | `ngl=45` | **245.33 tok/s** | **23.92 tok/s** | [`arena_bench.log`](raw_data/speed_llama_bench/arena_bench.log) |
+| **`Qwen2.5-VL-7B-Instruct`** | `Q4_K_M` | 4.36 GiB | `ngl=45` | **157.39 tok/s** | **23.29 tok/s** | [`arena_bench.log`](raw_data/speed_llama_bench/arena_bench.log) |
+| **`DeepSeek-R1-Distill-Qwen-7B`** | `Q4_K_M` | 4.36 GiB | `ngl=45` | **157.49 tok/s** | **23.28 tok/s** | [`arena_bench.log`](raw_data/speed_llama_bench/arena_bench.log) |
+| **`Qwen2.5-7B-Instruct`** | `Q4_K_M` | 4.36 GiB | `ngl=45 / 99` | **157.88 tok/s** | **23.18–23.21 tok/s** | [`bench_7b_gpu.log`](raw_data/speed_llama_bench/bench_7b_gpu.log) |
+| **`Qwen3-8B`** | `Q4_K_M` | ~4.9 GB | `ngl=45, ctx=8192` | 34.29 tok/s *(p=38)* | **19.92 tok/s** | [`server_bench.jsonl`](raw_data/speed_server_mtp_pld/server_bench.jsonl) |
+| **`Qwen3.8-9B-Distill-Heretic`** | `IQ4_XS` | 4.99 GB | `ngl=99, -fa 1` | — | **14.17–14.64 tok/s** | [`sweep_iq4_xs_focused.json`](raw_data/speed_llama_bench/sweep_iq4_xs_focused.json) |
 
 ---
 
-## 4. Full Navigation Index
+## 3. Tabela Mestra de Velocidade — CPU Pura AVX2 (Xeon E5-2697 v3)
 
-| Resource | Contents & Purpose |
-|---|---|
-| **[`SPEED_AND_HARDWARE_TUNING_DOSSIER.md`](SPEED_AND_HARDWARE_TUNING_DOSSIER.md)** | Full hardware/PCIe BAR analysis, GPU Vulkan vs. CPU AVX2 `llama-bench` rankings, parsed server log telemetry, `gpt-oss-20b` optimization journey, `MTP` context curve (`short`–`5K`) & Official vs. UD duels, thread/`-fa`/`PP` sweeps, and `CPU_REPACK` / quantization bandwidth analysis. |
-| **[`STANDALONE_AREA_HIGHLIGHTS_CATALOG.md`](STANDALONE_AREA_HIGHLIGHTS_CATALOG.md)** | Complete catalog of standalone & area-focused benchmarks across 4 categories: Multi-Area Generalists & Campeonato, Coding Specialists (`gemma4-coder`, `Qwen2.5-Coder`, `8B vs 9B`, `Dory-Beam-4B`), Reasoning/Math/Battery 50 (`Qwen3-8B ThinkON/OFF`, `G9v3-3B`, `Phi-4-14B`), and High-Caliber/Titans/Challengers. |
-| **[`raw_data/`](raw_data/)** | **62 raw telemetry files:** [`raw_data/speed/`](raw_data/speed/) (31 JSON, JSONL, TXT, and parsed `.log` summaries) + [`raw_data/areas/`](raw_data/areas/) (22 JSON/JSONL proof artifacts) + [`raw_data/areas/logs/`](raw_data/areas/logs/) (9 raw `campeonato_*.log` runs). |
-| **[`registry_docs/`](registry_docs/)** | **4 canonical laboratory docs:** [`LLM_BENCHMARK_AND_PRUNING_REGISTRY.md`](registry_docs/LLM_BENCHMARK_AND_PRUNING_REGISTRY.md), [`INVENTARIO_E_BENCHMARKS_COMPLETO_DE_TODOS_OS_MODELOS.md`](registry_docs/INVENTARIO_E_BENCHMARKS_COMPLETO_DE_TODOS_OS_MODELOS.md), [`RELATORIO_TECNICO_GPU_CPU_E_BENCHMARKS.md`](registry_docs/RELATORIO_TECNICO_GPU_CPU_E_BENCHMARKS.md), and [`ROTOR_FLEET_STATE.md`](registry_docs/ROTOR_FLEET_STATE.md). |
-| **[`scripts/`](scripts/)** | **30 reproducible harnesses & launchers:** [`scripts/speed/`](scripts/speed/) (17 Python sweeps, `.bat` MTP launchers, and `mtp_benchmark.html`) + [`scripts/areas/`](scripts/areas/) (13 standalone, duel, Battery, Titan, and Dory benchmark scripts). |
+### 3A. Modelos Leves & Edge (`0.36B – 4B`) — Varredura `7T / 14T / 28T`
+
+| Modelo | Quant | Melhor `TG` (CPU) | Melhor `PP` (CPU) | Comportamento HT (`28T`) | Fonte Bruta |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **`MiniCPM4-0.5B`** | `Q4_K_M` | **63.58 tok/s** (`7T`) | **715.35 tok/s** (`28T`) | Cai p/ `19.32 t/s` (`-70%`) | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`SmolLM2-360M-Instruct`** | `Q4_K_M` | **56.19 tok/s** (`7T`) | **323.26 tok/s** (`28T`) | Cai p/ `17.80–18.44 t/s` | [`bench_cpu_small_compare_round1.json`](raw_data/speed_llama_bench/bench_cpu_small_compare_round1.json) |
+| **`Qwen2.5-0.5B-Instruct`** | `Q4_K_M` | **49.52 tok/s** (`7T`) | **297.66 tok/s** (`14T`) | Cai p/ `15.25–23.46 t/s` | [`bench_cpu_small_compare_round1.json`](raw_data/speed_llama_bench/bench_cpu_small_compare_round1.json) |
+| **`Qwen3-0.6B`** | `Q4_K_M` | **47.47 tok/s** (`7T`) | **439.48 tok/s** (`14T`) | Cai p/ `10.38 t/s` (`-78%`) | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`LFM2-1.2B`** | `Q4_K_M` | **41.21 tok/s** (`14T`) | **299.34 tok/s** (`28T`) | Cai p/ `18.59 t/s` | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`Llama-3.2-1B-Instruct`** | `Q4_K_M` | **38.63 tok/s** (`14T`) | **325.14 tok/s** (`28T`) | Cai p/ `19.43 t/s` | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`deepseek-coder-1.3b-instruct`** | `Q4_K_M` | **31.86 tok/s** (`7T`) | **163.04 tok/s** (`28T`) | Cai p/ `12.36 t/s` | [`bench_cpu_small_compare_round2.json`](raw_data/speed_llama_bench/bench_cpu_small_compare_round2.json) |
+| **`Qwen3.5-0.8B`** | `Q4_K_M` | **31.53 tok/s** (`7T`) | **241.66 tok/s** (`14T`) | Cai p/ `9.06 t/s` | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`gemma-3-1b-it`** | `Q4_K_M` | **28.55 tok/s** (`7T`) | **136.25 tok/s** (`28T`) | Cai p/ `6.08 t/s` | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`Qwen2.5-1.5B-Instruct`** | `Q4_K_M` | **27.18 tok/s** (`14T`) | **222.84 tok/s** (`28T`) | Cai p/ `9.24 t/s` | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`SmolLM2-1.7B-Instruct`** | `Q4_K_M` | **26.22 tok/s** (`14T`) | **167.48 tok/s** (`28T`) | Cai p/ `9.15 t/s` | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`Qwen2.5-Coder-1.5B-Instruct`** | `Q4_K_M` | **25.54 tok/s** *(steady)* | **158.75 tok/s** | Aprovado `>= 7.0 tok/s` | [`BENCHMARK_CHALLENGERS_RESULTS.json`](raw_data/triage_and_fleet/BENCHMARK_CHALLENGERS_RESULTS.json) |
+| **`Qwen3-1.7B`** | `Q4_K_M` | **25.40 tok/s** (`7T`) | **194.67 tok/s** (`28T`) | Cai p/ `8.67 t/s` | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`MiniCPM5-1B`** | `Q4_K_M` | **23.46 tok/s** (`7T`) | **220.40 tok/s** (`14T`) | — | [`bench_cpu_r3.json`](raw_data/speed_llama_bench/bench_cpu_r3.json) |
+| **`Falcon-H1-1.5B`** | `Q4_K_M` | **21.18 tok/s** (`14T`) | **198.02 tok/s** (`28T`) | Cai p/ `8.47 t/s` | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`gemma-4-E2B-it`** | `IQ4_XS` | **17.84 tok/s** (`7T`) | **137.36 tok/s** (`28T`) | Cai p/ `6.53 t/s` | [`bench_cpu_small_compare_round1.json`](raw_data/speed_llama_bench/bench_cpu_small_compare_round1.json) |
+| **`MiniCPM5-2B`** | `Q4_K_M` | **17.43 tok/s** *(steady)* | **89.02 tok/s** | Cai p/ `3.98 t/s` (`14T r3`) | [`bench_cpu_r3.json`](raw_data/speed_llama_bench/bench_cpu_r3.json) · [`wait_and_benchmark.log`](raw_data/triage_and_fleet/wait_and_benchmark.log) |
+| **`MobileLLM-R1.5 (Llama4 949M)`** | `Q4_K_M` | **14.96 tok/s** (`7T`) | **112.38 tok/s** (`7T`) | `582.77 MiB` | [`mobilellm_bench2.log`](raw_data/speed_llama_bench/mobilellm_bench2.log) |
+| **`granite-4.0-micro`** | `Q4_K_M` | **14.27 tok/s** (`7T`) | **74.66 tok/s** (`28T`) | Cai p/ `5.17 t/s` | [`bench_cpu_small_compare.json`](raw_data/speed_llama_bench/bench_cpu_small_compare.json) |
+| **`granite-4.2-3b`** | `Q4_K_M` | **13.47 tok/s** | **68.35 tok/s** | Aprovado `>= 7.0 tok/s` | [`BENCHMARK_CHALLENGERS_RESULTS.json`](raw_data/triage_and_fleet/BENCHMARK_CHALLENGERS_RESULTS.json) |
+| **`OpenReasoning-Nemotron-1.5B`** | `Q4_K_M` | **12.40 tok/s** (`7T`) | **101.55 tok/s** (`14T`) | `10.53 t/s` (`14T`) | [`bench_cpu_r3.json`](raw_data/speed_llama_bench/bench_cpu_r3.json) |
+
+### 3B. Triagem Fase A (`llama-server` End-to-End) & Modelos Pesados (`8B – 35B+`)
+
+| Modelo | Escala / Quant | Tamanho | `PP` / `TTFT` | `TG` (Velocidade) | Veredito / Observação | Fonte Bruta |
+| :--- | :---: | :---: | :---: | :---: | :--- | :--- |
+| **`Ring-mini 2.0`** | 16.8B MoE `Q4_K_M` | 9.23 GB | `30.61 t/s` (`1045 ms`) | **20.82–25.57 tok/s** | 🏆 **Rei High-Caliber L1** (100% RAM) | [`BENCHMARK_HIGH_CALIBER_RESULTS.json`](raw_data/speed_server_mtp_pld/BENCHMARK_HIGH_CALIBER_RESULTS.json) · [`triagem_fase_a_ring-mini-2_0`](raw_data/triage_and_fleet/triagem_fase_a_ring-mini-2_0_20260911_221054.json) |
+| **`LFM2.5-8B-A1B` (CPU)** | 8B MoE `Q4_K_M` | ~4.6 GB | `129.36 t/s` (`t=20`) | **24.11 tok/s** (`t=10`) | `15.87 t/s` em `ctx=8192` | [`thread_sweep_gated_20261003.jsonl`](raw_data/speed_llama_bench/thread_sweep_gated_20261003.jsonl) |
+| **`Ministral-3-3B`** | 3B `Q4_K_M` | 2.00 GB | `TTFT 663.4 ms` | **15.34 tok/s** | `12/15` casos Triagem A | [`triagem_fase_a_ministral-3-3b`](raw_data/triage_and_fleet/triagem_fase_a_ministral-3-3b_20260912_003732.json) |
+| **`Phi-4-mini`** | 3.8B `Q4_K_M` | 2.32 GB | `TTFT 844.3 ms` | **14.99 tok/s** | Triagem Fase A (CPU) | [`triagem_fase_a_phi-4-mini`](raw_data/triage_and_fleet/triagem_fase_a_phi-4-mini_20260912_003541.json) |
+| **`GPT-OSS 20B`** | 20B `Q4_K_M` | 10.82 GB | `18.05 t/s` (`4766 ms`) | **13.10 tok/s** | Passa Regra de Ouro (`>7.0`) | [`BENCHMARK_HIGH_CALIBER_RESULTS.json`](raw_data/speed_server_mtp_pld/BENCHMARK_HIGH_CALIBER_RESULTS.json) |
+| **`gpt-oss-20b-antidoom`** | 20B `IQ4_XS` | 11.25 GiB | **31.29 tok/s** (`+73%`) | **10.94 tok/s** | Com `CPU_REPACK` ativo | [`proof_gpt20b_repack_paid.json`](raw_data/speed_server_mtp_pld/proof_gpt20b_repack_paid.json) |
+| **`granite-3.1-2b`** | 2B `Q4_K_M` | ~1.5 GB | `TTFT 5071.8 ms` | **10.48 tok/s** | `3/3` casos Triagem A | [`triagem_fase_a_granite-3_1-2b`](raw_data/triage_and_fleet/triagem_fase_a_granite-3_1-2b_20260911_195507.json) |
+| **`qwen3.5-4b`** | 4B `Q4_K_M` | ~2.7 GB | `TTFT 1773.7 ms` | **9.42 tok/s** | Triagem Fase A | [`triagem_fase_a_qwen3_5-4b`](raw_data/triage_and_fleet/triagem_fase_a_qwen3_5-4b_20260912_002847.json) |
+| **`Qwen3.6-35B-A3B-UD + MTP`** | 35B MoE `Q4_K_M` | 21.1 + 1.5 GB | `11.11 t/s` (`2699 ms`) | **7.05 – 10.78 tok/s** | **MTP** (`+35%` a `4.35×` ganho) | [`INFERENCE_PROFILE_BENCHMARK.json`](raw_data/speed_server_mtp_pld/INFERENCE_PROFILE_BENCHMARK.json) · [`MTP_CONTEXT_CURVE_BENCHMARK.json`](raw_data/speed_server_mtp_pld/MTP_CONTEXT_CURVE_BENCHMARK.json) |
+| **`Qwen3-30B-A3B`** | 30B MoE `IQ3_M` | 13.11 GB | `14.66 tok/s` | **7.05 tok/s** | `29.28 GB` RAM (`Q4_K_M` estoura RAM) | [`proof_qwen3_moe_iq3_vs_q4km.json`](raw_data/speed_server_mtp_pld/proof_qwen3_moe_iq3_vs_q4km.json) |
+| **`Agents-A1`** | MoE `IQ4_XS` | 17.44 GB | `2.41 tok/s` (`12.4 s`) | **1.56 tok/s** | ❌ Reprovado (`< 7.0 tok/s`) | [`BENCHMARK_HIGH_CALIBER_RESULTS.json`](raw_data/speed_server_mtp_pld/BENCHMARK_HIGH_CALIBER_RESULTS.json) |
+
+---
+
+## 4. Índice de Navegação Limpo
+
+| Arquivo / Pasta | O que Contém |
+| :--- | :--- |
+| **[`SPEED_AND_HARDWARE_TUNING_DOSSIER.md`](SPEED_AND_HARDWARE_TUNING_DOSSIER.md)** | Dossiê técnico completo de hardware (`PCIe BAR`, `Thread Scaling`, `MTP`, `CPU_REPACK`, `PLD`, `-fa`, `ShadowRouter 3ms`) e todas as tabelas detalhadas por modelo. |
+| **[`STANDALONE_AREA_HIGHLIGHTS_CATALOG.md`](STANDALONE_AREA_HIGHLIGHTS_CATALOG.md)** | Catálogo de destaques isolados por área (`Coding`, `Battery 50 ThinkON/OFF`, `Campeonatos`, `Titans`). |
+| **[`raw_data/speed_llama_bench/`](raw_data/speed_llama_bench/)** | Logs e JSONs puros do `llama-bench` (`arena_bench.log`, `bench_7b_gpu.log`, `bench_cpu_small_compare*.json`, `bench_cpu_r3.json`, `mobilellm_bench2.log`, `diag_speed.log`, sweeps). |
+| **[`raw_data/speed_server_mtp_pld/`](raw_data/speed_server_mtp_pld/)** | Telemetria de servidor HTTP, curvas `MTP`, duelos `Official vs. UD`, `gpt-oss-20b` (`CPU_REPACK`/`PLD`), `Qwen3-30B`, e piloto `ShadowRouter`. |
+| **[`raw_data/triage_and_fleet/`](raw_data/triage_and_fleet/)** | Relatórios `triagem_fase_a_*.json`, stress test `megazord_maximum_stress`, `CHALLENGERS` e logs de frota. |
+| **[`raw_data/areas/`](raw_data/areas/)** | Provas isoladas por área, `QUALITY_RANKING_FINAL.txt`, `PARIDADE_REPORT_FINAL.txt`, Battery 50 e logs `campeonato_*.log`. |
+| **[`registry_docs/`](registry_docs/)** | 4 documentos canônicos históricos do laboratório (`LLM_BENCHMARK_AND_PRUNING_REGISTRY.md`, `ROTOR_FLEET_STATE.md`, etc.). |
+| **[`scripts/`](scripts/)** | Scripts Python e `.bat` reprodutíveis de velocidade (`scripts/speed/`) e avaliações isoladas (`scripts/areas/`). |

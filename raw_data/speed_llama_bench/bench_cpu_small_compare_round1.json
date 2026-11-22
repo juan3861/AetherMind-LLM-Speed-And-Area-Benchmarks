@@ -1,0 +1,205 @@
+{
+  "smollm2-360m": {
+    "file": "SmolLM2-360M-Instruct-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 56.19,
+        "pp_tok_s": 252.64,
+        "elapsed_s": 16.1,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 46.78,
+        "pp_tok_s": 277.4,
+        "elapsed_s": 17.1,
+        "error": null
+      },
+      {
+        "threads": "28",
+        "tg_tok_s": 18.44,
+        "pp_tok_s": 295.97,
+        "elapsed_s": 28.9,
+        "error": null
+      }
+    ],
+    "best_tg": 56.19,
+    "best_tg_threads": "7",
+    "best_pp": 252.64
+  },
+  "qwen25-0.5b": {
+    "file": "Qwen2.5-0.5B-Instruct-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 49.52,
+        "pp_tok_s": 243.38,
+        "elapsed_s": 22.3,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 46.45,
+        "pp_tok_s": 297.66,
+        "elapsed_s": 16.6,
+        "error": null
+      },
+      {
+        "threads": "28",
+        "tg_tok_s": 23.46,
+        "pp_tok_s": 284.29,
+        "elapsed_s": 25.6,
+        "error": null
+      }
+    ],
+    "best_tg": 49.52,
+    "best_tg_threads": "7",
+    "best_pp": 243.38
+  },
+  "qwen25-1.5b": {
+    "file": "Qwen2.5-1.5B-Instruct-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 29.62,
+        "pp_tok_s": 148.56,
+        "elapsed_s": 39.7,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 29.68,
+        "pp_tok_s": 216.64,
+        "elapsed_s": 25.6,
+        "error": null
+      },
+      {
+        "threads": "28",
+        "tg_tok_s": 15.21,
+        "pp_tok_s": 258.81,
+        "elapsed_s": 36.6,
+        "error": null
+      }
+    ],
+    "best_tg": 29.68,
+    "best_tg_threads": "14",
+    "best_pp": 216.64
+  },
+  "smollm2-1.7b": {
+    "file": "SmolLM2-1.7B-Instruct-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 28.36,
+        "pp_tok_s": 123.76,
+        "elapsed_s": 33.2,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 29.98,
+        "pp_tok_s": 169.2,
+        "elapsed_s": 27.9,
+        "error": null
+      },
+      {
+        "threads": "28",
+        "tg_tok_s": 16.46,
+        "pp_tok_s": 206.02,
+        "elapsed_s": 36.8,
+        "error": null
+      }
+    ],
+    "best_tg": 29.98,
+    "best_tg_threads": "14",
+    "best_pp": 169.2
+  },
+  "deepseek-1.3b": {
+    "file": "deepseek-coder-1.3b-instruct-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 33.87,
+        "pp_tok_s": 143.26,
+        "elapsed_s": 39.0,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 34.98,
+        "pp_tok_s": 190.12,
+        "elapsed_s": 24.3,
+        "error": null
+      },
+      {
+        "threads": "28",
+        "tg_tok_s": 21.51,
+        "pp_tok_s": 200.05,
+        "elapsed_s": 30.6,
+        "error": null
+      }
+    ],
+    "best_tg": 34.98,
+    "best_tg_threads": "14",
+    "best_pp": 190.12
+  },
+  "llama32-1b": {
+    "file": "Llama-3.2-1B-Instruct-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 39.03,
+        "pp_tok_s": 216.89,
+        "elapsed_s": 31.4,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 43.1,
+        "pp_tok_s": 300.84,
+        "elapsed_s": 18.3,
+        "error": null
+      },
+      {
+        "threads": "28",
+        "tg_tok_s": 24.04,
+        "pp_tok_s": 351.31,
+        "elapsed_s": 24.5,
+        "error": null
+      }
+    ],
+    "best_tg": 43.1,
+    "best_tg_threads": "14",
+    "best_pp": 300.84
+  },
+  "gemma4-e2b": {
+    "file": "gemma-4-E2B-it-IQ4_XS.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 17.84,
+        "pp_tok_s": 96.44,
+        "elapsed_s": 83.1,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 17.33,
+        "pp_tok_s": 121.99,
+        "elapsed_s": 42.5,
+        "error": null
+      },
+      {
+        "threads": "28",
+        "tg_tok_s": 9.53,
+        "pp_tok_s": 144.79,
+        "elapsed_s": 58.4,
+        "error": null
+      }
+    ],
+    "best_tg": 17.84,
+    "best_tg_threads": "7",
+    "best_pp": 96.44
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260912_003541",
+  "model_id": "phi-4-mini",
+  "metrics": {
+    "total_cases": 5,
+    "passed_cases": 2,
+    "failed_cases": 3,
+    "autonomy_l1": 0.4,
+    "escalation_avoidance": 0.4,
+    "cost_to_solved_task": 30.62,
+    "mean_tok_s": 14.99,
+    "mean_ttft_ms": 844.3,
+    "total_e2e_seconds": 6.62,
+    "total_tokens_generated": 31
+  },
+  "category_scores": {
+    "math": 0.4
+  },
+  "cases": [
+    {
+      "case_id": "m01",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 2.0 nao encontrado no texto: '1,5 horas'",
+      "e2e_seconds": 1.907,
+      "tok_per_sec": 15.25,
+      "ttft_ms": 1628.7,
+      "ram_mb": null,
+      "output_snippet": "1,5 horas"
+    },
+    {
+      "case_id": "m02",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 5.0 identificado",
+      "e2e_seconds": 0.778,
+      "tok_per_sec": 15.52,
+      "ttft_ms": 695.5,
+      "ram_mb": null,
+      "output_snippet": "5"
+    },
+    {
+      "case_id": "m03",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 2.0 nao encontrado no texto: '6'",
+      "e2e_seconds": 0.548,
+      "tok_per_sec": 14.8,
+      "ttft_ms": 467.2,
+      "ram_mb": null,
+      "output_snippet": "6"
+    },
+    {
+      "case_id": "m04",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 435.0 nao encontrado no texto: '15 apertos de mao ocorreram no total.'",
+      "e2e_seconds": 1.407,
+      "tok_per_sec": 14.42,
+      "ttft_ms": 703.7,
+      "ram_mb": null,
+      "output_snippet": "15 apertos de mao ocorreram no total."
+    },
+    {
+      "case_id": "m05",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 192.0 identificado",
+      "e2e_seconds": 1.41,
+      "tok_per_sec": 14.98,
+      "ttft_ms": 726.5,
+      "ram_mb": null,
+      "output_snippet": "O valor final do produto é 192 reais."
+    }
+  ]
+}

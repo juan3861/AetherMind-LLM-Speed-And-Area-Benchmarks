@@ -1,0 +1,143 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_215900",
+  "model_id": "ring-mini-2.0",
+  "metrics": {
+    "total_cases": 10,
+    "passed_cases": 8,
+    "failed_cases": 2,
+    "autonomy_l1": 0.8,
+    "escalation_avoidance": 0.8,
+    "cost_to_solved_task": 121.93,
+    "mean_tok_s": 25.79,
+    "mean_ttft_ms": 485.4,
+    "total_e2e_seconds": 105.93,
+    "total_tokens_generated": 2560
+  },
+  "category_scores": {
+    "pt_instruction": 0.8
+  },
+  "cases": [
+    {
+      "case_id": "pt01",
+      "category": "pt_instruction",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Encontradas 11 frases em vez de 3",
+      "e2e_seconds": 12.607,
+      "tok_per_sec": 24.5,
+      "ttft_ms": 2183.2,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário pede uma explicação sobre compiladores JIT com regra estrita: três frases exatamente.   Analisando o cont"
+    },
+    {
+      "case_id": "pt02",
+      "category": "pt_instruction",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Heuristica basica atendida",
+      "e2e_seconds": 9.938,
+      "tok_per_sec": 26.76,
+      "ttft_ms": 392.5,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário pede uma tradução formal técnica de uma frase sobre garbage collector (coletor de lixo) com pausa de 250m"
+    },
+    {
+      "case_id": "pt03",
+      "category": "pt_instruction",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Palavra proibida 'tempo' foi utilizada",
+      "e2e_seconds": 9.622,
+      "tok_per_sec": 27.23,
+      "ttft_ms": 244.4,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário quer uma explicação sobre latência de rede, mas com duas restrições: não posso usar a palavra \"tempo\" nem"
+    },
+    {
+      "case_id": "pt04",
+      "category": "pt_instruction",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Heuristica basica atendida",
+      "e2e_seconds": 10.098,
+      "tok_per_sec": 25.97,
+      "ttft_ms": 264.0,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário pediu uma frase que comece com \"Embora\" e termine com \"sucesso\". Ele especificou que devo ser direto, con"
+    },
+    {
+      "case_id": "pt05",
+      "category": "pt_instruction",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Heuristica basica atendida",
+      "e2e_seconds": 11.148,
+      "tok_per_sec": 23.42,
+      "ttft_ms": 247.6,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário pede um resumo em um único parágrafo de até 30 palavras sobre o que é Git. Ele especificou que preciso se"
+    },
+    {
+      "case_id": "pt06",
+      "category": "pt_instruction",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Heuristica basica atendida",
+      "e2e_seconds": 9.633,
+      "tok_per_sec": 27.31,
+      "ttft_ms": 282.9,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário pede para converter uma frase para voz passiva. A frase original é \"O engenheiro corrigiu o bug critico n"
+    },
+    {
+      "case_id": "pt07",
+      "category": "pt_instruction",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Heuristica basica atendida",
+      "e2e_seconds": 10.441,
+      "tok_per_sec": 25.08,
+      "ttft_ms": 256.6,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário quer uma explicação sobre concorrencia e paralelismo usando uma analogia de cozinheiros em um restaurante"
+    },
+    {
+      "case_id": "pt08",
+      "category": "pt_instruction",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Heuristica basica atendida",
+      "e2e_seconds": 10.698,
+      "tok_per_sec": 24.91,
+      "ttft_ms": 445.8,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário pede uma resposta sobre \"O que é um ponteiro\" em exatamente dois tópicos com marcadores (bullet points). "
+    },
+    {
+      "case_id": "pt09",
+      "category": "pt_instruction",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Heuristica basica atendida",
+      "e2e_seconds": 9.572,
+      "tok_per_sec": 27.55,
+      "ttft_ms": 298.8,
+      "ram_mb": null,
+      "output_snippet": "We are following the Conventional Commits standard for a fix related to a memory leak in a cache module.  The convention"
+    },
+    {
+      "case_id": "pt10",
+      "category": "pt_instruction",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Heuristica basica atendida",
+      "e2e_seconds": 10.404,
+      "tok_per_sec": 25.12,
+      "ttft_ms": 238.5,
+      "ram_mb": null,
+      "output_snippet": "We are defining the Single Responsibility Principle (SRP) in one concise technical sentence.  SRP is one of the SOLID pr"
+    }
+  ]
+}

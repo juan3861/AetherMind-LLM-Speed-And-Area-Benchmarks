@@ -1,0 +1,59 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_195434",
+  "model_id": "qwen3.5-4b",
+  "metrics": {
+    "total_cases": 3,
+    "passed_cases": 1,
+    "failed_cases": 2,
+    "autonomy_l1": 0.3333,
+    "escalation_avoidance": 0.3333,
+    "cost_to_solved_task": 212.6,
+    "mean_tok_s": 7.85,
+    "mean_ttft_ms": 65231.4,
+    "total_e2e_seconds": 196.6,
+    "total_tokens_generated": 1536
+  },
+  "category_scores": {
+    "code": 0.3333
+  },
+  "cases": [
+    {
+      "case_id": "c01",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'def soma_quadrados_pares' encontrado",
+      "e2e_seconds": 67.06,
+      "tok_per_sec": 7.64,
+      "ttft_ms": 67046.6,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Style: Direct,"
+    },
+    {
+      "case_id": "c02",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Padrao 'def inverter_palavras' ausente no output",
+      "e2e_seconds": 63.566,
+      "tok_per_sec": 8.05,
+      "ttft_ms": 63564.6,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Task: Implemen"
+    },
+    {
+      "case_id": "c03",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Padrao 're.compile' ausente no output",
+      "e2e_seconds": 65.084,
+      "tok_per_sec": 7.87,
+      "ttft_ms": 65082.9,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Task: Create a"
+    }
+  ]
+}

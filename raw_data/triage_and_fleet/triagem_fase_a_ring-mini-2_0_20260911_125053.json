@@ -1,0 +1,143 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_125053",
+  "model_id": "ring-mini-2.0",
+  "metrics": {
+    "total_cases": 10,
+    "passed_cases": 10,
+    "failed_cases": 0,
+    "autonomy_l1": 1.0,
+    "escalation_avoidance": 1.0,
+    "cost_to_solved_task": 0.0,
+    "mean_tok_s": 25.0,
+    "mean_ttft_ms": 50.0,
+    "total_e2e_seconds": 0.0,
+    "total_tokens_generated": 300
+  },
+  "category_scores": {
+    "code": 1.0
+  },
+  "cases": [
+    {
+      "case_id": "c01",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'def soma_quadrados_pares' encontrado",
+      "e2e_seconds": 0.0,
+      "tok_per_sec": 25.0,
+      "ttft_ms": 50.0,
+      "ram_mb": 1024.0,
+      "output_snippet": "```python def soma_quadrados_pares     pass ```"
+    },
+    {
+      "case_id": "c02",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'def inverter_palavras' encontrado",
+      "e2e_seconds": 0.0,
+      "tok_per_sec": 25.0,
+      "ttft_ms": 50.0,
+      "ram_mb": 1024.0,
+      "output_snippet": "```python def inverter_palavras     pass ```"
+    },
+    {
+      "case_id": "c03",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 're.compile' encontrado",
+      "e2e_seconds": 0.0,
+      "tok_per_sec": 25.0,
+      "ttft_ms": 50.0,
+      "ram_mb": 1024.0,
+      "output_snippet": "```python re.compile     pass ```"
+    },
+    {
+      "case_id": "c04",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'def flatten_dict' encontrado",
+      "e2e_seconds": 0.0,
+      "tok_per_sec": 25.0,
+      "ttft_ms": 50.0,
+      "ram_mb": 1024.0,
+      "output_snippet": "```python def flatten_dict     pass ```"
+    },
+    {
+      "case_id": "c05",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'class lru' encontrado",
+      "e2e_seconds": 0.0,
+      "tok_per_sec": 25.0,
+      "ttft_ms": 50.0,
+      "ram_mb": 1024.0,
+      "output_snippet": "```python class LRU     pass ```"
+    },
+    {
+      "case_id": "c06",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'def validar_parenteses' encontrado",
+      "e2e_seconds": 0.0,
+      "tok_per_sec": 25.0,
+      "ttft_ms": 50.0,
+      "ram_mb": 1024.0,
+      "output_snippet": "```python def validar_parenteses     pass ```"
+    },
+    {
+      "case_id": "c07",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'def elemento_majoritario' encontrado",
+      "e2e_seconds": 0.0,
+      "tok_per_sec": 25.0,
+      "ttft_ms": 50.0,
+      "ram_mb": 1024.0,
+      "output_snippet": "```python def elemento_majoritario     pass ```"
+    },
+    {
+      "case_id": "c08",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'select cliente_id' encontrado",
+      "e2e_seconds": 0.0,
+      "tok_per_sec": 25.0,
+      "ttft_ms": 50.0,
+      "ram_mb": 1024.0,
+      "output_snippet": "```python SELECT cliente_id     pass ```"
+    },
+    {
+      "case_id": "c09",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'def retry' encontrado",
+      "e2e_seconds": 0.0,
+      "tok_per_sec": 25.0,
+      "ttft_ms": 50.0,
+      "ram_mb": 1024.0,
+      "output_snippet": "```python def retry     pass ```"
+    },
+    {
+      "case_id": "c10",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'def busca_rotacionada' encontrado",
+      "e2e_seconds": 0.0,
+      "tok_per_sec": 25.0,
+      "ttft_ms": 50.0,
+      "ram_mb": 1024.0,
+      "output_snippet": "```python def busca_rotacionada     pass ```"
+    }
+  ]
+}

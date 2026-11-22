@@ -1,0 +1,203 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_220613",
+  "model_id": "ring-mini-2.0",
+  "metrics": {
+    "total_cases": 15,
+    "passed_cases": 6,
+    "failed_cases": 9,
+    "autonomy_l1": 0.4,
+    "escalation_avoidance": 0.4,
+    "cost_to_solved_task": 238.08,
+    "mean_tok_s": 24.63,
+    "mean_ttft_ms": 513.7,
+    "total_e2e_seconds": 166.08,
+    "total_tokens_generated": 3840
+  },
+  "category_scores": {
+    "math": 0.4
+  },
+  "cases": [
+    {
+      "case_id": "m01",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 2.0 identificado",
+      "e2e_seconds": 14.869,
+      "tok_per_sec": 20.93,
+      "ttft_ms": 2667.2,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre o tempo de enchimento de um tanque quando duas torneiras estão abertas juntas. Ele"
+    },
+    {
+      "case_id": "m02",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 5.0 identificado",
+      "e2e_seconds": 10.544,
+      "tok_per_sec": 25.81,
+      "ttft_ms": 647.9,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre uma questão de produtividade em linhas de montagem. Ele descreve um cenário: 5 máq"
+    },
+    {
+      "case_id": "m03",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 2.0 identificado",
+      "e2e_seconds": 10.178,
+      "tok_per_sec": 25.82,
+      "ttft_ms": 287.8,
+      "ram_mb": null,
+      "output_snippet": "I need to find the remainder when \\(2^{100}\\) is divided by 7. The answer should be just the number. Since it's a high e"
+    },
+    {
+      "case_id": "m04",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 435.0 nao encontrado no texto: 'I have this problem: In a room with 30 people, each person shakes hands with every other person exac'",
+      "e2e_seconds": 9.886,
+      "tok_per_sec": 26.97,
+      "ttft_ms": 415.3,
+      "ram_mb": null,
+      "output_snippet": "I have this problem: In a room with 30 people, each person shakes hands with every other person exactly once. How many h"
+    },
+    {
+      "case_id": "m05",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 192.0 nao encontrado no texto: 'Hmm, o usuário está perguntando sobre um cálculo de preço com aumento e desconto. Ele menciona um pr'",
+      "e2e_seconds": 10.341,
+      "tok_per_sec": 25.6,
+      "ttft_ms": 363.8,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre um cálculo de preço com aumento e desconto. Ele menciona um produto de 200 reais q"
+    },
+    {
+      "case_id": "m06",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 15.0 nao encontrado no texto: 'Hmm, o usuário está perguntando quantos números primos existem entre 1 e 50 e pede apenas o número d'",
+      "e2e_seconds": 12.115,
+      "tok_per_sec": 21.55,
+      "ttft_ms": 250.7,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando quantos números primos existem entre 1 e 50 e pede apenas o número de resposta.   Primei"
+    },
+    {
+      "case_id": "m07",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 5050.0 identificado",
+      "e2e_seconds": 11.975,
+      "tok_per_sec": 22.37,
+      "ttft_ms": 559.8,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre a soma dos primeiros 100 números inteiros positivos. Isso parece um exercício bási"
+    },
+    {
+      "case_id": "m08",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 4.0 nao encontrado no texto: 'I have the equation: log2(x) + log2(x - 2) = 3. I need to find the value of x and only give the numb'",
+      "e2e_seconds": 11.173,
+      "tok_per_sec": 23.72,
+      "ttft_ms": 406.2,
+      "ram_mb": null,
+      "output_snippet": "I have the equation: log2(x) + log2(x - 2) = 3. I need to find the value of x and only give the number as the answer. Fi"
+    },
+    {
+      "case_id": "m09",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 400.0 nao encontrado no texto: 'I have this problem: A train that is 200 meters long is traveling at 72 km/h and takes 30 seconds to'",
+      "e2e_seconds": 11.67,
+      "tok_per_sec": 22.57,
+      "ttft_ms": 354.2,
+      "ram_mb": null,
+      "output_snippet": "I have this problem: A train that is 200 meters long is traveling at 72 km/h and takes 30 seconds to completely pass thr"
+    },
+    {
+      "case_id": "m10",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 2520.0 nao encontrado no texto: 'We are looking for the smallest positive integer that is divisible by all numbers from 1 to 10.\n Thi'",
+      "e2e_seconds": 10.215,
+      "tok_per_sec": 25.62,
+      "ttft_ms": 242.5,
+      "ram_mb": null,
+      "output_snippet": "We are looking for the smallest positive integer that is divisible by all numbers from 1 to 10.  This is the least commo"
+    },
+    {
+      "case_id": "m11",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 0.42 nao encontrado no texto: 'Hmm, o usuário está perguntando sobre probabilidades de chover em dois dias independentes. Ele deu d'",
+      "e2e_seconds": 10.087,
+      "tok_per_sec": 26.34,
+      "ttft_ms": 391.5,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre probabilidades de chover em dois dias independentes. Ele deu dois dados: P(chover "
+    },
+    {
+      "case_id": "m12",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 10.0 nao encontrado no texto: 'Hmm, o usuário está perguntando quantos anagramas distintos existem para a palavra \"ARARA\". Ele espe'",
+      "e2e_seconds": 10.59,
+      "tok_per_sec": 24.61,
+      "ttft_ms": 211.7,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando quantos anagramas distintos existem para a palavra \"ARARA\". Ele especificou que devo res"
+    },
+    {
+      "case_id": "m13",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 5040.0 identificado",
+      "e2e_seconds": 9.599,
+      "tok_per_sec": 27.11,
+      "ttft_ms": 177.2,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre o valor do fatorial de 7, ou seja, 7! . Ele pediu uma resposta direta, concisa e e"
+    },
+    {
+      "case_id": "m14",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 384.0 identificado",
+      "e2e_seconds": 10.255,
+      "tok_per_sec": 25.74,
+      "ttft_ms": 333.1,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre uma progressão geométrica. Ele informou que o primeiro termo é 3 e a razão é 2, e "
+    },
+    {
+      "case_id": "m15",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 52.0 nao encontrado no texto: 'I have this problem: If x + y = 10 and x * y = 24, what is the value of x² + y²? I need to find x² +'",
+      "e2e_seconds": 10.732,
+      "tok_per_sec": 24.71,
+      "ttft_ms": 397.3,
+      "ram_mb": null,
+      "output_snippet": "I have this problem: If x + y = 10 and x * y = 24, what is the value of x² + y²? I need to find x² + y².  I recall that "
+    }
+  ]
+}

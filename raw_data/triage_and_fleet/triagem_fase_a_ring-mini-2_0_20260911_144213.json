@@ -1,0 +1,59 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_144213",
+  "model_id": "ring-mini-2.0",
+  "metrics": {
+    "total_cases": 3,
+    "passed_cases": 0,
+    "failed_cases": 3,
+    "autonomy_l1": 0.0,
+    "escalation_avoidance": 0.0,
+    "cost_to_solved_task": 109.19,
+    "mean_tok_s": 10.95,
+    "mean_ttft_ms": 23375.1,
+    "total_e2e_seconds": 85.19,
+    "total_tokens_generated": 256
+  },
+  "category_scores": {
+    "code": 0.0
+  },
+  "cases": [
+    {
+      "case_id": "c01",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Erro de inferência: timed out",
+      "e2e_seconds": 30.016,
+      "tok_per_sec": null,
+      "ttft_ms": null,
+      "ram_mb": null,
+      "output_snippet": ""
+    },
+    {
+      "case_id": "c02",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Erro de inferência: timed out",
+      "e2e_seconds": 30.007,
+      "tok_per_sec": null,
+      "ttft_ms": null,
+      "ram_mb": null,
+      "output_snippet": ""
+    },
+    {
+      "case_id": "c03",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Padrao 're.compile' ausente no output",
+      "e2e_seconds": 23.376,
+      "tok_per_sec": 10.95,
+      "ttft_ms": 23375.1,
+      "ram_mb": null,
+      "output_snippet": "We are going to create a regex pattern to validate an IPv4 address.  IPv4 addresses are typically represented in dotted-"
+    }
+  ]
+}

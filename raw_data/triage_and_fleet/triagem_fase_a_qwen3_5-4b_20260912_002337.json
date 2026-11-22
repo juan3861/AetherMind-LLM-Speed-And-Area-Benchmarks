@@ -1,0 +1,83 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260912_002337",
+  "model_id": "qwen3.5-4b",
+  "metrics": {
+    "total_cases": 5,
+    "passed_cases": 3,
+    "failed_cases": 2,
+    "autonomy_l1": 0.6,
+    "escalation_avoidance": 0.6,
+    "cost_to_solved_task": 162.19,
+    "mean_tok_s": 9.25,
+    "mean_ttft_ms": 1344.6,
+    "total_e2e_seconds": 146.19,
+    "total_tokens_generated": 1280
+  },
+  "category_scores": {
+    "code": 0.6
+  },
+  "cases": [
+    {
+      "case_id": "c01",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'def soma_quadrados_pares' encontrado",
+      "e2e_seconds": 28.765,
+      "tok_per_sec": 9.63,
+      "ttft_ms": 2254.5,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Style: Direct,"
+    },
+    {
+      "case_id": "c02",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Padrao 'def inverter_palavras' ausente no output",
+      "e2e_seconds": 28.049,
+      "tok_per_sec": 9.45,
+      "ttft_ms": 999.3,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Task: Implemen"
+    },
+    {
+      "case_id": "c03",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Padrao 're.compile' ausente no output",
+      "e2e_seconds": 27.835,
+      "tok_per_sec": 9.55,
+      "ttft_ms": 964.6,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Task: Create a"
+    },
+    {
+      "case_id": "c04",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'def flatten_dict' encontrado",
+      "e2e_seconds": 29.969,
+      "tok_per_sec": 8.99,
+      "ttft_ms": 1342.1,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Task: Write a "
+    },
+    {
+      "case_id": "c05",
+      "category": "code",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'class lru' encontrado",
+      "e2e_seconds": 30.9,
+      "tok_per_sec": 8.61,
+      "ttft_ms": 1162.7,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   **Role:** High-precision technical assistant.     *   **Tone:** "
+    }
+  ]
+}

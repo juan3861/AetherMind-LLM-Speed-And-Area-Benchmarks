@@ -1,0 +1,230 @@
+Waiting for required GGUF files to be ready...
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4011099404 < 8807454144 (41.0%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3030028288 < 4525001683 (60.3%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4054697228 < 8807454144 (41.4%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3048181760 < 4525001683 (60.6%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4090660108 < 8807454144 (41.8%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3072053248 < 4525001683 (61.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4118152460 < 8807454144 (42.1%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3102068736 < 4525001683 (61.7%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4139664652 < 8807454144 (42.3%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3134738432 < 4525001683 (62.3%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4162028812 < 8807454144 (42.5%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3174141952 < 4525001683 (63.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4186146060 < 8807454144 (42.8%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3222654976 < 4525001683 (64.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4208100620 < 8807454144 (43.0%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3275591680 < 4525001683 (65.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4227384588 < 8807454144 (43.2%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3311046656 < 4525001683 (65.9%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4254024972 < 8807454144 (43.5%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3343110144 < 4525001683 (66.5%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4280829196 < 8807454144 (43.7%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3380563968 < 4525001683 (67.2%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4310549772 < 8807454144 (44.0%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3421065216 < 4525001683 (68.0%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4338648332 < 8807454144 (44.3%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3466055680 < 4525001683 (68.9%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4364371212 < 8807454144 (44.6%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3507130368 < 4525001683 (69.8%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4392469772 < 8807454144 (44.9%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3552169984 < 4525001683 (70.7%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4417963276 < 8807454144 (45.1%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3602108416 < 4525001683 (71.6%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4441031948 < 8807454144 (45.4%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3655733248 < 4525001683 (72.7%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4459889932 < 8807454144 (45.6%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3708030976 < 4525001683 (73.8%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4474832140 < 8807454144 (45.7%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3753971712 < 4525001683 (74.7%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4506666252 < 8807454144 (46.1%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3793735680 < 4525001683 (75.5%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4536288524 < 8807454144 (46.4%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3826962432 < 4525001683 (76.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4575122700 < 8807454144 (46.8%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3860336640 < 4525001683 (76.8%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4615177484 < 8807454144 (47.2%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3896201216 < 4525001683 (77.5%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4652090636 < 8807454144 (47.5%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3938914304 < 4525001683 (78.3%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4692247820 < 8807454144 (47.9%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 3982790656 < 4525001683 (79.2%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4728177932 < 8807454144 (48.3%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 4026912768 < 4525001683 (80.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4764124428 < 8807454144 (48.7%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 4069199872 < 4525001683 (80.9%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4790863116 < 8807454144 (49.0%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 4121661440 < 4525001683 (82.0%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4812047628 < 8807454144 (49.2%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 4174516224 < 4525001683 (83.0%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4819436812 < 8807454144 (49.2%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 4237246464 < 4525001683 (84.3%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4830168332 < 8807454144 (49.4%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 4295671808 < 4525001683 (85.4%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4846322956 < 8807454144 (49.5%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 4344758272 < 4525001683 (86.4%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4859987212 < 8807454144 (49.7%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 4391026688 < 4525001683 (87.3%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4873667852 < 8807454144 (49.8%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 4444372992 < 4525001683 (88.4%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4888691980 < 8807454144 (50.0%)'), ('rlm-qwen3-8b-v0.1-q4_k_m.gguf', 'size 4505313280 < 4525001683 (89.6%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4903879948 < 8807454144 (50.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4933600524 < 8807454144 (50.4%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4966663436 < 8807454144 (50.8%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 4997956876 < 8807454144 (51.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5029266700 < 8807454144 (51.4%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5051876620 < 8807454144 (51.6%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5080122636 < 8807454144 (51.9%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5105288460 < 8807454144 (52.2%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5133092108 < 8807454144 (52.5%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5159109900 < 8807454144 (52.7%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5186192652 < 8807454144 (53.0%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5246125324 < 8807454144 (53.6%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5323769100 < 8807454144 (54.4%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5400691980 < 8807454144 (55.2%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5480072460 < 8807454144 (56.0%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5558174988 < 8807454144 (56.8%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5637354764 < 8807454144 (57.6%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5715588364 < 8807454144 (58.4%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5797623052 < 8807454144 (59.2%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5885850892 < 8807454144 (60.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 5961135372 < 8807454144 (60.9%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6041154828 < 8807454144 (61.7%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6118520076 < 8807454144 (62.5%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6193624332 < 8807454144 (63.3%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6270399756 < 8807454144 (64.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6347830540 < 8807454144 (64.9%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6427686156 < 8807454144 (65.7%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6503675148 < 8807454144 (66.5%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6568637708 < 8807454144 (67.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6644217100 < 8807454144 (67.9%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6719796492 < 8807454144 (68.7%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6807057676 < 8807454144 (69.6%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6879655180 < 8807454144 (70.3%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 6958101772 < 8807454144 (71.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7048492300 < 8807454144 (72.0%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7129494796 < 8807454144 (72.9%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7207777548 < 8807454144 (73.7%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7289320716 < 8807454144 (74.5%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7378433292 < 8807454144 (75.4%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7468561676 < 8807454144 (76.3%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7553905932 < 8807454144 (77.2%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7637558540 < 8807454144 (78.0%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7707243788 < 8807454144 (78.8%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7779366156 < 8807454144 (79.5%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7859287308 < 8807454144 (80.3%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7933244684 < 8807454144 (81.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 7995880716 < 8807454144 (81.7%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 8066086156 < 8807454144 (82.4%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 8132834572 < 8807454144 (83.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 8205186316 < 8807454144 (83.8%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 8299738380 < 8807454144 (84.8%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 8380282124 < 8807454144 (85.6%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 8465855756 < 8807454144 (86.5%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 8546858252 < 8807454144 (87.3%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 8623617292 < 8807454144 (88.1%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 8688219404 < 8807454144 (88.8%)')]
+Waiting... Missing or insufficient: [('Qwen3.8-9B-Distill-Heretic-Uncensored-Q8_0.gguf', 'size 8762373388 < 8807454144 (89.5%)')]
+All required GGUF files are ready! Starting benchmark...
+Running: C:\Users\juanp\AppData\Local\Programs\Python\Python311\python.exe F:/rotor-llm/scripts/benchmark_campeonato.py
+=== STDOUT ===
+==============================================================================
+ CAMPEONATO FASE 1.4 | CPU pura | 14 threads | ctx 4096 | temp 0.0 | porta 11499
+ Alvos: ['minicpm5_2b', 'granite42_3b', 'qwen25coder15b', 'granite31_2b', 'qwen34b_rlm']
+==============================================================================
+
+==============================================================================
+ [MODELO] MiniCPM5-2B Q4_K_M
+==============================================================================
+  -> load=10.4s | cold: TTFT=407.27ms | gen=16.39 tok/s | RAMpeak pos-load=1583.98MB | jinja=True
+  -> steady: mediana=17.43 tok/s (3 amostras)
+  -> finish_mode declarado=reasoning | kwargs=- | reasoning_obs=2275 | MODE_CONFIRMED
+     [UNUSABLE_TRUNCATED] json_flat          teto final=2048 (sai do denominador)
+     [OK ] json_nested        OK
+     [OK ] tool_timer         OK (escalou teto)
+     [OK ] tool_weather       OK
+     [UNUSABLE_TRUNCATED] instr_bullets      teto final=2048 (sai do denominador)
+     [OK ] instr_one_word     OK
+     [OK ] math_discount      OK
+     [OK ] math_trap          OK (escalou teto)
+     [OK ] code_write         EXEC_OK
+     [OK ] code_debug         EXEC_OK
+  -> 2 sonda(s) INUTILIZAVEIS por truncamento no teto max (json_flat, instr_bullets) - FORA do denominador
+  => VEREDITO VELOCIDADE: APROVADO (17.43 tok/s vs piso 7.0) | sem escalacao=100.0% | estabilidade=100.0%
+
+==============================================================================
+ [MODELO] Granite 4.2-3B Q4_K_M
+==============================================================================
+  -> load=11.71s | cold: TTFT=914.89ms | gen=11.72 tok/s | RAMpeak pos-load=2384.51MB | jinja=True
+  -> steady: mediana=12.66 tok/s (3 amostras)
+  -> finish_mode declarado=direct | kwargs={'enable_thinking': False, 'reasoning_effort': 'low'} | reasoning_obs=0 | MODE_CONFIRMED
+     [OK ] json_flat          OK
+     [OK ] json_nested        OK
+     [OK ] tool_timer         OK
+     [OK ] tool_weather       OK
+     [OK ] instr_bullets      OK
+     [OK ] instr_one_word     OK
+     [FAIL] math_discount      NUMERO=64.0;esperado=68.0
+     [FAIL] math_trap          NUMERO=100.0;esperado=5.0
+     [OK ] code_write         EXEC_OK
+     [OK ] code_debug         EXEC_OK
+  => VEREDITO VELOCIDADE: APROVADO (12.66 tok/s vs piso 7.0) | sem escalacao=80.0% | estabilidade=80.0%
+
+==============================================================================
+ [MODELO] Qwen2.5-Coder-1.5B Instruct Q4_K_M
+==============================================================================
+  -> load=7.63s | cold: TTFT=460.28ms | gen=23.95 tok/s | RAMpeak pos-load=1136.25MB | jinja=True
+  -> steady: mediana=25.54 tok/s (3 amostras)
+  -> finish_mode declarado=direct | kwargs=- | reasoning_obs=0 | MODE_CONFIRMED
+     [OK ] json_flat          OK
+     [OK ] json_nested        OK
+     [OK ] tool_timer         OK
+     [OK ] tool_weather       OK
+     [OK ] instr_bullets      OK
+     [OK ] instr_one_word     OK
+     [FAIL] math_discount      NUMERO=76.0;esperado=68.0
+     [FAIL] math_trap          NUMERO=100.0;esperado=5.0
+     [OK ] code_write         EXEC_OK
+     [OK ] code_debug         EXEC_OK
+  => VEREDITO VELOCIDADE: APROVADO (25.54 tok/s vs piso 7.0) | sem escalacao=80.0% | estabilidade=80.0%
+
+==============================================================================
+ [MODELO] Granite-3.1-2B Instruct Q4_K_M (INCUMBENTE)
+==============================================================================
+  -> load=8.68s | cold: TTFT=1062.94ms | gen=16.68 tok/s | RAMpeak pos-load=1850.84MB | jinja=True
+  -> steady: mediana=16.92 tok/s (3 amostras)
+  -> finish_mode declarado=direct | kwargs=- | reasoning_obs=0 | MODE_CONFIRMED
+     [OK ] json_flat          OK
+     [FAIL] json_nested        SOMA_ERRADA:32
+     [OK ] tool_timer         OK
+     [OK ] tool_weather       OK
+     [OK ] instr_bullets      OK (escalou teto)
+     [OK ] instr_one_word     OK
+     [OK ] math_discount      OK
+     [FAIL] math_trap          NUMERO=100.0;esperado=5.0 (escalou teto)
+     [OK ] code_write         EXEC_OK
+     [OK ] code_debug         EXEC_OK
+  => VEREDITO VELOCIDADE: APROVADO (16.92 tok/s vs piso 7.0) | sem escalacao=80.0% | estabilidade=80.0%
+
+==============================================================================
+ [MODELO] Qwen3-4B-Instruct-2507-RLM-SFT-v3-per-root-turn Q4_K_M
+==============================================================================
+  -> load=14.69s | cold: TTFT=616.40ms | gen=9.81 tok/s | RAMpeak pos-load=3034.83MB | jinja=True
+  -> steady: mediana=11.01 tok/s (3 amostras)
+  -> finish_mode declarado=direct | kwargs=- | reasoning_obs=0 | MODE_CONFIRMED
+     [OK ] json_flat          OK
+     [OK ] json_nested        OK
+     [OK ] tool_timer         OK
+     [OK ] tool_weather       OK
+     [OK ] instr_bullets      OK
+     [OK ] instr_one_word     OK
+     [OK ] math_discount      OK
+     [OK ] math_trap          OK
+     [OK ] code_write         EXEC_OK
+     [OK ] code_debug         EXEC_OK
+  => VEREDITO VELOCIDADE: APROVADO (11.01 tok/s vs piso 7.0) | sem escalacao=100.0% | estabilidade=100.0%
+
+##############################################################################
+# CAMPEONATO DE MODELOS PEQUENOS - TABELA CONSOLIDADA
+##############################################################################
+Modelo                              steady    cold  TTFTms   RAMpk  semEsc%  estab%  Regra
+------------------------------------------------------------------------------------------
+MiniCPM5-2B Q4_K_M                   17.43   16.39     407    2037    100.0   100.0   PASS
+Granite 4.2-3B Q4_K_M                12.66   11.72     915    2484     80.0    80.0   PASS
+Qwen2.5-Coder-1.5B Instruct Q4_K_    25.54   23.95     460    1175     80.0    80.0   PASS
+Granite-3.1-2B Instruct Q4_K_M (I    16.92   16.68    1063    1985     80.0    80.0   PASS
+Qwen3-4B-Instruct-2507-RLM-SFT-v3    11.01    9.81     616    3181    100.0   100.0   PASS
+
+DIMENSOES FUNCIONAIS (% de passagem na 1a tentativa, denominador = sondas pontuaveis):
+  MiniCPM5-2B Q4_K_M                coding:100.0%(2/2) | instruction:100.0%(1/1) | json:100.0%(1/1) | math:100.0%(2/2) | tool:100.0%(2/2)  [+2 truncada fora do denominador]
+                                    finish_mode=reasoning (MODE_CONFIRMED, reasoning_obs=2275)
+  Granite 4.2-3B Q4_K_M             coding:100.0%(2/2) | instruction:100.0%(2/2) | json:100.0%(2/2) | math:0.0%(0/2) | tool:100.0%(2/2)
+                                    finish_mode=direct (MODE_CONFIRMED, reasoning_obs=0)
+  Qwen2.5-Coder-1.5B Instruct Q4_K  coding:100.0%(2/2) | instruction:100.0%(2/2) | json:100.0%(2/2) | math:0.0%(0/2) | tool:100.0%(2/2)
+                                    finish_mode=direct (MODE_CONFIRMED, reasoning_obs=0)
+  Granite-3.1-2B Instruct Q4_K_M (  coding:100.0%(2/2) | instruction:100.0%(2/2) | json:50.0%(1/2) | math:50.0%(1/2) | tool:100.0%(2/2)
+                                    finish_mode=direct (MODE_CONFIRMED, reasoning_obs=0)
+  Qwen3-4B-Instruct-2507-RLM-SFT-v  coding:100.0%(2/2) | instruction:100.0%(2/2) | json:100.0%(2/2) | math:100.0%(2/2) | tool:100.0%(2/2)
+                                    finish_mode=direct (MODE_CONFIRMED, reasoning_obs=0)
+
+FALHAS DETALHADAS (para nao esconder evidencia negativa):
+  minicpm5_2b     json_flat         [UNUSABLE_TRUNCATED] teto final=2048
+  minicpm5_2b     instr_bullets     [UNUSABLE_TRUNCATED] teto final=2048
+  granite42_3b    math_discount     NUMERO=64.0;esperado=68.0
+  granite42_3b    math_trap         NUMERO=100.0;esperado=5.0
+  qwen25coder15b  math_discount     NUMERO=76.0;esperado=68.0
+  qwen25coder15b  math_trap         NUMERO=100.0;esperado=5.0
+  granite31_2b    json_nested       SOMA_ERRADA:32
+  granite31_2b    math_trap         NUMERO=100.0;esperado=5.0
+##############################################################################
+
+Evidencia salva em: F:\rotor-llm\BENCHMARK_CAMPEONATO_RESULTS.json
+
+Return code: 0
+Results saved to F:/rotor-llm/BENCHMARK_CAMPEONATO_RESULTS.json

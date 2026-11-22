@@ -1,0 +1,59 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_195535",
+  "model_id": "ministral-3-3b",
+  "metrics": {
+    "total_cases": 3,
+    "passed_cases": 2,
+    "failed_cases": 1,
+    "autonomy_l1": 0.6667,
+    "escalation_avoidance": 0.6667,
+    "cost_to_solved_task": 13.02,
+    "mean_tok_s": 2.07,
+    "mean_ttft_ms": 1494.3,
+    "total_e2e_seconds": 5.02,
+    "total_tokens_generated": 9
+  },
+  "category_scores": {
+    "math": 0.6667
+  },
+  "cases": [
+    {
+      "case_id": "m01",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 2.0 nao encontrado no texto: '12'",
+      "e2e_seconds": 2.013,
+      "tok_per_sec": 1.5,
+      "ttft_ms": 2002.4,
+      "ram_mb": null,
+      "output_snippet": "12"
+    },
+    {
+      "case_id": "m02",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 5.0 identificado",
+      "e2e_seconds": 1.535,
+      "tok_per_sec": 2.61,
+      "ttft_ms": 1533.3,
+      "ram_mb": null,
+      "output_snippet": "5 minutos."
+    },
+    {
+      "case_id": "m03",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 2.0 identificado",
+      "e2e_seconds": 0.948,
+      "tok_per_sec": 2.11,
+      "ttft_ms": 947.0,
+      "ram_mb": null,
+      "output_snippet": "2"
+    }
+  ]
+}

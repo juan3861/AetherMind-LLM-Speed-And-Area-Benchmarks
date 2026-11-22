@@ -1,0 +1,25 @@
+[34m0.00.057.511[0m [32mI [0mcmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+[34m0.00.058.566[0m [35mW srv  llama_server: -----------------
+[0m[34m0.00.058.582[0m [35mW srv  llama_server: CORS is set to allow all origins ('*') and no API key is set
+[0m[34m0.00.058.589[0m [35mW srv  llama_server: this can be a security risk (cross-origin attacks)
+[0m[34m0.00.058.590[0m [35mW srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+[0m[34m0.00.058.591[0m [35mW srv  llama_server: -----------------
+[0m[34m0.00.076.512[0m [32mI [0msrv    load_model: loading model 'F:\data\models\gpt-oss-20b-Q4_K_M.gguf'
+[34m0.04.064.671[0m [35mW load: setting token '<|constrain|>' (200003) attribute to USER_DEFINED (16), old attributes: 8
+[0m[34m0.04.064.882[0m [35mW load: setting token '<|message|>' (200008) attribute to USER_DEFINED (16), old attributes: 8
+[0m[34m0.04.070.809[0m [35mW load: setting token '<|channel|>' (200005) attribute to USER_DEFINED (16), old attributes: 8
+[0m[34m0.04.070.820[0m [35mW load: setting token '<|start|>' (200006) attribute to USER_DEFINED (16), old attributes: 8
+[0m[34m0.04.070.846[0m [35mW load: special_eog_ids contains both '<|return|>' and '<|call|>', or '<|calls|>' and '<|flush|>' tokens, removing '<|end|>' token from EOG list
+[0m[34m0.47.215.863[0m [32mI [0mcmn          init: llama threadpool init, n_threads = 10
+[34m0.48.916.613[0m [32mI [0msrv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+[34m0.49.010.359[0m [32mI [0msrv  llama_server: model loaded
+[34m0.49.010.379[0m [32mI [0msrv  llama_server: listening on http://127.0.0.1:11488
+[34m0.50.512.626[0m [32mI [0mslot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+[34m0.50.512.771[0m [32mI [0mslot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+[34m0.54.158.021[0m [32mI [0mslot print_timing: id  0 | task 0 | prompt processing, n_tokens =     61, progress = 0.71, t =   3.65 s / 16.73 tokens per second
+[34m0.55.082.102[0m [32mI [0mslot print_timing: id  0 | task 0 | prompt processing, n_tokens =     82, progress = 0.95, t =   4.57 s / 17.95 tokens per second
+[34m0.58.867.006[0m [32mI [0mslot print_timing: id  0 | task 0 | prompt eval time =    4765.71 ms /    86 tokens (   55.42 ms per token,    18.05 tokens per second)
+[34m0.58.867.023[0m [32mI [0mslot print_timing: id  0 | task 0 |        eval time =    3588.46 ms /    48 tokens (   76.35 ms per token,    13.10 tokens per second)
+[34m0.58.867.025[0m [32mI [0mslot print_timing: id  0 | task 0 |       total time =    8354.17 ms /   134 tokens
+[34m0.58.867.027[0m [32mI [0mslot print_timing: id  0 | task 0 |    graphs reused =         47
+[34m0.58.867.121[0m [32mI [0mslot      release: id  0 | task 0 | stop processing: n_tokens = 133, truncated = 0

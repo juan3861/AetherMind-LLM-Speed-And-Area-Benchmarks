@@ -1,0 +1,83 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_215123",
+  "model_id": "ring-mini-2.0",
+  "metrics": {
+    "total_cases": 5,
+    "passed_cases": 0,
+    "failed_cases": 5,
+    "autonomy_l1": 0.0,
+    "escalation_avoidance": 0.0,
+    "cost_to_solved_task": 103.7,
+    "mean_tok_s": 21.3,
+    "mean_ttft_ms": 12287.3,
+    "total_e2e_seconds": 63.7,
+    "total_tokens_generated": 1280
+  },
+  "category_scores": {
+    "code": 0.0
+  },
+  "cases": [
+    {
+      "case_id": "c01",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Padrao 'def soma_quadrados_pares' ausente no output",
+      "e2e_seconds": 14.261,
+      "tok_per_sec": 17.97,
+      "ttft_ms": 14247.9,
+      "ram_mb": null,
+      "output_snippet": "Vamos criar uma função que recebe uma lista de inteiros e retorna a soma dos quadrados dos números pares.  Passos:  1. F"
+    },
+    {
+      "case_id": "c02",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Padrao 'def inverter_palavras' ausente no output",
+      "e2e_seconds": 12.768,
+      "tok_per_sec": 20.05,
+      "ttft_ms": 12766.4,
+      "ram_mb": null,
+      "output_snippet": "Vamos implementar a função `inverter_palavras` que inverte a ordem das palavras em uma string, sem alterar os espaços in"
+    },
+    {
+      "case_id": "c03",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Padrao 're.compile' ausente no output",
+      "e2e_seconds": 13.588,
+      "tok_per_sec": 18.84,
+      "ttft_ms": 13587.0,
+      "ram_mb": null,
+      "output_snippet": "We are going to create a regex pattern to validate an IPv4 address.  IPv4 address is a string of four numbers separated "
+    },
+    {
+      "case_id": "c04",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Padrao 'def flatten_dict' ausente no output",
+      "e2e_seconds": 11.432,
+      "tok_per_sec": 22.4,
+      "ttft_ms": 11430.6,
+      "ram_mb": null,
+      "output_snippet": "Vamos criar uma função que recebe um dicionário aninhado e um separador (com padrão '.') e retorna um novo dicionário co"
+    },
+    {
+      "case_id": "c05",
+      "category": "code",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Padrao 'class lru' ausente no output",
+      "e2e_seconds": 9.406,
+      "tok_per_sec": 27.22,
+      "ttft_ms": 9404.5,
+      "ram_mb": null,
+      "output_snippet": "Vamos implementar um cache LRU (Least Recently Used) usando `collections.OrderedDict`.  O LRU é um algoritmo de cache qu"
+    }
+  ]
+}

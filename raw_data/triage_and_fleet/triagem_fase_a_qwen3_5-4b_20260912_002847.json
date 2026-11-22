@@ -1,0 +1,83 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260912_002847",
+  "model_id": "qwen3.5-4b",
+  "metrics": {
+    "total_cases": 5,
+    "passed_cases": 1,
+    "failed_cases": 4,
+    "autonomy_l1": 0.2,
+    "escalation_avoidance": 0.2,
+    "cost_to_solved_task": 177.54,
+    "mean_tok_s": 9.42,
+    "mean_ttft_ms": 1773.7,
+    "total_e2e_seconds": 145.54,
+    "total_tokens_generated": 1280
+  },
+  "category_scores": {
+    "tools": 0.2
+  },
+  "cases": [
+    {
+      "case_id": "t01",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Nenhum bloco JSON detectado",
+      "e2e_seconds": 29.37,
+      "tok_per_sec": 9.45,
+      "ttft_ms": 2357.3,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Task: Extract "
+    },
+    {
+      "case_id": "t02",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Extra data: line 1 column 79 (char 78)",
+      "e2e_seconds": 28.302,
+      "tok_per_sec": 9.5,
+      "ttft_ms": 1374.3,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Task: Generate"
+    },
+    {
+      "case_id": "t03",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Expecting value: line 1 column 2 (char 1)",
+      "e2e_seconds": 29.127,
+      "tok_per_sec": 9.5,
+      "ttft_ms": 2187.7,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Task: Extract "
+    },
+    {
+      "case_id": "t04",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Chaves ausentes no JSON: ['type', 'properties']",
+      "e2e_seconds": 30.294,
+      "tok_per_sec": 8.95,
+      "ttft_ms": 1683.0,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Role: High-precision technical assistant.     *   Style: Direct,"
+    },
+    {
+      "case_id": "t05",
+      "category": "tools",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Lista JSON valida gerada",
+      "e2e_seconds": 27.754,
+      "tok_per_sec": 9.67,
+      "ttft_ms": 1266.0,
+      "ram_mb": null,
+      "output_snippet": "Thinking Process:  1.  **Analyze the Request:**     *   Input: A text representation of a table/data (\"Nome: Ana, Idade:"
+    }
+  ]
+}

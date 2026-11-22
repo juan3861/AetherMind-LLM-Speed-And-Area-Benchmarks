@@ -1,0 +1,31 @@
+{
+  "deepseek-1.3b": {
+    "file": "deepseek-coder-1.3b-instruct-Q4_K_M.gguf",
+    "runs": [
+      {
+        "threads": "7",
+        "tg_tok_s": 31.86,
+        "pp_tok_s": 133.28,
+        "elapsed_s": 39.6,
+        "error": null
+      },
+      {
+        "threads": "14",
+        "tg_tok_s": 32.37,
+        "pp_tok_s": 178.88,
+        "elapsed_s": 25.8,
+        "error": null
+      },
+      {
+        "threads": "28",
+        "tg_tok_s": 19.81,
+        "pp_tok_s": 195.61,
+        "elapsed_s": 32.5,
+        "error": null
+      }
+    ],
+    "best_tg": 32.37,
+    "best_tg_threads": "14",
+    "best_pp": 178.88
+  }
+}

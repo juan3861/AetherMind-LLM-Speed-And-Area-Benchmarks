@@ -1,0 +1,22 @@
+[34m0.00.111.791[0m [32mI [0mcmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+[34m0.00.112.808[0m [35mW srv  llama_server: -----------------
+[0m[34m0.00.112.826[0m [35mW srv  llama_server: CORS is set to allow all origins ('*') and no API key is set
+[0m[34m0.00.112.833[0m [35mW srv  llama_server: this can be a security risk (cross-origin attacks)
+[0m[34m0.00.112.834[0m [35mW srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+[0m[34m0.00.112.834[0m [35mW srv  llama_server: -----------------
+[0m[34m0.00.129.676[0m [32mI [0msrv    load_model: loading model 'F:\data\models\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf'
+[34m0.48.630.110[0m [32mI [0mcmn          init: llama threadpool init, n_threads = 10
+[34m0.59.161.083[0m [32mI [0mcommon_speculative_init_result: loading draft model 'F:\data\models\mtp-Q4_K_M.gguf'
+[34m1.14.014.391[0m [32mI [0msrv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+[34m1.15.904.054[0m [32mI [0msrv          init: chat template supports preserving reasoning, consider enabling it via --reasoning-preserve
+[34m1.15.904.129[0m [32mI [0msrv  llama_server: model loaded
+[34m1.15.904.138[0m [32mI [0msrv  llama_server: listening on http://127.0.0.1:11488
+[34m1.16.743.433[0m [32mI [0mslot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+[34m1.16.743.528[0m [32mI [0mslot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+[34m2.09.736.503[0m [32mI [0mslot print_timing: id  0 | task 0 | prompt processing, n_tokens =     26, progress = 0.87, t =  52.85 s / 0.49 tokens per second
+[34m2.33.406.917[0m [32mI [0mslot print_timing: id  0 | task 0 | prompt eval time =   55202.73 ms /    30 tokens ( 1840.09 ms per token,     0.54 tokens per second)
+[34m2.33.406.935[0m [32mI [0mslot print_timing: id  0 | task 0 |        eval time =   21459.92 ms /    48 tokens (  456.59 ms per token,     2.19 tokens per second)
+[34m2.33.406.937[0m [32mI [0mslot print_timing: id  0 | task 0 |       total time =   76662.66 ms /    78 tokens
+[34m2.33.406.938[0m [32mI [0mslot print_timing: id  0 | task 0 |    graphs reused =         16
+[34m2.33.406.947[0m [32mI [0mslot print_timing: id  0 | task 0 | draft acceptance = 0.96875 (   31 accepted /    32 generated), mean len =  2.94
+[34m2.33.410.393[0m [32mI [0mslot      release: id  0 | task 0 | stop processing: n_tokens = 77, truncated = 0

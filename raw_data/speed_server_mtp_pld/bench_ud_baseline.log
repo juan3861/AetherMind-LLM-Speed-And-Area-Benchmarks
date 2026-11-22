@@ -1,0 +1,40 @@
+[34m0.00.058.138[0m [32mI [0mcmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+[34m0.00.059.173[0m [35mW srv  llama_server: -----------------
+[0m[34m0.00.059.192[0m [35mW srv  llama_server: CORS is set to allow all origins ('*') and no API key is set
+[0m[34m0.00.059.199[0m [35mW srv  llama_server: this can be a security risk (cross-origin attacks)
+[0m[34m0.00.059.201[0m [35mW srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+[0m[34m0.00.059.201[0m [35mW srv  llama_server: -----------------
+[0m[34m0.00.069.217[0m [32mI [0msrv    load_model: loading model 'F:\data\models\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf'
+[34m0.01.771.895[0m [35mW model has unused tensor blk.40.attn_norm.weight (size = 8192 bytes) -- ignoring
+[0m[34m0.01.771.930[0m [35mW model has unused tensor blk.40.post_attention_norm.weight (size = 8192 bytes) -- ignoring
+[0m[34m0.01.771.967[0m [35mW model has unused tensor blk.40.attn_q.weight (size = 17825792 bytes) -- ignoring
+[0m[34m0.01.771.980[0m [35mW model has unused tensor blk.40.attn_k.weight (size = 1114112 bytes) -- ignoring
+[0m[34m0.01.771.993[0m [35mW model has unused tensor blk.40.attn_v.weight (size = 1114112 bytes) -- ignoring
+[0m[34m0.01.772.040[0m [35mW model has unused tensor blk.40.attn_output.weight (size = 8912896 bytes) -- ignoring
+[0m[34m0.01.772.054[0m [35mW model has unused tensor blk.40.attn_q_norm.weight (size = 1024 bytes) -- ignoring
+[0m[34m0.01.772.067[0m [35mW model has unused tensor blk.40.attn_k_norm.weight (size = 1024 bytes) -- ignoring
+[0m[34m0.01.772.081[0m [35mW model has unused tensor blk.40.ffn_gate_inp.weight (size = 1048576 bytes) -- ignoring
+[0m[34m0.01.772.095[0m [35mW model has unused tensor blk.40.ffn_down_exps.weight (size = 184549376 bytes) -- ignoring
+[0m[34m0.01.772.123[0m [35mW model has unused tensor blk.40.ffn_gate_exps.weight (size = 150994944 bytes) -- ignoring
+[0m[34m0.01.772.138[0m [35mW model has unused tensor blk.40.ffn_up_exps.weight (size = 150994944 bytes) -- ignoring
+[0m[34m0.01.772.153[0m [35mW model has unused tensor blk.40.ffn_gate_inp_shexp.weight (size = 4096 bytes) -- ignoring
+[0m[34m0.01.772.168[0m [35mW model has unused tensor blk.40.ffn_gate_shexp.weight (size = 1114112 bytes) -- ignoring
+[0m[34m0.01.772.183[0m [35mW model has unused tensor blk.40.ffn_up_shexp.weight (size = 1114112 bytes) -- ignoring
+[0m[34m0.01.772.197[0m [35mW model has unused tensor blk.40.ffn_down_shexp.weight (size = 1114112 bytes) -- ignoring
+[0m[34m0.01.772.212[0m [35mW model has unused tensor blk.40.nextn.eh_proj.weight (size = 8912896 bytes) -- ignoring
+[0m[34m0.01.772.227[0m [35mW model has unused tensor blk.40.nextn.enorm.weight (size = 8192 bytes) -- ignoring
+[0m[34m0.01.772.243[0m [35mW model has unused tensor blk.40.nextn.hnorm.weight (size = 8192 bytes) -- ignoring
+[0m[34m0.01.772.286[0m [35mW model has unused tensor blk.40.nextn.shared_head_norm.weight (size = 8192 bytes) -- ignoring
+[0m[34m1.29.296.215[0m [32mI [0mcmn          init: llama threadpool init, n_threads = 10
+[34m1.33.726.490[0m [32mI [0msrv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+[34m1.34.201.423[0m [32mI [0msrv          init: chat template supports preserving reasoning, consider enabling it via --reasoning-preserve
+[34m1.34.214.812[0m [32mI [0msrv  llama_server: model loaded
+[34m1.34.215.924[0m [32mI [0msrv  llama_server: listening on http://127.0.0.1:11488
+[34m1.35.141.582[0m [32mI [0mslot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+[34m1.35.160.178[0m [32mI [0mslot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+[34m1.40.397.042[0m [32mI [0mslot print_timing: id  0 | task 0 | prompt processing, n_tokens =     26, progress = 0.87, t =   5.24 s / 4.97 tokens per second
+[34m1.50.961.358[0m [32mI [0mslot print_timing: id  0 | task 0 | prompt eval time =    6031.61 ms /    30 tokens (  201.05 ms per token,     4.97 tokens per second)
+[34m1.50.961.375[0m [32mI [0mslot print_timing: id  0 | task 0 |        eval time =    9768.28 ms /    48 tokens (  207.84 ms per token,     4.81 tokens per second)
+[34m1.50.961.377[0m [32mI [0mslot print_timing: id  0 | task 0 |       total time =   15799.90 ms /    78 tokens
+[34m1.50.961.379[0m [32mI [0mslot print_timing: id  0 | task 0 |    graphs reused =         47
+[34m1.50.963.227[0m [32mI [0mslot      release: id  0 | task 0 | stop processing: n_tokens = 77, truncated = 0

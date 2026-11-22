@@ -1,0 +1,27 @@
+===== -ngl 45 =====
+load_backend: loaded RPC backend from F:\tools\lc_vulkan\ggml-rpc.dll
+ggml_vulkan: Found 1 Vulkan devices:
+ggml_vulkan: 0 = Radeon RX 580 Series (AMD proprietary driver) | uma: 0 | fp16: 0 | bf16: 0 | fp4: 0 | warp size: 64 | shared memory: 32768 | int dot: 0 | matrix cores: none
+load_backend: loaded Vulkan backend from F:\tools\lc_vulkan\ggml-vulkan.dll
+load_backend: loaded CPU backend from F:\tools\lc_vulkan\ggml-cpu-haswell.dll
+| model                          |       size |     params | backend    | ngl |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | --------------: | -------------------: |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | Vulkan     |  45 |           pp512 |        157.31 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | Vulkan     |  45 |           tg128 |         23.21 ± 0.00 |
+
+build: 6a1a922d2 (10819)
+EXIT=0
+===== -ngl 99 =====
+load_backend: loaded RPC backend from F:\tools\lc_vulkan\ggml-rpc.dll
+ggml_vulkan: Found 1 Vulkan devices:
+ggml_vulkan: 0 = Radeon RX 580 Series (AMD proprietary driver) | uma: 0 | fp16: 0 | bf16: 0 | fp4: 0 | warp size: 64 | shared memory: 32768 | int dot: 0 | matrix cores: none
+load_backend: loaded Vulkan backend from F:\tools\lc_vulkan\ggml-vulkan.dll
+load_backend: loaded CPU backend from F:\tools\lc_vulkan\ggml-cpu-haswell.dll
+| model                          |       size |     params | backend    | ngl |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | --------------: | -------------------: |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | Vulkan     |  99 |           pp512 |        157.88 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | Vulkan     |  99 |           tg128 |         23.18 ± 0.00 |
+
+build: 6a1a922d2 (10819)
+EXIT=0
+FIM

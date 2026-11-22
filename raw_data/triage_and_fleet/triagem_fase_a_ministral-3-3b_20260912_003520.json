@@ -1,0 +1,83 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260912_003520",
+  "model_id": "ministral-3-3b",
+  "metrics": {
+    "total_cases": 5,
+    "passed_cases": 4,
+    "failed_cases": 1,
+    "autonomy_l1": 0.8,
+    "escalation_avoidance": 0.8,
+    "cost_to_solved_task": 33.33,
+    "mean_tok_s": 15.26,
+    "mean_ttft_ms": 910.4,
+    "total_e2e_seconds": 25.33,
+    "total_tokens_generated": 299
+  },
+  "category_scores": {
+    "math": 0.8
+  },
+  "cases": [
+    {
+      "case_id": "m01",
+      "category": "math",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Valor 2.0 nao encontrado no texto: '12'",
+      "e2e_seconds": 1.971,
+      "tok_per_sec": 14.81,
+      "ttft_ms": 1800.6,
+      "ram_mb": null,
+      "output_snippet": "12"
+    },
+    {
+      "case_id": "m02",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 5.0 identificado",
+      "e2e_seconds": 1.055,
+      "tok_per_sec": 16.14,
+      "ttft_ms": 854.1,
+      "ram_mb": null,
+      "output_snippet": "5 minutos."
+    },
+    {
+      "case_id": "m03",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 2.0 identificado",
+      "e2e_seconds": 0.516,
+      "tok_per_sec": 16.19,
+      "ttft_ms": 444.4,
+      "ram_mb": null,
+      "output_snippet": "2"
+    },
+    {
+      "case_id": "m04",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 435.0 identificado",
+      "e2e_seconds": 11.503,
+      "tok_per_sec": 14.08,
+      "ttft_ms": 768.0,
+      "ram_mb": null,
+      "output_snippet": "Para calcular o número total de apertos de mão em uma sala com 30 pessoas, onde cada pessoa se acolhe com as outras exat"
+    },
+    {
+      "case_id": "m05",
+      "category": "math",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Valor numerico correto 192.0 identificado",
+      "e2e_seconds": 9.779,
+      "tok_per_sec": 15.1,
+      "ttft_ms": 684.9,
+      "ram_mb": null,
+      "output_snippet": "Vamos calcular o valor final do produto:  1. Aumento de 20%:    - Valor inicial: 200 reais    - Aumento: 200 * 0.20 = 40"
+    }
+  ]
+}

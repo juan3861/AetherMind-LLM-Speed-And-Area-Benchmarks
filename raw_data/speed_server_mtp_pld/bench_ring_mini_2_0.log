@@ -1,0 +1,18 @@
+[34m0.01.020.056[0m [32mI [0mcmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+[34m0.01.021.030[0m [35mW srv  llama_server: -----------------
+[0m[34m0.01.021.048[0m [35mW srv  llama_server: CORS is set to allow all origins ('*') and no API key is set
+[0m[34m0.01.021.055[0m [35mW srv  llama_server: this can be a security risk (cross-origin attacks)
+[0m[34m0.01.021.056[0m [35mW srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+[0m[34m0.01.021.056[0m [35mW srv  llama_server: -----------------
+[0m[34m0.01.028.906[0m [32mI [0msrv    load_model: loading model 'F:\data\models\Ring-mini-2.0-Q4_K_M.gguf'
+[34m0.38.064.576[0m [32mI [0mcmn          init: llama threadpool init, n_threads = 10
+[34m0.38.557.902[0m [32mI [0msrv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+[34m0.38.603.687[0m [32mI [0msrv  llama_server: model loaded
+[34m0.38.603.707[0m [32mI [0msrv  llama_server: listening on http://127.0.0.1:11488
+[34m0.39.683.039[0m [32mI [0mslot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+[34m0.39.683.943[0m [32mI [0mslot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+[34m0.42.987.362[0m [32mI [0mslot print_timing: id  0 | task 0 | prompt eval time =    1045.36 ms /    32 tokens (   32.67 ms per token,    30.61 tokens per second)
+[34m0.42.987.377[0m [32mI [0mslot print_timing: id  0 | task 0 |        eval time =    2257.97 ms /    48 tokens (   48.04 ms per token,    20.82 tokens per second)
+[34m0.42.987.378[0m [32mI [0mslot print_timing: id  0 | task 0 |       total time =    3303.34 ms /    80 tokens
+[34m0.42.987.380[0m [32mI [0mslot print_timing: id  0 | task 0 |    graphs reused =         47
+[34m0.42.987.444[0m [32mI [0mslot      release: id  0 | task 0 | stop processing: n_tokens = 79, truncated = 0

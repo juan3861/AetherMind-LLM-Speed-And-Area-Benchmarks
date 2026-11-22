@@ -1,0 +1,59 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_215231",
+  "model_id": "ring-mini-2.0",
+  "metrics": {
+    "total_cases": 3,
+    "passed_cases": 1,
+    "failed_cases": 2,
+    "autonomy_l1": 0.3333,
+    "escalation_avoidance": 0.3333,
+    "cost_to_solved_task": 47.88,
+    "mean_tok_s": 20.24,
+    "mean_ttft_ms": 10050.1,
+    "total_e2e_seconds": 31.88,
+    "total_tokens_generated": 593
+  },
+  "category_scores": {
+    "tools": 0.3333
+  },
+  "cases": [
+    {
+      "case_id": "t01",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "Nenhum bloco JSON detectado",
+      "e2e_seconds": 14.276,
+      "tok_per_sec": 17.94,
+      "ttft_ms": 14265.6,
+      "ram_mb": null,
+      "output_snippet": "We are given a sentence: \"Buscar voos de SP para RJ no dia 15/10/2026 para 2 passageiros\"  We need to extract:    origin"
+    },
+    {
+      "case_id": "t02",
+      "category": "tools",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Todas as chaves esperadas estao presentes no JSON",
+      "e2e_seconds": 3.729,
+      "tok_per_sec": 21.73,
+      "ttft_ms": 3727.5,
+      "ram_mb": null,
+      "output_snippet": "We are to generate a tool call in JSON format as specified.  The tool is \"get_weather\", and the arguments are: city \"Cur"
+    },
+    {
+      "case_id": "t03",
+      "category": "tools",
+      "status": "FAIL",
+      "is_valid": false,
+      "validation_detail": "JSON invalido: Expecting value: line 1 column 2 (char 1)",
+      "e2e_seconds": 12.158,
+      "tok_per_sec": 21.06,
+      "ttft_ms": 12157.1,
+      "ram_mb": null,
+      "output_snippet": "We are given a log string: \"[ERROR] 2026-09-11 02:30:15 - Database connection timeout at 192.168.1.50:5432\"  We need to "
+    }
+  ]
+}

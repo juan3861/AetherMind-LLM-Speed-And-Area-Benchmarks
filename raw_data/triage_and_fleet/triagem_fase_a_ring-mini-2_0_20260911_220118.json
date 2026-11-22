@@ -1,0 +1,143 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_220118",
+  "model_id": "ring-mini-2.0",
+  "metrics": {
+    "total_cases": 10,
+    "passed_cases": 10,
+    "failed_cases": 0,
+    "autonomy_l1": 1.0,
+    "escalation_avoidance": 1.0,
+    "cost_to_solved_task": 123.9,
+    "mean_tok_s": 22.48,
+    "mean_ttft_ms": 751.6,
+    "total_e2e_seconds": 123.9,
+    "total_tokens_generated": 2560
+  },
+  "category_scores": {
+    "rag": 1.0
+  },
+  "cases": [
+    {
+      "case_id": "rag01",
+      "category": "rag",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado '4001' encontrado",
+      "e2e_seconds": 15.487,
+      "tok_per_sec": 20.16,
+      "ttft_ms": 2805.6,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está pedindo informações específicas de um documento técnico sobre o protocolo Alpha. Ele quer saber a po"
+    },
+    {
+      "case_id": "rag02",
+      "category": "rag",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'semicondutores' encontrado",
+      "e2e_seconds": 12.475,
+      "tok_per_sec": 21.61,
+      "ttft_ms": 655.5,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está pedindo uma resposta direta e concisa com base em um documento fornecido. O documento menciona que o"
+    },
+    {
+      "case_id": "rag03",
+      "category": "rag",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'não' encontrado",
+      "e2e_seconds": 11.868,
+      "tok_per_sec": 22.89,
+      "ttft_ms": 711.8,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando se os microserviços podem receber chamadas diretas sem o WAF-02, baseado em um documento"
+    },
+    {
+      "case_id": "rag04",
+      "category": "rag",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado '32' encontrado",
+      "e2e_seconds": 14.543,
+      "tok_per_sec": 18.69,
+      "ttft_ms": 878.3,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre o limite de memória de um sistema após a versão 2.0, baseado em dois documentos. V"
+    },
+    {
+      "case_id": "rag05",
+      "category": "rag",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'python' encontrado",
+      "e2e_seconds": 12.313,
+      "tok_per_sec": 21.58,
+      "ttft_ms": 480.2,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário pede para extrair três requisitos obrigatórios de um texto específico. O texto é: \"O candidato deve ter: "
+    },
+    {
+      "case_id": "rag06",
+      "category": "rag",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado '504' encontrado",
+      "e2e_seconds": 11.51,
+      "tok_per_sec": 22.93,
+      "ttft_ms": 372.7,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre um código HTTP específico relacionado ao erro 504 Gateway Timeout. O documento for"
+    },
+    {
+      "case_id": "rag07",
+      "category": "rag",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'ruff' encontrado",
+      "e2e_seconds": 11.362,
+      "tok_per_sec": 23.19,
+      "ttft_ms": 350.7,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está pedindo uma resposta direta e concisa, conforme solicitado. Ele forneceu um documento que diz: \"O pi"
+    },
+    {
+      "case_id": "rag08",
+      "category": "rag",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado '3.2' encontrado",
+      "e2e_seconds": 11.187,
+      "tok_per_sec": 23.84,
+      "ttft_ms": 473.5,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está pedindo uma resposta direta e concisa sobre uma informação específica de um documento técnico. O doc"
+    },
+    {
+      "case_id": "rag09",
+      "category": "rag",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado '5' encontrado",
+      "e2e_seconds": 11.511,
+      "tok_per_sec": 22.84,
+      "ttft_ms": 331.6,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre a frequência de replicação de um banco de dados, com base em um texto específico. "
+    },
+    {
+      "case_id": "rag10",
+      "category": "rag",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Padrao esperado 'admin_security' encontrado",
+      "e2e_seconds": 9.874,
+      "tok_per_sec": 27.11,
+      "ttft_ms": 455.7,
+      "ram_mb": null,
+      "output_snippet": "Hmm, o usuário está perguntando sobre permissões de revogação de tokens com base em um documento específico. O documento"
+    }
+  ]
+}

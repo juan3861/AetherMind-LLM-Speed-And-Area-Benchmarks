@@ -1,0 +1,59 @@
+{
+  "benchmark": "MEGAZORD Triagem Fase A (100 Casos)",
+  "constitution_version": "1.0",
+  "timestamp": "20260911_195507",
+  "model_id": "granite-3.1-2b",
+  "metrics": {
+    "total_cases": 3,
+    "passed_cases": 3,
+    "failed_cases": 0,
+    "autonomy_l1": 1.0,
+    "escalation_avoidance": 1.0,
+    "cost_to_solved_task": 15.61,
+    "mean_tok_s": 10.48,
+    "mean_ttft_ms": 5071.8,
+    "total_e2e_seconds": 15.61,
+    "total_tokens_generated": 158
+  },
+  "category_scores": {
+    "tools": 1.0
+  },
+  "cases": [
+    {
+      "case_id": "t01",
+      "category": "tools",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Todas as chaves esperadas estao presentes no JSON",
+      "e2e_seconds": 4.126,
+      "tok_per_sec": 10.2,
+      "ttft_ms": 4115.7,
+      "ram_mb": null,
+      "output_snippet": "{   \"origin\": \"SP\",   \"destination\": \"RJ\",   \"date\": \"15/10/2026\",   \"passengers\": 2 }"
+    },
+    {
+      "case_id": "t02",
+      "category": "tools",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Todas as chaves esperadas estao presentes no JSON",
+      "e2e_seconds": 3.843,
+      "tok_per_sec": 11.19,
+      "ttft_ms": 3841.5,
+      "ram_mb": null,
+      "output_snippet": "```json {   \"tool\": \"get_weather\",   \"arguments\": {     \"city\": \"Curitiba\",     \"units\": \"celsius\"   } } ```"
+    },
+    {
+      "case_id": "t03",
+      "category": "tools",
+      "status": "PASS",
+      "is_valid": true,
+      "validation_detail": "Todas as chaves esperadas estao presentes no JSON",
+      "e2e_seconds": 7.26,
+      "tok_per_sec": 10.06,
+      "ttft_ms": 7258.3,
+      "ram_mb": null,
+      "output_snippet": "{   \"level\": \"ERROR\",   \"timestamp\": \"2026-09-11T02:30:15\",   \"error\": \"Database connection timeout\",   \"host\": \"192.168"
+    }
+  ]
+}

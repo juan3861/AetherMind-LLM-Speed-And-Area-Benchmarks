@@ -1,0 +1,6 @@
+===== nvidia_OpenReasoning-Nemotron-1.5B-Q4_K_M.gguf =====
+load_backend: loaded RPC backend from F:\tools\lc_b10749\ggml-rpc.dll
+load_backend: loaded CPU backend from F:\tools\lc_b10749\ggml-cpu-haswell.dll
+| model                          |       size |     params | backend    | threads |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | --------------: | -------------------: |
+| qwen2 1.5B Q4_K - Medium       | 934.69 MiB |     1.54 B | CPU        |      14 |           pp512 |         25.63 ± 0.00 |
