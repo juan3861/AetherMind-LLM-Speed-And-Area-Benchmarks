@@ -1,0 +1,2357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AetherMind — Ranking Matemático Opus + 13 Áreas (Em Camadas)</title>
+<style>
+  :root {
+    --bg: #0b0f17; --card: #131a26; --card2: #1a2333; --border: #263248;
+    --text: #e6edf7; --muted: #94a3b8; --accent: #38bdf8; --gold: #fbbf24; --green: #34d399;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.45; padding: 24px; }
+  .container { max-width: 1380px; margin: 0 auto; }
+  header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 18px; margin-bottom: 22px; }
+  h1 { margin: 0; font-size: 1.65rem; color: #fff; }
+  .subtitle { color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
+  .formula-bar { background: #10192b; border: 1px solid #1e3a5f; border-radius: 10px; padding: 12px 16px; margin-bottom: 22px; font-size: 0.92rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  input[type="search"], select { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; }
+  button.btn { background: var(--accent); color: #06121e; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.88rem; }
+  button.btn-sec { background: var(--card2); color: var(--text); border: 1px solid var(--border); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.88rem; }
+  .sum-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .sum-card { background: linear-gradient(145deg, #141d2e, #101622); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 10px; padding: 14px; }
+  .sum-cat { font-size: 0.78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+  .sum-model { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .sum-metrics { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.85rem; color: var(--muted); }
+  .sum-metrics b { color: #fff; }
+  .fast-note { margin-top: 8px; font-size: 0.82rem; color: var(--green); background: rgba(52,211,153,0.08); padding: 5px 8px; border-radius: 6px; }
+  .cat-section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 20px; }
+  .cat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .cat-header h2 { margin: 0; font-size: 1.2rem; color: #fff; }
+  .count-pill { background: var(--card2); border: 1px solid var(--border); padding: 4px 10px; border-radius: 999px; font-size: 0.8rem; color: var(--muted); }
+  .champ-box { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; background: var(--card2); border: 1px solid #2d3f5e; border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; }
+  .badge-champ { display: inline-block; background: rgba(251,191,36,0.15); color: var(--gold); border: 1px solid rgba(251,191,36,0.35); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+  .champ-left h3 { margin: 0 0 4px 0; font-size: 1.15rem; color: #fff; }
+  .champ-note { margin: 0; font-size: 0.86rem; color: var(--muted); }
+  .champ-stats { display: flex; flex-wrap: wrap; gap: 10px; }
+  .stat { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; min-width: 96px; text-align: center; }
+  .stat label { display: block; font-size: 0.72rem; color: var(--muted); margin-bottom: 2px; }
+  .stat b { font-size: 0.96rem; color: #fff; }
+  .stat.accent { border-color: var(--gold); }
+  .stat.accent b { color: var(--gold); }
+  .qbadge { background: #1f2d45; color: #93c5fd; padding: 2px 7px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; }
+  .pts-pill { background: rgba(56,189,248,0.14); color: var(--accent); padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+  details.layer-details { margin-top: 8px; border: 1px solid var(--border); border-radius: 8px; background: #0f1520; }
+  details.layer-details summary { cursor: pointer; padding: 10px 14px; font-weight: 600; font-size: 0.9rem; color: var(--accent); list-style: none; user-select: none; }
+  details.layer-details summary:hover { background: rgba(56,189,248,0.06); }
+  .table-wrap { overflow-x: auto; padding: 0 12px 12px 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th { color: var(--muted); font-size: 0.76rem; text-transform: uppercase; }
+  td.obs-col { white-space: normal; min-width: 240px; color: var(--muted); }
+  @media print { body { background: #fff; color: #000; } details { open: true; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div>
+      <h1>🏆 AetherMind — Ranking Matemático Oficial (13 Áreas + 10 Opus Hard)</h1>
+      <div class="subtitle">Apenas modelos auditados em <b>ambas</b> as baterias (39 perguntas + 10 desafios Opus Hard) — <b>132 modelos</b> em <b>7 categorias</b>.</div>
+    </div>
+    <div class="controls">
+      <input type="search" id="searchInput" placeholder="Buscar modelo ou quant (ex: Q5_K_M)...">
+      <button class="btn-sec" onclick="toggleAll(true)">Expandir Tudo</button>
+      <button class="btn-sec" onclick="toggleAll(false)">Recolher Tudo</button>
+      <button class="btn" onclick="window.print()">Salvar / Imprimir PDF</button>
+    </div>
+  </header>
+
+  <div class="formula-bar">
+    <div>📐 <b>Fórmula Matemática de Qualificação:</b> <code>Pontuação = Acertos_13_Áreas + (Acertos_Opus × 10)</code> <small>(Máx: 139 pts | Cada Opus vale 10× mais — quem acerta 1 Opus passa quem acertou 38/39 com 0 Opus)</small></div>
+    <div>⚡ <b>Desempate no Pódio:</b> Maior <code>Opus</code> ➔ Maior <code>13 Áreas</code> ➔ Maior <code>Velocidade (tok/s)</code></div>
+  </div>
+
+  <h2 style="margin:0 0 12px 0; font-size:1.15rem;">🎯 Sumário Suprasumo — Campeões na Cara do Gol</h2>
+  <div class="sum-grid">
+    
+    <div class="sum-card">
+      <div class="sum-cat">1. Ultraleves (100M – 500M)</div>
+      <div class="sum-model">🏆 Granite-350M-Gemini3 <span class="qbadge">F16</span></div>
+      <div class="sum-metrics">
+        <span><b>39</b> pts <small>(35.7%)</small></span>
+        <span>13A: <b>29/39</b></span>
+        <span>Opus: <b>1/10</b></span>
+        <span>Vel: <b>23.08 t/s</b></span>
+        <span>RLM: <b>Sim (+4A / +1O)</b></span>
+      </div>
+      
+    </div>
+    
+    <div class="sum-card">
+      <div class="sum-cat">2. Sub-1B (600M – 900M)</div>
+      <div class="sum-model">🏆 K2-Horizon-0.9B <span class="qbadge">Q6_K</span></div>
+      <div class="sum-metrics">
+        <span><b>74</b> pts <small>(58.9%)</small></span>
+        <span>13A: <b>34/39</b></span>
+        <span>Opus: <b>4/10</b></span>
+        <span>Vel: <b>34.29 t/s</b></span>
+        <span>RLM: <b>Sim (+9A / +0O)</b></span>
+      </div>
+      
+    </div>
+    
+    <div class="sum-card">
+      <div class="sum-cat">3. Leves (1.0B – 1.7B)</div>
+      <div class="sum-model">🏆 Qwen3-1.7B <span class="qbadge">Q8_0</span></div>
+      <div class="sum-metrics">
+        <span><b>56</b> pts <small>(48.9%)</small></span>
+        <span>13A: <b>36/39</b></span>
+        <span>Opus: <b>2/10</b></span>
+        <span>Vel: <b>31.07 t/s</b></span>
+        <span>RLM: <b>Sim (+2A / +0O)</b></span>
+      </div>
+      <div class='fast-note'>⚡ Mais rápido do Top 3: <b>Qwen3-1.7B [Q5_K_M]</b> (31.22 t/s | 46 pts)</div>
+    </div>
+    
+    <div class="sum-card">
+      <div class="sum-cat">4. Camada Média Compacta (2B – 4.5B)</div>
+      <div class="sum-model">🏆 K2-Horizon-3.7B <span class="qbadge">BF16</span></div>
+      <div class="sum-metrics">
+        <span><b>78</b> pts <small>(63.0%)</small></span>
+        <span>13A: <b>38/39</b></span>
+        <span>Opus: <b>4/10</b></span>
+        <span>Vel: <b>5.66 t/s</b></span>
+        <span>RLM: <b>Sim (+2A / +1O)</b></span>
+      </div>
+      <div class='fast-note'>⚡ Mais rápido do Top 3: <b>K2-Horizon-3.7B [Q5_K_M]</b> (20.42 t/s | 77 pts)</div>
+    </div>
+    
+    <div class="sum-card">
+      <div class="sum-cat">5. Médios (7B – 9B)</div>
+      <div class="sum-model">🏆 Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill <span class="qbadge">Q4_K_M</span></div>
+      <div class="sum-metrics">
+        <span><b>74</b> pts <small>(58.9%)</small></span>
+        <span>13A: <b>34/39</b></span>
+        <span>Opus: <b>4/10</b></span>
+        <span>Vel: <b>8.36 t/s</b></span>
+        <span>RLM: <b>Não (Puro)</b></span>
+      </div>
+      
+    </div>
+    
+    <div class="sum-card">
+      <div class="sum-cat">6. Pesados Densos (12B – 14B)</div>
+      <div class="sum-model">🏆 gemma-4-12B-coder-fable5-composer2.5-v1 <span class="qbadge">Q4_K_M</span></div>
+      <div class="sum-metrics">
+        <span><b>73</b> pts <small>(57.8%)</small></span>
+        <span>13A: <b>33/39</b></span>
+        <span>Opus: <b>4/10</b></span>
+        <span>Vel: <b>4.46 t/s</b></span>
+        <span>RLM: <b>Não (Puro)</b></span>
+      </div>
+      <div class='fast-note'>⚡ Mais rápido do Top 3: <b>Qwen3-14B-GPT-5.2-High-Reasoning-Distill [Q4_K_M]</b> (4.78 t/s | 43 pts)</div>
+    </div>
+    
+    <div class="sum-card">
+      <div class="sum-cat">7. Titãs (20B – 35B+)</div>
+      <div class="sum-model">🏆 gpt-oss-20b-gpt-5-codex-distill <span class="qbadge">Q8_0</span></div>
+      <div class="sum-metrics">
+        <span><b>60</b> pts <small>(48.8%)</small></span>
+        <span>13A: <b>30/39</b></span>
+        <span>Opus: <b>3/10</b></span>
+        <span>Vel: <b>11.26 t/s</b></span>
+        <span>RLM: <b>Não (Puro)</b></span>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+    <section class="cat-section" data-cat="1. Ultraleves (100M – 500M)">
+      <div class="cat-header">
+        <h2>1. Ultraleves (100M – 500M)</h2>
+        <span class="count-pill">42 modelos auditados</span>
+      </div>
+
+      <div class="champ-box">
+        <div class="champ-left">
+          <span class="badge-champ">🏆 CAMPEÃO DA CATEGORIA</span>
+          <h3>Granite-350M-Gemini3 <span class="qbadge">F16</span></h3>
+          <p class="champ-note">Resolveu 1/10 Opus; bom geral (29/39); ganhou +4A/+1O com Lambda-RLM; rápido (23.1 t/s).</p>
+          
+        </div>
+        <div class="champ-stats">
+          <div class="stat"><label>13 Áreas</label><b>29/39</b></div>
+          <div class="stat"><label>Opus Hard</label><b>1/10</b></div>
+          <div class="stat"><label>RLM / Lambda</label><b>Sim (+4A / +1O)</b></div>
+          <div class="stat"><label>Velocidade</label><b>23.08 t/s</b></div>
+          <div class="stat accent"><label>Pontuação</label><b>39 pts</b></div>
+        </div>
+      </div>
+
+      <details class="layer-details">
+        <summary>🥈🥉 Abrir 2º e 3º Ganhadores do Pódio & Comparativo de Velocidade</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Pos.</th><th>Modelo</th><th>Quant</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Velocidade</th><th>Pontuação</th></tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>🥈 #2</td>
+          <td><b>Granite-350M-Gemini3</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td><b>26/39</b> <small>(Base 21)</small></td>
+          <td><b>1/10</b> <small>(Base 1)</small></td>
+          <td>Sim (+5A / +0O)</td>
+          <td><b>21.99 t/s</b></td>
+          <td><span class="pts-pill">36 pts</span> <small>(32.7%)</small></td>
+        </tr>
+        <tr>
+          <td>🥉 #3</td>
+          <td><b>Granite-350M-Gemini3</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td><b>25/39</b> <small>(Base 23)</small></td>
+          <td><b>1/10</b> <small>(Base 0)</small></td>
+          <td>Sim (+2A / +1O)</td>
+          <td><b>21.88 t/s</b></td>
+          <td><span class="pts-pill">35 pts</span> <small>(31.6%)</small></td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="layer-details">
+        <summary>📊 Abrir Todos os 42 Modelos Testados Nesta Categoria + Análise Individual</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Modelo</th><th>Quant</th><th>Peso</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Vel. GPU/Pri.</th><th>Vel. CPU</th><th>Pontos</th><th>Análise</th></tr>
+            </thead>
+            <tbody>
+        <tr class="model-row">
+          <td>#1</td>
+          <td><b>Granite-350M-Gemini3</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>0.64 GB</td>
+          <td><b>29/39</b> <small>(25➔29)</small></td>
+          <td><b>1/10</b> <small>(0➔1)</small></td>
+          <td>Sim (+4A / +1O)</td>
+          <td><b>23.08 t/s</b></td>
+          <td>10.01 t/s</td>
+          <td><span class="pts-pill">39 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (29/39); ganhou +4A/+1O com Lambda-RLM; rápido (23.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#2</td>
+          <td><b>Granite-350M-Gemini3</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>0.34 GB</td>
+          <td><b>26/39</b> <small>(21➔26)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+5A / +0O)</td>
+          <td><b>21.99 t/s</b></td>
+          <td>10.68 t/s</td>
+          <td><span class="pts-pill">36 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (26/39); ganhou +5A/+0O com Lambda-RLM; rápido (22.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#3</td>
+          <td><b>Granite-350M-Gemini3</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.26 GB</td>
+          <td><b>25/39</b> <small>(23➔25)</small></td>
+          <td><b>1/10</b> <small>(0➔1)</small></td>
+          <td>Sim (+2A / +1O)</td>
+          <td><b>21.88 t/s</b></td>
+          <td>6.33 t/s</td>
+          <td><span class="pts-pill">35 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (25/39); ganhou +2A/+1O com Lambda-RLM; rápido (21.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#4</td>
+          <td><b>MiniCPM4-0.5B</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>0.43 GB</td>
+          <td><b>31/39</b> <small>(24➔31)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+7A / +0O)</td>
+          <td><b>38.60 t/s</b></td>
+          <td>49.99 t/s</td>
+          <td><span class="pts-pill">31 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (31/39); ganhou +7A/+0O com Lambda-RLM; rápido (38.6 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#5</td>
+          <td><b>MiniCPM4-0.5B</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.33 GB</td>
+          <td><b>30/39</b> <small>(27➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>37.33 t/s</b></td>
+          <td>56.02 t/s</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +3A/+0O com Lambda-RLM; rápido (37.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#6</td>
+          <td><b>MiniCPM4-0.5B</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>0.81 GB</td>
+          <td><b>30/39</b> <small>(26➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>36.75 t/s</b></td>
+          <td>36.18 t/s</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +4A/+0O com Lambda-RLM; rápido (36.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#7</td>
+          <td><b>MiniCPM4-0.5B</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.30 GB</td>
+          <td><b>30/39</b> <small>(22➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+8A / +0O)</td>
+          <td><b>32.53 t/s</b></td>
+          <td>54.99 t/s</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +8A/+0O com Lambda-RLM; rápido (32.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#8</td>
+          <td><b>MiniCPM4-0.5B-Q4_K_M</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.26 GB</td>
+          <td><b>29/39</b> <small>(23➔29)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+6A / +0O)</td>
+          <td><b>51.92 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">29 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (29/39); ganhou +6A/+0O com Lambda-RLM; rápido (51.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#9</td>
+          <td><b>QwQ-0.5B-Distilled-SFT.Q4_K_M</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.37 GB</td>
+          <td><b>29/39</b> <small>(24➔29)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+5A / +0O)</td>
+          <td><b>42.24 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">29 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (29/39); ganhou +5A/+0O com Lambda-RLM; rápido (42.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#10</td>
+          <td><b>granite-4.0-h-350m-BF16</b></td>
+          <td><span class="qbadge">BF16</span></td>
+          <td>0.64 GB</td>
+          <td><b>29/39</b> <small>(19➔29)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+10A / +0O)</td>
+          <td><b>22.64 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">29 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (29/39); ganhou +10A/+0O com Lambda-RLM; rápido (22.6 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#11</td>
+          <td><b>Granite-4.0-H-350M</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>0.34 GB</td>
+          <td><b>29/39</b> <small>(18➔29)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+11A / +0O)</td>
+          <td><b>21.80 t/s</b></td>
+          <td>10.54 t/s</td>
+          <td><span class="pts-pill">29 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (29/39); ganhou +11A/+0O com Lambda-RLM; rápido (21.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#12</td>
+          <td><b>QwQ-0.5B-Distilled</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.47 GB</td>
+          <td><b>28/39</b> <small>(24➔28)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>48.29 t/s</b></td>
+          <td>30.34 t/s</td>
+          <td><span class="pts-pill">28 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (28/39); ganhou +4A/+0O com Lambda-RLM; rápido (48.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#13</td>
+          <td><b>Granite-4.0-H-350M</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.21 GB</td>
+          <td><b>28/39</b> <small>(19➔28)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+9A / +0O)</td>
+          <td><b>22.18 t/s</b></td>
+          <td>12.43 t/s</td>
+          <td><span class="pts-pill">28 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (28/39); ganhou +9A/+0O com Lambda-RLM; rápido (22.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#14</td>
+          <td><b>QwQ-0.5B-Distilled</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.39 GB</td>
+          <td><b>27/39</b> <small>(24➔27)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>50.15 t/s</b></td>
+          <td>46.78 t/s</td>
+          <td><span class="pts-pill">27 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (27/39); ganhou +3A/+0O com Lambda-RLM; rápido (50.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#15</td>
+          <td><b>Qwen2.5-0.5B-OpenR1</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>0.93 GB</td>
+          <td><b>27/39</b> <small>(23➔27)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>43.91 t/s</b></td>
+          <td>30.34 t/s</td>
+          <td><span class="pts-pill">27 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (27/39); ganhou +4A/+0O com Lambda-RLM; rápido (43.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#16</td>
+          <td><b>Qwen2.5-0.5B-Open-R1-Distill_Q4_K_M</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.37 GB</td>
+          <td><b>27/39</b> <small>(22➔27)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+5A / +0O)</td>
+          <td><b>42.02 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">27 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (27/39); ganhou +5A/+0O com Lambda-RLM; rápido (42.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#17</td>
+          <td><b>Granite-4.0-H-350M</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.26 GB</td>
+          <td><b>27/39</b> <small>(17➔27)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+10A / +0O)</td>
+          <td><b>21.92 t/s</b></td>
+          <td>2.07 t/s</td>
+          <td><span class="pts-pill">27 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (27/39); ganhou +10A/+0O com Lambda-RLM; rápido (21.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#18</td>
+          <td><b>Qwen2.5-0.5B-OpenR1</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.47 GB</td>
+          <td><b>26/39</b> <small>(23➔26)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>50.18 t/s</b></td>
+          <td>43.08 t/s</td>
+          <td><span class="pts-pill">26 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (26/39); ganhou +3A/+0O com Lambda-RLM; rápido (50.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#19</td>
+          <td><b>QwQ-0.5B-Distilled</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>0.49 GB</td>
+          <td><b>26/39</b> <small>(22➔26)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>50.03 t/s</b></td>
+          <td>43.39 t/s</td>
+          <td><span class="pts-pill">26 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (26/39); ganhou +4A/+0O com Lambda-RLM; rápido (50.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#20</td>
+          <td><b>QwQ-0.5B-Distilled</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>0.93 GB</td>
+          <td><b>26/39</b> <small>(22➔26)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>43.80 t/s</b></td>
+          <td>23.50 t/s</td>
+          <td><span class="pts-pill">26 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (26/39); ganhou +4A/+0O com Lambda-RLM; rápido (43.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#21</td>
+          <td><b>granite-4.0-h-350m-DISTILL-gemini-3-pro-think-q4_k_m</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.21 GB</td>
+          <td><b>26/39</b> <small>(18➔26)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+8A / +0O)</td>
+          <td><b>4.74 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">26 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (26/39); ganhou +8A/+0O com Lambda-RLM; lento (&lt;7 t/s: 4.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#22</td>
+          <td><b>Qwen2.5-0.5B-OpenR1</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>0.49 GB</td>
+          <td><b>25/39</b> <small>(22➔25)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>50.60 t/s</b></td>
+          <td>46.63 t/s</td>
+          <td><span class="pts-pill">25 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (25/39); ganhou +3A/+0O com Lambda-RLM; rápido (50.6 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#23</td>
+          <td><b>Qwen2.5-0.5B-OpenR1</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.39 GB</td>
+          <td><b>24/39</b> <small>(18➔24)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+6A / +0O)</td>
+          <td><b>47.81 t/s</b></td>
+          <td>45.54 t/s</td>
+          <td><span class="pts-pill">24 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (24/39); ganhou +6A/+0O com Lambda-RLM; rápido (47.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#24</td>
+          <td><b>Reasoning-0.5b</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.37 GB</td>
+          <td><b>24/39</b> <small>(24➔24)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>40.00 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">24 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (24/39); resultado puro sem ajuda RLM; rápido (40.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#25</td>
+          <td><b>Granite-4.0-H-350M</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.23 GB</td>
+          <td><b>24/39</b> <small>(16➔24)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+8A / +0O)</td>
+          <td><b>14.10 t/s</b></td>
+          <td>2.33 t/s</td>
+          <td><span class="pts-pill">24 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (24/39); ganhou +8A/+0O com Lambda-RLM; passa piso 7 t/s (14.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#26</td>
+          <td><b>granite-4.0-h-350m-DISTILL-gemini-3-pro-think</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.21 GB</td>
+          <td><b>23/39</b> <small>(16➔23)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+7A / +0O)</td>
+          <td><b>38.53 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">23 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (23/39); ganhou +7A/+0O com Lambda-RLM; rápido (38.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#27</td>
+          <td><b>SmolLM2-360M-Instruct-Q4_K_M</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.25 GB</td>
+          <td><b>22/39</b> <small>(18➔22)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>9.89 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">22 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (22/39); ganhou +4A/+0O com Lambda-RLM; passa piso 7 t/s (9.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#28</td>
+          <td><b>SmolLM2-135M-Instruct-F16</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>0.25 GB</td>
+          <td><b>21/39</b> <small>(18➔21)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>41.58 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">21 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (21/39); ganhou +3A/+0O com Lambda-RLM; rápido (41.6 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#29</td>
+          <td><b>Gemini-Distill-Qwen2.5-0.5B-ead</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.37 GB</td>
+          <td><b>20/39</b> <small>(14➔20)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+6A / +0O)</td>
+          <td><b>45.96 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">20 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (20/39); ganhou +6A/+0O com Lambda-RLM; rápido (46.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#30</td>
+          <td><b>Gemini-Distill-Qwen2.5-0.5B-ead-Q4_K_M</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.37 GB</td>
+          <td><b>20/39</b> <small>(14➔20)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+6A / +0O)</td>
+          <td><b>42.13 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">20 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (20/39); ganhou +6A/+0O com Lambda-RLM; rápido (42.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#31</td>
+          <td><b>Granite-350M-Gemini3</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.23 GB</td>
+          <td><b>19/39</b> <small>(9➔19)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+10A / +0O)</td>
+          <td><b>21.87 t/s</b></td>
+          <td>11.03 t/s</td>
+          <td><span class="pts-pill">19 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (19/39); ganhou +10A/+0O com Lambda-RLM; rápido (21.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#32</td>
+          <td><b>SmolLM2-135M-Instruct-Q4_K_M</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.10 GB</td>
+          <td><b>17/39</b> <small>(15➔17)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>57.45 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">17 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (17/39); ganhou +2A/+0O com Lambda-RLM; rápido (57.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#33</td>
+          <td><b>DeepSeek-R1-Distill-Qwen-0.5B-CoMa</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.37 GB</td>
+          <td><b>15/39</b> <small>(15➔15)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>48.08 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">15 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (15/39); resultado puro sem ajuda RLM; rápido (48.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#34</td>
+          <td><b>SmolLM2-135M-Instruct-heretic</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.10 GB</td>
+          <td><b>13/39</b> <small>(13➔13)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>17.24 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">13 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (13/39); resultado puro sem ajuda RLM; passa piso 7 t/s (17.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#35</td>
+          <td><b>Falcon-H1-Tiny-Multilingual-100M-Instruct</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.07 GB</td>
+          <td><b>11/39</b> <small>(11➔11)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>28.09 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">11 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (11/39); resultado puro sem ajuda RLM; rápido (28.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#36</td>
+          <td><b>MobileLLM-143M</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.10 GB</td>
+          <td><b>10/39</b> <small>(10➔10)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>30.00 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">10 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (10/39); resultado puro sem ajuda RLM; rápido (30.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#37</td>
+          <td><b>Lite-Mistral-150M-v2-Instruct</b></td>
+          <td><span class="qbadge">Q4_K_L</span></td>
+          <td>0.11 GB</td>
+          <td><b>5/39</b> <small>(5➔5)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>64.75 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">5 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (5/39); resultado puro sem ajuda RLM; rápido (64.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#38</td>
+          <td><b>zephyr-smol_llama-100m-dpo</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.06 GB</td>
+          <td><b>4/39</b> <small>(4➔4)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>19.46 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">4 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (4/39); resultado puro sem ajuda RLM; passa piso 7 t/s (19.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#39</td>
+          <td><b>SmolLM2-135M-Instruct-Q8_0</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>0.13 GB</td>
+          <td><b>2/39</b> <small>(2➔2)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>36.50 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">2 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (2/39); resultado puro sem ajuda RLM; rápido (36.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#40</td>
+          <td><b>Distil-GPT5.5-Minute.Codex-0.1B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.06 GB</td>
+          <td><b>1/39</b> <small>(1➔1)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>116.09 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">1 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (1/39); resultado puro sem ajuda RLM; rápido (116.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#41</td>
+          <td><b>Qwen2.5-0.2B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.20 GB</td>
+          <td><b>1/39</b> <small>(1➔1)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>96.20 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">1 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (1/39); resultado puro sem ajuda RLM; rápido (96.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#42</td>
+          <td><b>Sheared-Pythia-160m-Platypus</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.10 GB</td>
+          <td><b>1/39</b> <small>(1➔1)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>30.60 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">1 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (1/39); resultado puro sem ajuda RLM; rápido (30.6 t/s).</td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+    
+    <section class="cat-section" data-cat="2. Sub-1B (600M – 900M)">
+      <div class="cat-header">
+        <h2>2. Sub-1B (600M – 900M)</h2>
+        <span class="count-pill">32 modelos auditados</span>
+      </div>
+
+      <div class="champ-box">
+        <div class="champ-left">
+          <span class="badge-champ">🏆 CAMPEÃO DA CATEGORIA</span>
+          <h3>K2-Horizon-0.9B <span class="qbadge">Q6_K</span></h3>
+          <p class="champ-note">Elite Opus (4/10); bom geral (34/39); ganhou +9A/+0O com Lambda-RLM; rápido (34.3 t/s).</p>
+          
+        </div>
+        <div class="champ-stats">
+          <div class="stat"><label>13 Áreas</label><b>34/39</b></div>
+          <div class="stat"><label>Opus Hard</label><b>4/10</b></div>
+          <div class="stat"><label>RLM / Lambda</label><b>Sim (+9A / +0O)</b></div>
+          <div class="stat"><label>Velocidade</label><b>34.29 t/s</b></div>
+          <div class="stat accent"><label>Pontuação</label><b>74 pts</b></div>
+        </div>
+      </div>
+
+      <details class="layer-details">
+        <summary>🥈🥉 Abrir 2º e 3º Ganhadores do Pódio & Comparativo de Velocidade</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Pos.</th><th>Modelo</th><th>Quant</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Velocidade</th><th>Pontuação</th></tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>🥈 #2</td>
+          <td><b>K2-Horizon-0.9B</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td><b>33/39</b> <small>(Base 26)</small></td>
+          <td><b>4/10</b> <small>(Base 3)</small></td>
+          <td>Sim (+7A / +1O)</td>
+          <td><b>33.35 t/s</b></td>
+          <td><span class="pts-pill">73 pts</span> <small>(57.8%)</small></td>
+        </tr>
+        <tr>
+          <td>🥉 #3</td>
+          <td><b>K2-Horizon-0.9B</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td><b>35/39</b> <small>(Base 27)</small></td>
+          <td><b>3/10</b> <small>(Base 2)</small></td>
+          <td>Sim (+8A / +1O)</td>
+          <td><b>28.39 t/s</b></td>
+          <td><span class="pts-pill">65 pts</span> <small>(53.9%)</small></td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="layer-details">
+        <summary>📊 Abrir Todos os 32 Modelos Testados Nesta Categoria + Análise Individual</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Modelo</th><th>Quant</th><th>Peso</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Vel. GPU/Pri.</th><th>Vel. CPU</th><th>Pontos</th><th>Análise</th></tr>
+            </thead>
+            <tbody>
+        <tr class="model-row">
+          <td>#1</td>
+          <td><b>K2-Horizon-0.9B</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.83 GB</td>
+          <td><b>34/39</b> <small>(25➔34)</small></td>
+          <td><b>4/10</b> <small>(4➔4)</small></td>
+          <td>Sim (+9A / +0O)</td>
+          <td><b>34.29 t/s</b></td>
+          <td>36.60 t/s</td>
+          <td><span class="pts-pill">74 pts</span></td>
+          <td class="obs-col">Elite Opus (4/10); bom geral (34/39); ganhou +9A/+0O com Lambda-RLM; rápido (34.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#2</td>
+          <td><b>K2-Horizon-0.9B</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.72 GB</td>
+          <td><b>33/39</b> <small>(26➔33)</small></td>
+          <td><b>4/10</b> <small>(3➔4)</small></td>
+          <td>Sim (+7A / +1O)</td>
+          <td><b>33.35 t/s</b></td>
+          <td>38.57 t/s</td>
+          <td><span class="pts-pill">73 pts</span></td>
+          <td class="obs-col">Elite Opus (4/10); bom geral (33/39); ganhou +7A/+1O com Lambda-RLM; rápido (33.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#3</td>
+          <td><b>K2-Horizon-0.9B</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>1.07 GB</td>
+          <td><b>35/39</b> <small>(27➔35)</small></td>
+          <td><b>3/10</b> <small>(2➔3)</small></td>
+          <td>Sim (+8A / +1O)</td>
+          <td><b>28.39 t/s</b></td>
+          <td>28.46 t/s</td>
+          <td><span class="pts-pill">65 pts</span></td>
+          <td class="obs-col">Elite Opus (3/10); quase gabarito 13A (35/39); ganhou +8A/+1O com Lambda-RLM; rápido (28.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#4</td>
+          <td><b>K2-Horizon-0.9B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.62 GB</td>
+          <td><b>32/39</b> <small>(21➔32)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+11A / +0O)</td>
+          <td><b>37.65 t/s</b></td>
+          <td>43.01 t/s</td>
+          <td><span class="pts-pill">42 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (32/39); ganhou +11A/+0O com Lambda-RLM; rápido (37.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#5</td>
+          <td><b>TinyQwen3-Distill-0.6B</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.41 GB</td>
+          <td><b>34/39</b> <small>(24➔34)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+10A / +0O)</td>
+          <td><b>41.23 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">34 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (34/39); ganhou +10A/+0O com Lambda-RLM; rápido (41.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#6</td>
+          <td><b>TinyQwen3-Distill-0.6B</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.46 GB</td>
+          <td><b>33/39</b> <small>(23➔33)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+10A / +0O)</td>
+          <td><b>40.72 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">33 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (33/39); ganhou +10A/+0O com Lambda-RLM; rápido (40.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#7</td>
+          <td><b>Qwen3-0.6B-Distilled-30B-Thinking-SFT</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.41 GB</td>
+          <td><b>32/39</b> <small>(29➔32)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>43.30 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">32 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (32/39); ganhou +3A/+0O com Lambda-RLM; rápido (43.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#8</td>
+          <td><b>Qwen3-0.6B-Distill-30B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.41 GB</td>
+          <td><b>32/39</b> <small>(29➔32)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>43.30 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">32 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (32/39); ganhou +3A/+0O com Lambda-RLM; rápido (43.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#9</td>
+          <td><b>Qwen3-0.6B-Distilled-30B-A3B-Thinking-SFT</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.45 GB</td>
+          <td><b>32/39</b> <small>(29➔32)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>43.26 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">32 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (32/39); ganhou +3A/+0O com Lambda-RLM; rápido (43.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#10</td>
+          <td><b>Qwen3-0.6B-Opus4.6</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>0.60 GB</td>
+          <td><b>32/39</b> <small>(29➔32)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>30.43 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">32 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (32/39); ganhou +3A/+0O com Lambda-RLM; rápido (30.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#11</td>
+          <td><b>Qwen3-0.6B-Distilled-30B-Thinking-Q5_K_M</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.51 GB</td>
+          <td><b>30/39</b> <small>(23➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+7A / +0O)</td>
+          <td><b>39.70 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +7A/+0O com Lambda-RLM; rápido (39.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#12</td>
+          <td><b>Qwen3-0.6B-Distill-30B</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.50 GB</td>
+          <td><b>30/39</b> <small>(28➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>39.70 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +2A/+0O com Lambda-RLM; rápido (39.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#13</td>
+          <td><b>Qwen3-0.6B-Opus4.6-Abliterated</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.37 GB</td>
+          <td><b>30/39</b> <small>(26➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>38.97 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +4A/+0O com Lambda-RLM; rápido (39.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#14</td>
+          <td><b>Qwen3-0.6B-Opus4.6</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.37 GB</td>
+          <td><b>30/39</b> <small>(26➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>38.97 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +4A/+0O com Lambda-RLM; rápido (39.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#15</td>
+          <td><b>Qwen3-0.6B-Opus4.6</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.41 GB</td>
+          <td><b>30/39</b> <small>(29➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+1A / +0O)</td>
+          <td><b>36.87 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +1A/+0O com Lambda-RLM; rápido (36.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#16</td>
+          <td><b>Qwen3-0.6B-Distilled-30B-Thinking-Q8_0</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>0.75 GB</td>
+          <td><b>30/39</b> <small>(21➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+9A / +0O)</td>
+          <td><b>33.05 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +9A/+0O com Lambda-RLM; rápido (33.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#17</td>
+          <td><b>Qwen3-0.6B-Distill-30B</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>0.73 GB</td>
+          <td><b>30/39</b> <small>(28➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>33.00 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +2A/+0O com Lambda-RLM; rápido (33.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#18</td>
+          <td><b>Qwen3-0.6B-Opus4.6</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.46 GB</td>
+          <td><b>30/39</b> <small>(25➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+5A / +0O)</td>
+          <td><b>32.99 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +5A/+0O com Lambda-RLM; rápido (33.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#19</td>
+          <td><b>Qwen3.5-0.8B-Claude-4.6-Opus-Reasoning-Distilled</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.49 GB</td>
+          <td><b>30/39</b> <small>(27➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>27.41 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +3A/+0O com Lambda-RLM; rápido (27.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#20</td>
+          <td><b>TinyQwen3-Distill-0.6B</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>1.12 GB</td>
+          <td><b>30/39</b> <small>(20➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+10A / +0O)</td>
+          <td><b>15.98 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +10A/+0O com Lambda-RLM; passa piso 7 t/s (16.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#21</td>
+          <td><b>Qwen3-0.6B-Distilled-30B-Thinking-Q6_K</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.58 GB</td>
+          <td><b>29/39</b> <small>(24➔29)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+5A / +0O)</td>
+          <td><b>38.52 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">29 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (29/39); ganhou +5A/+0O com Lambda-RLM; rápido (38.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#22</td>
+          <td><b>Qwen3-0.6B-Distill-30B</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.57 GB</td>
+          <td><b>29/39</b> <small>(27➔29)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>38.50 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">29 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (29/39); ganhou +2A/+0O com Lambda-RLM; rápido (38.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#23</td>
+          <td><b>Qwen3-0.6B-Distill-30B</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>1.38 GB</td>
+          <td><b>29/39</b> <small>(27➔29)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>24.10 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">29 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (29/39); ganhou +2A/+0O com Lambda-RLM; rápido (24.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#24</td>
+          <td><b>Qwen3-0.6B-Distilled-30B-Thinking-F16-Original</b></td>
+          <td><span class="qbadge">F16 (Original Sem Quantização)</span></td>
+          <td>1.41 GB</td>
+          <td><b>29/39</b> <small>(24➔29)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+5A / +0O)</td>
+          <td><b>24.09 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">29 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (29/39); ganhou +5A/+0O com Lambda-RLM; rápido (24.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#25</td>
+          <td><b>Qwen3-0.6B-Opus4.6</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>1.12 GB</td>
+          <td><b>29/39</b> <small>(26➔29)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>21.53 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">29 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (29/39); ganhou +3A/+0O com Lambda-RLM; rápido (21.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#26</td>
+          <td><b>Qwen-3-0.6B-Claude-4.7-Opus-Distilled</b></td>
+          <td><span class="qbadge">i1-Q4_K_M</span></td>
+          <td>0.37 GB</td>
+          <td><b>28/39</b> <small>(24➔28)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>42.01 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">28 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (28/39); ganhou +4A/+0O com Lambda-RLM; rápido (42.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#27</td>
+          <td><b>TinyQwen3-Distill-0.6B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.37 GB</td>
+          <td><b>28/39</b> <small>(25➔28)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>40.66 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">28 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (28/39); ganhou +3A/+0O com Lambda-RLM; rápido (40.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#28</td>
+          <td><b>TinyQwen3-Distill-0.6B</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>0.60 GB</td>
+          <td><b>28/39</b> <small>(23➔28)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+5A / +0O)</td>
+          <td><b>28.59 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">28 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (28/39); ganhou +5A/+0O com Lambda-RLM; rápido (28.6 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#29</td>
+          <td><b>G1-0.6B-O1-Reasoning</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.45 GB</td>
+          <td><b>27/39</b> <small>(25➔27)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>35.41 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">27 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (27/39); ganhou +2A/+0O com Lambda-RLM; rápido (35.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#30</td>
+          <td><b>Qwen3-Zero-Coder-Reasoning-V2-0.8B-NEO-EX</b></td>
+          <td><span class="qbadge">Q4_K_M-imat</span></td>
+          <td>0.49 GB</td>
+          <td><b>25/39</b> <small>(17➔25)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+8A / +0O)</td>
+          <td><b>29.41 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">25 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (25/39); ganhou +8A/+0O com Lambda-RLM; rápido (29.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#31</td>
+          <td><b>DeepSeek-R1-0528-CODER-DRAFT-0.6B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.42 GB</td>
+          <td><b>24/39</b> <small>(19➔24)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+5A / +0O)</td>
+          <td><b>45.40 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">24 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (24/39); ganhou +5A/+0O com Lambda-RLM; rápido (45.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#32</td>
+          <td><b>DeepSeek-V3-0324-CODER-DRAFT-0.6B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.42 GB</td>
+          <td><b>22/39</b> <small>(20➔22)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>44.55 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">22 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (22/39); ganhou +2A/+0O com Lambda-RLM; rápido (44.5 t/s).</td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+    
+    <section class="cat-section" data-cat="3. Leves (1.0B – 1.7B)">
+      <div class="cat-header">
+        <h2>3. Leves (1.0B – 1.7B)</h2>
+        <span class="count-pill">21 modelos auditados</span>
+      </div>
+
+      <div class="champ-box">
+        <div class="champ-left">
+          <span class="badge-champ">🏆 CAMPEÃO DA CATEGORIA</span>
+          <h3>Qwen3-1.7B <span class="qbadge">Q8_0</span></h3>
+          <p class="champ-note">Resolveu 2/10 Opus; quase gabarito 13A (36/39); ganhou +2A/+0O com Lambda-RLM; rápido (31.1 t/s).</p>
+          <div class='fast-note'>⚡ Mais rápido do Top 3: <b>Qwen3-1.7B [Q5_K_M]</b> (31.22 t/s | 46 pts)</div>
+        </div>
+        <div class="champ-stats">
+          <div class="stat"><label>13 Áreas</label><b>36/39</b></div>
+          <div class="stat"><label>Opus Hard</label><b>2/10</b></div>
+          <div class="stat"><label>RLM / Lambda</label><b>Sim (+2A / +0O)</b></div>
+          <div class="stat"><label>Velocidade</label><b>31.07 t/s</b></div>
+          <div class="stat accent"><label>Pontuação</label><b>56 pts</b></div>
+        </div>
+      </div>
+
+      <details class="layer-details">
+        <summary>🥈🥉 Abrir 2º e 3º Ganhadores do Pódio & Comparativo de Velocidade</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Pos.</th><th>Modelo</th><th>Quant</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Velocidade</th><th>Pontuação</th></tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>🥈 #2</td>
+          <td><b>IBM-GPT-5.4-Coder-1B-Q6_K</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td><b>31/39</b> <small>(Base 29)</small></td>
+          <td><b>2/10</b> <small>(Base 2)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>18.87 t/s</b></td>
+          <td><span class="pts-pill">51 pts</span> <small>(43.8%)</small></td>
+        </tr>
+        <tr>
+          <td>🥉 #3</td>
+          <td><b>Qwen3-1.7B</b> ⚡ <i>Mais rápido do Top 3</i></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td><b>36/39</b> <small>(Base 32)</small></td>
+          <td><b>1/10</b> <small>(Base 1)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>31.22 t/s</b></td>
+          <td><span class="pts-pill">46 pts</span> <small>(42.9%)</small></td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="layer-details">
+        <summary>📊 Abrir Todos os 21 Modelos Testados Nesta Categoria + Análise Individual</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Modelo</th><th>Quant</th><th>Peso</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Vel. GPU/Pri.</th><th>Vel. CPU</th><th>Pontos</th><th>Análise</th></tr>
+            </thead>
+            <tbody>
+        <tr class="model-row">
+          <td>#1</td>
+          <td><b>Qwen3-1.7B</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>2.02 GB</td>
+          <td><b>36/39</b> <small>(34➔36)</small></td>
+          <td><b>2/10</b> <small>(2➔2)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>31.07 t/s</b></td>
+          <td>19.64 t/s</td>
+          <td><span class="pts-pill">56 pts</span></td>
+          <td class="obs-col">Resolveu 2/10 Opus; quase gabarito 13A (36/39); ganhou +2A/+0O com Lambda-RLM; rápido (31.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#2</td>
+          <td><b>IBM-GPT-5.4-Coder-1B-Q6_K</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>1.25 GB</td>
+          <td><b>31/39</b> <small>(29➔31)</small></td>
+          <td><b>2/10</b> <small>(2➔2)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>18.87 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">51 pts</span></td>
+          <td class="obs-col">Resolveu 2/10 Opus; bom geral (31/39); ganhou +2A/+0O com Lambda-RLM; passa piso 7 t/s (18.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#3</td>
+          <td><b>Qwen3-1.7B</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>1.37 GB</td>
+          <td><b>36/39</b> <small>(32➔36)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>31.22 t/s</b></td>
+          <td>24.92 t/s</td>
+          <td><span class="pts-pill">46 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; quase gabarito 13A (36/39); ganhou +4A/+0O com Lambda-RLM; rápido (31.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#4</td>
+          <td><b>Qwen3-1.7B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>1.19 GB</td>
+          <td><b>35/39</b> <small>(34➔35)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+1A / +0O)</td>
+          <td><b>33.08 t/s</b></td>
+          <td>26.38 t/s</td>
+          <td><span class="pts-pill">45 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; quase gabarito 13A (35/39); ganhou +1A/+0O com Lambda-RLM; rápido (33.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#5</td>
+          <td><b>Qwen3-1.7B</b></td>
+          <td><span class="qbadge">BF16</span></td>
+          <td>3.79 GB</td>
+          <td><b>35/39</b> <small>(33➔35)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>25.88 t/s</b></td>
+          <td>11.06 t/s</td>
+          <td><span class="pts-pill">45 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; quase gabarito 13A (35/39); ganhou +2A/+0O com Lambda-RLM; rápido (25.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#6</td>
+          <td><b>MiniCPM5-1B-Claude-Opus-Fable5-V2-Thinking-heretic</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.64 GB</td>
+          <td><b>32/39</b> <small>(23➔32)</small></td>
+          <td><b>1/10</b> <small>(0➔1)</small></td>
+          <td>Sim (+9A / +1O)</td>
+          <td><b>41.98 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">42 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (32/39); ganhou +9A/+1O com Lambda-RLM; rápido (42.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#7</td>
+          <td><b>MiniCPM5-1B-Opus</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>2.02 GB</td>
+          <td><b>32/39</b> <small>(30➔32)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>38.69 t/s</b></td>
+          <td>21.38 t/s</td>
+          <td><span class="pts-pill">42 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (32/39); ganhou +2A/+0O com Lambda-RLM; rápido (38.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#8</td>
+          <td><b>IBM-GPT-5.4-Coder-1B</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>3.04 GB</td>
+          <td><b>32/39</b> <small>(28➔32)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>17.34 t/s</b></td>
+          <td>11.57 t/s</td>
+          <td><span class="pts-pill">42 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (32/39); ganhou +4A/+0O com Lambda-RLM; passa piso 7 t/s (17.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#9</td>
+          <td><b>IBM-GPT-5.4-Coder-1B-Q8_0</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>1.62 GB</td>
+          <td><b>32/39</b> <small>(28➔32)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>16.04 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">42 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (32/39); ganhou +4A/+0O com Lambda-RLM; passa piso 7 t/s (16.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#10</td>
+          <td><b>IBM-GPT-5.4-Coder-1B-Q5_K_M</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>1.10 GB</td>
+          <td><b>31/39</b> <small>(29➔31)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>20.87 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">41 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (31/39); ganhou +2A/+0O com Lambda-RLM; rápido (20.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#11</td>
+          <td><b>DeepScaleR-1.5B-Preview</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>1.04 GB</td>
+          <td><b>26/39</b> <small>(21➔26)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+5A / +0O)</td>
+          <td><b>27.26 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">36 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (26/39); ganhou +5A/+0O com Lambda-RLM; rápido (27.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#12</td>
+          <td><b>MiniCPM5-1B-Claude-Opus-Fable5-V2-Q8_0</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>1.07 GB</td>
+          <td><b>33/39</b> <small>(27➔33)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+6A / +0O)</td>
+          <td><b>31.45 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">33 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (33/39); ganhou +6A/+0O com Lambda-RLM; rápido (31.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#13</td>
+          <td><b>IBM-GPT-5.4-Coder-1B</b></td>
+          <td><span class="qbadge">i1-Q4_K_M</span></td>
+          <td>0.95 GB</td>
+          <td><b>33/39</b> <small>(29➔33)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>23.39 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">33 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (33/39); ganhou +4A/+0O com Lambda-RLM; rápido (23.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#14</td>
+          <td><b>MiniCPM5-1B-Claude-Opus-Fable5-V2-Q5_K_M</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>0.73 GB</td>
+          <td><b>32/39</b> <small>(24➔32)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+8A / +0O)</td>
+          <td><b>39.53 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">32 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (32/39); ganhou +8A/+0O com Lambda-RLM; rápido (39.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#15</td>
+          <td><b>MiniCPM5-1B-Claude-Opus-Fable5-V2-Q6_K</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>0.83 GB</td>
+          <td><b>32/39</b> <small>(25➔32)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+7A / +0O)</td>
+          <td><b>36.67 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">32 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (32/39); ganhou +7A/+0O com Lambda-RLM; rápido (36.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#16</td>
+          <td><b>FableForge-1.5B-v2</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.92 GB</td>
+          <td><b>32/39</b> <small>(30➔32)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>27.74 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">32 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (32/39); ganhou +2A/+0O com Lambda-RLM; rápido (27.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#17</td>
+          <td><b>Qwen2.5-1.5B-Claude</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>1.53 GB</td>
+          <td><b>31/39</b> <small>(31➔31)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>19.74 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">31 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (31/39); resultado puro sem ajuda RLM; passa piso 7 t/s (19.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#18</td>
+          <td><b>MiniCPM5-1B-Claude-Opus-Fable5-Thinking</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.64 GB</td>
+          <td><b>20/39</b> <small>(20➔20)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>N/D</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; limitado em 13A (20/39); resultado puro sem ajuda RLM.</td>
+        </tr>
+        <tr class="model-row">
+          <td>#19</td>
+          <td><b>LFM2.5-1.2B-Thinking-Claude-4.6-Opus-Heretic</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>0.68 GB</td>
+          <td><b>30/39</b> <small>(23➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+7A / +0O)</td>
+          <td><b>43.36 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +7A/+0O com Lambda-RLM; rápido (43.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#20</td>
+          <td><b>Thinkless-1.5B-RL-DeepScaleR</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>1.04 GB</td>
+          <td><b>26/39</b> <small>(22➔26)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>26.81 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">26 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (26/39); ganhou +4A/+0O com Lambda-RLM; rápido (26.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#21</td>
+          <td><b>DeepSeek-R1-Distill-Qwen-1.5B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>1.04 GB</td>
+          <td><b>7/39</b> <small>(7➔7)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>28.48 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">7 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (7/39); resultado puro sem ajuda RLM; rápido (28.5 t/s).</td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+    
+    <section class="cat-section" data-cat="4. Camada Média Compacta (2B – 4.5B)">
+      <div class="cat-header">
+        <h2>4. Camada Média Compacta (2B – 4.5B)</h2>
+        <span class="count-pill">25 modelos auditados</span>
+      </div>
+
+      <div class="champ-box">
+        <div class="champ-left">
+          <span class="badge-champ">🏆 CAMPEÃO DA CATEGORIA</span>
+          <h3>K2-Horizon-3.7B <span class="qbadge">BF16</span></h3>
+          <p class="champ-note">Elite Opus (4/10); quase gabarito 13A (38/39); ganhou +2A/+1O com Lambda-RLM; lento (&lt;7 t/s: 5.7 t/s).</p>
+          <div class='fast-note'>⚡ Mais rápido do Top 3: <b>K2-Horizon-3.7B [Q5_K_M]</b> (20.42 t/s | 77 pts)</div>
+        </div>
+        <div class="champ-stats">
+          <div class="stat"><label>13 Áreas</label><b>38/39</b></div>
+          <div class="stat"><label>Opus Hard</label><b>4/10</b></div>
+          <div class="stat"><label>RLM / Lambda</label><b>Sim (+2A / +1O)</b></div>
+          <div class="stat"><label>Velocidade</label><b>5.66 t/s</b></div>
+          <div class="stat accent"><label>Pontuação</label><b>78 pts</b></div>
+        </div>
+      </div>
+
+      <details class="layer-details">
+        <summary>🥈🥉 Abrir 2º e 3º Ganhadores do Pódio & Comparativo de Velocidade</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Pos.</th><th>Modelo</th><th>Quant</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Velocidade</th><th>Pontuação</th></tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>🥈 #2</td>
+          <td><b>K2-Horizon-3.7B</b> ⚡ <i>Mais rápido do Top 3</i></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td><b>37/39</b> <small>(Base 36)</small></td>
+          <td><b>4/10</b> <small>(Base 3)</small></td>
+          <td>Sim (+1A / +1O)</td>
+          <td><b>20.42 t/s</b></td>
+          <td><span class="pts-pill">77 pts</span> <small>(61.9%)</small></td>
+        </tr>
+        <tr>
+          <td>🥉 #3</td>
+          <td><b>K2-Horizon-3.7B</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td><b>37/39</b> <small>(Base 35)</small></td>
+          <td><b>4/10</b> <small>(Base 4)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>20.13 t/s</b></td>
+          <td><span class="pts-pill">77 pts</span> <small>(61.9%)</small></td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="layer-details">
+        <summary>📊 Abrir Todos os 25 Modelos Testados Nesta Categoria + Análise Individual</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Modelo</th><th>Quant</th><th>Peso</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Vel. GPU/Pri.</th><th>Vel. CPU</th><th>Pontos</th><th>Análise</th></tr>
+            </thead>
+            <tbody>
+        <tr class="model-row">
+          <td>#1</td>
+          <td><b>K2-Horizon-3.7B</b></td>
+          <td><span class="qbadge">BF16</span></td>
+          <td>9.43 GB</td>
+          <td><b>38/39</b> <small>(36➔38)</small></td>
+          <td><b>4/10</b> <small>(3➔4)</small></td>
+          <td>Sim (+2A / +1O)</td>
+          <td><b>5.66 t/s</b></td>
+          <td>4.74 t/s</td>
+          <td><span class="pts-pill">78 pts</span></td>
+          <td class="obs-col">Elite Opus (4/10); quase gabarito 13A (38/39); ganhou +2A/+1O com Lambda-RLM; lento (&lt;7 t/s: 5.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#2</td>
+          <td><b>K2-Horizon-3.7B</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>3.39 GB</td>
+          <td><b>37/39</b> <small>(36➔37)</small></td>
+          <td><b>4/10</b> <small>(3➔4)</small></td>
+          <td>Sim (+1A / +1O)</td>
+          <td><b>20.42 t/s</b></td>
+          <td>11.65 t/s</td>
+          <td><span class="pts-pill">77 pts</span></td>
+          <td class="obs-col">Elite Opus (4/10); quase gabarito 13A (37/39); ganhou +1A/+1O com Lambda-RLM; rápido (20.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#3</td>
+          <td><b>K2-Horizon-3.7B</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>5.02 GB</td>
+          <td><b>37/39</b> <small>(35➔37)</small></td>
+          <td><b>4/10</b> <small>(4➔4)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>20.13 t/s</b></td>
+          <td>8.63 t/s</td>
+          <td><span class="pts-pill">77 pts</span></td>
+          <td class="obs-col">Elite Opus (4/10); quase gabarito 13A (37/39); ganhou +2A/+0O com Lambda-RLM; rápido (20.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#4</td>
+          <td><b>Parable-4B-Fable5</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>2.69 GB</td>
+          <td><b>34/39</b> <small>(32➔34)</small></td>
+          <td><b>4/10</b> <small>(3➔4)</small></td>
+          <td>Sim (+2A / +1O)</td>
+          <td><b>20.11 t/s</b></td>
+          <td>4.84 t/s</td>
+          <td><span class="pts-pill">74 pts</span></td>
+          <td class="obs-col">Elite Opus (4/10); bom geral (34/39); ganhou +2A/+1O com Lambda-RLM; rápido (20.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#5</td>
+          <td><b>K2-Horizon-3.7B</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>3.88 GB</td>
+          <td><b>37/39</b> <small>(37➔37)</small></td>
+          <td><b>3/10</b> <small>(1➔3)</small></td>
+          <td>Sim (+0A / +2O)</td>
+          <td><b>19.83 t/s</b></td>
+          <td>10.72 t/s</td>
+          <td><span class="pts-pill">67 pts</span></td>
+          <td class="obs-col">Elite Opus (3/10); quase gabarito 13A (37/39); ganhou +0A/+2O com Lambda-RLM; passa piso 7 t/s (19.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#6</td>
+          <td><b>Parable-4B-Fable5</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>3.08 GB</td>
+          <td><b>36/39</b> <small>(33➔36)</small></td>
+          <td><b>3/10</b> <small>(3➔3)</small></td>
+          <td>Sim (+3A / +0O)</td>
+          <td><b>19.52 t/s</b></td>
+          <td>3.83 t/s</td>
+          <td><span class="pts-pill">66 pts</span></td>
+          <td class="obs-col">Elite Opus (3/10); quase gabarito 13A (36/39); ganhou +3A/+0O com Lambda-RLM; passa piso 7 t/s (19.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#7</td>
+          <td><b>Parable-4B-Fable5</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>3.99 GB</td>
+          <td><b>35/39</b> <small>(33➔35)</small></td>
+          <td><b>3/10</b> <small>(2➔3)</small></td>
+          <td>Sim (+2A / +1O)</td>
+          <td><b>20.27 t/s</b></td>
+          <td>3.84 t/s</td>
+          <td><span class="pts-pill">65 pts</span></td>
+          <td class="obs-col">Elite Opus (3/10); quase gabarito 13A (35/39); ganhou +2A/+1O com Lambda-RLM; rápido (20.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#8</td>
+          <td><b>Parable-4B-Fable5</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>7.50 GB</td>
+          <td><b>35/39</b> <small>(33➔35)</small></td>
+          <td><b>3/10</b> <small>(2➔3)</small></td>
+          <td>Sim (+2A / +1O)</td>
+          <td><b>5.85 t/s</b></td>
+          <td>3.77 t/s</td>
+          <td><span class="pts-pill">65 pts</span></td>
+          <td class="obs-col">Elite Opus (3/10); quase gabarito 13A (35/39); ganhou +2A/+1O com Lambda-RLM; lento (&lt;7 t/s: 5.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#9</td>
+          <td><b>Gemma4-E4B-Opus</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>4.97 GB</td>
+          <td><b>36/39</b> <small>(35➔36)</small></td>
+          <td><b>2/10</b> <small>(2➔2)</small></td>
+          <td>Sim (+1A / +0O)</td>
+          <td><b>15.31 t/s</b></td>
+          <td>9.64 t/s</td>
+          <td><span class="pts-pill">56 pts</span></td>
+          <td class="obs-col">Resolveu 2/10 Opus; quase gabarito 13A (36/39); ganhou +1A/+0O com Lambda-RLM; passa piso 7 t/s (15.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#10</td>
+          <td><b>G9v3-3B</b></td>
+          <td><span class="qbadge">BF16</span></td>
+          <td>5.57 GB</td>
+          <td><b>34/39</b> <small>(32➔34)</small></td>
+          <td><b>2/10</b> <small>(2➔2)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>18.03 t/s</b></td>
+          <td>6.80 t/s</td>
+          <td><span class="pts-pill">54 pts</span></td>
+          <td class="obs-col">Resolveu 2/10 Opus; bom geral (34/39); ganhou +2A/+0O com Lambda-RLM; passa piso 7 t/s (18.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#11</td>
+          <td><b>K2-Horizon-3.7B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>2.94 GB</td>
+          <td><b>36/39</b> <small>(35➔36)</small></td>
+          <td><b>1/10</b> <small>(0➔1)</small></td>
+          <td>Sim (+1A / +1O)</td>
+          <td><b>22.94 t/s</b></td>
+          <td>12.13 t/s</td>
+          <td><span class="pts-pill">46 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; quase gabarito 13A (36/39); ganhou +1A/+1O com Lambda-RLM; rápido (22.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#12</td>
+          <td><b>Gemma4-E4B-Opus</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>5.37 GB</td>
+          <td><b>36/39</b> <small>(34➔36)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>14.40 t/s</b></td>
+          <td>8.82 t/s</td>
+          <td><span class="pts-pill">46 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; quase gabarito 13A (36/39); ganhou +2A/+0O com Lambda-RLM; passa piso 7 t/s (14.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#13</td>
+          <td><b>Gemma4-E4B-Opus</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>7.48 GB</td>
+          <td><b>36/39</b> <small>(35➔36)</small></td>
+          <td><b>1/10</b> <small>(0➔1)</small></td>
+          <td>Sim (+1A / +1O)</td>
+          <td><b>8.16 t/s</b></td>
+          <td>7.38 t/s</td>
+          <td><span class="pts-pill">46 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; quase gabarito 13A (36/39); ganhou +1A/+1O com Lambda-RLM; passa piso 7 t/s (8.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#14</td>
+          <td><b>G9v3-3B</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>2.96 GB</td>
+          <td><b>33/39</b> <small>(31➔33)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+2A / +0O)</td>
+          <td><b>21.27 t/s</b></td>
+          <td>5.92 t/s</td>
+          <td><span class="pts-pill">43 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (33/39); ganhou +2A/+0O com Lambda-RLM; rápido (21.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#15</td>
+          <td><b>G9v3-3B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>1.77 GB</td>
+          <td><b>32/39</b> <small>(31➔32)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+1A / +0O)</td>
+          <td><b>22.52 t/s</b></td>
+          <td>9.13 t/s</td>
+          <td><span class="pts-pill">42 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (32/39); ganhou +1A/+0O com Lambda-RLM; rápido (22.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#16</td>
+          <td><b>G9v3-3B</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>2.04 GB</td>
+          <td><b>32/39</b> <small>(31➔32)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+1A / +0O)</td>
+          <td><b>21.49 t/s</b></td>
+          <td>7.71 t/s</td>
+          <td><span class="pts-pill">42 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (32/39); ganhou +1A/+0O com Lambda-RLM; rápido (21.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#17</td>
+          <td><b>G9v3-3B</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>2.37 GB</td>
+          <td><b>32/39</b> <small>(31➔32)</small></td>
+          <td><b>1/10</b> <small>(0➔1)</small></td>
+          <td>Sim (+1A / +1O)</td>
+          <td><b>21.46 t/s</b></td>
+          <td>7.43 t/s</td>
+          <td><span class="pts-pill">42 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (32/39); ganhou +1A/+1O com Lambda-RLM; rápido (21.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#18</td>
+          <td><b>Parable-4B-Fable5</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>2.33 GB</td>
+          <td><b>38/39</b> <small>(34➔38)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+4A / +0O)</td>
+          <td><b>22.71 t/s</b></td>
+          <td>6.66 t/s</td>
+          <td><span class="pts-pill">38 pts</span></td>
+          <td class="obs-col">0/10 Opus; quase gabarito 13A (38/39); ganhou +4A/+0O com Lambda-RLM; rápido (22.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#19</td>
+          <td><b>Gemma4-E4B-Opus</b></td>
+          <td><span class="qbadge">F16</span></td>
+          <td>14.02 GB</td>
+          <td><b>35/39</b> <small>(35➔35)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>5.17 t/s</b></td>
+          <td>4.66 t/s</td>
+          <td><span class="pts-pill">35 pts</span></td>
+          <td class="obs-col">0/10 Opus; quase gabarito 13A (35/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 5.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#20</td>
+          <td><b>Lumi-4B-Nacional-CEIA</b></td>
+          <td><span class="qbadge">Q4_K_XL</span></td>
+          <td>2.92 GB</td>
+          <td><b>22/39</b> <small>(22➔22)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>10.15 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">32 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; limitado em 13A (22/39); resultado puro sem ajuda RLM; passa piso 7 t/s (10.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#21</td>
+          <td><b>G9v3-3B-Heretic</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>1.72 GB</td>
+          <td><b>31/39</b> <small>(31➔31)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>23.67 t/s</b></td>
+          <td>17.02 t/s</td>
+          <td><span class="pts-pill">31 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (31/39); resultado puro sem ajuda RLM; rápido (23.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#22</td>
+          <td><b>Nanbeige4.2-3B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>2.50 GB</td>
+          <td><b>30/39</b> <small>(29➔30)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+1A / +0O)</td>
+          <td><b>19.74 t/s</b></td>
+          <td>8.31 t/s</td>
+          <td><span class="pts-pill">30 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (30/39); ganhou +1A/+0O com Lambda-RLM; passa piso 7 t/s (19.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#23</td>
+          <td><b>Nanbeige4.1-3B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>2.28 GB</td>
+          <td><b>28/39</b> <small>(27➔28)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Sim (+1A / +0O)</td>
+          <td><b>29.85 t/s</b></td>
+          <td>15.63 t/s</td>
+          <td><span class="pts-pill">28 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (28/39); ganhou +1A/+0O com Lambda-RLM; rápido (29.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#24</td>
+          <td><b>Gemma-2-2B-Opus-Instruct</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>1.59 GB</td>
+          <td><b>28/39</b> <small>(28➔28)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>17.16 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">28 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (28/39); resultado puro sem ajuda RLM; passa piso 7 t/s (17.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#25</td>
+          <td><b>Grok-3-Reasoning-Gemma3-4B-Distill</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>2.32 GB</td>
+          <td><b>25/39</b> <small>(25➔25)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>12.86 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">25 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (25/39); resultado puro sem ajuda RLM; passa piso 7 t/s (12.9 t/s).</td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+    
+    <section class="cat-section" data-cat="5. Médios (7B – 9B)">
+      <div class="cat-header">
+        <h2>5. Médios (7B – 9B)</h2>
+        <span class="count-pill">8 modelos auditados</span>
+      </div>
+
+      <div class="champ-box">
+        <div class="champ-left">
+          <span class="badge-champ">🏆 CAMPEÃO DA CATEGORIA</span>
+          <h3>Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill <span class="qbadge">Q4_K_M</span></h3>
+          <p class="champ-note">Elite Opus (4/10); bom geral (34/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.4 t/s).</p>
+          
+        </div>
+        <div class="champ-stats">
+          <div class="stat"><label>13 Áreas</label><b>34/39</b></div>
+          <div class="stat"><label>Opus Hard</label><b>4/10</b></div>
+          <div class="stat"><label>RLM / Lambda</label><b>Não (Puro)</b></div>
+          <div class="stat"><label>Velocidade</label><b>8.36 t/s</b></div>
+          <div class="stat accent"><label>Pontuação</label><b>74 pts</b></div>
+        </div>
+      </div>
+
+      <details class="layer-details">
+        <summary>🥈🥉 Abrir 2º e 3º Ganhadores do Pódio & Comparativo de Velocidade</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Pos.</th><th>Modelo</th><th>Quant</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Velocidade</th><th>Pontuação</th></tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>🥈 #2</td>
+          <td><b>K2-Horizon-7B</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td><b>36/39</b> <small>(Base 36)</small></td>
+          <td><b>3/10</b> <small>(Base 3)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>6.65 t/s</b></td>
+          <td><span class="pts-pill">66 pts</span> <small>(54.9%)</small></td>
+        </tr>
+        <tr>
+          <td>🥉 #3</td>
+          <td><b>K2-Horizon-7B</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td><b>37/39</b> <small>(Base 36)</small></td>
+          <td><b>2/10</b> <small>(Base 2)</small></td>
+          <td>Sim (+1A / +0O)</td>
+          <td><b>5.88 t/s</b></td>
+          <td><span class="pts-pill">57 pts</span> <small>(49.9%)</small></td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="layer-details">
+        <summary>📊 Abrir Todos os 8 Modelos Testados Nesta Categoria + Análise Individual</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Modelo</th><th>Quant</th><th>Peso</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Vel. GPU/Pri.</th><th>Vel. CPU</th><th>Pontos</th><th>Análise</th></tr>
+            </thead>
+            <tbody>
+        <tr class="model-row">
+          <td>#1</td>
+          <td><b>Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>4.68 GB</td>
+          <td><b>34/39</b> <small>(34➔34)</small></td>
+          <td><b>4/10</b> <small>(4➔4)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>8.36 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">74 pts</span></td>
+          <td class="obs-col">Elite Opus (4/10); bom geral (34/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.4 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#2</td>
+          <td><b>K2-Horizon-7B</b></td>
+          <td><span class="qbadge">Q5_K_M</span></td>
+          <td>6.02 GB</td>
+          <td><b>36/39</b> <small>(36➔36)</small></td>
+          <td><b>3/10</b> <small>(3➔3)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>6.65 t/s</b></td>
+          <td>6.66 t/s</td>
+          <td><span class="pts-pill">66 pts</span></td>
+          <td class="obs-col">Elite Opus (3/10); quase gabarito 13A (36/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 6.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#3</td>
+          <td><b>K2-Horizon-7B</b></td>
+          <td><span class="qbadge">Q6_K</span></td>
+          <td>6.89 GB</td>
+          <td><b>37/39</b> <small>(36➔37)</small></td>
+          <td><b>2/10</b> <small>(2➔2)</small></td>
+          <td>Sim (+1A / +0O)</td>
+          <td><b>5.88 t/s</b></td>
+          <td>6.28 t/s</td>
+          <td><span class="pts-pill">57 pts</span></td>
+          <td class="obs-col">Resolveu 2/10 Opus; quase gabarito 13A (37/39); ganhou +1A/+0O com Lambda-RLM; lento (&lt;7 t/s: 5.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#4</td>
+          <td><b>K2-Horizon-7B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>5.21 GB</td>
+          <td><b>37/39</b> <small>(36➔37)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Sim (+1A / +0O)</td>
+          <td><b>6.89 t/s</b></td>
+          <td>8.06 t/s</td>
+          <td><span class="pts-pill">47 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; quase gabarito 13A (37/39); ganhou +1A/+0O com Lambda-RLM; lento (&lt;7 t/s: 6.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#5</td>
+          <td><b>Qwen3-8B-GPT-5.2-High-Reasoning-Distill</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>4.68 GB</td>
+          <td><b>35/39</b> <small>(35➔35)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>7.90 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">45 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; quase gabarito 13A (35/39); resultado puro sem ajuda RLM; passa piso 7 t/s (7.9 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#6</td>
+          <td><b>Poe-8B-Crownelius-Grok-Heretic</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>4.68 GB</td>
+          <td><b>18/39</b> <small>(18➔18)</small></td>
+          <td><b>2/10</b> <small>(2➔2)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>8.16 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">38 pts</span></td>
+          <td class="obs-col">Resolveu 2/10 Opus; limitado em 13A (18/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#7</td>
+          <td><b>OpenR1-Distill-7B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>4.36 GB</td>
+          <td><b>26/39</b> <small>(26➔26)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>8.76 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">26 pts</span></td>
+          <td class="obs-col">0/10 Opus; bom geral (26/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#8</td>
+          <td><b>DeepSeek-R1-Distill-Qwen-7B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>4.36 GB</td>
+          <td><b>8/39</b> <small>(8➔8)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>8.68 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">8 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (8/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.7 t/s).</td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+    
+    <section class="cat-section" data-cat="6. Pesados Densos (12B – 14B)">
+      <div class="cat-header">
+        <h2>6. Pesados Densos (12B – 14B)</h2>
+        <span class="count-pill">2 modelos auditados</span>
+      </div>
+
+      <div class="champ-box">
+        <div class="champ-left">
+          <span class="badge-champ">🏆 CAMPEÃO DA CATEGORIA</span>
+          <h3>gemma-4-12B-coder-fable5-composer2.5-v1 <span class="qbadge">Q4_K_M</span></h3>
+          <p class="champ-note">Elite Opus (4/10); bom geral (33/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 4.5 t/s).</p>
+          <div class='fast-note'>⚡ Mais rápido do Top 3: <b>Qwen3-14B-GPT-5.2-High-Reasoning-Distill [Q4_K_M]</b> (4.78 t/s | 43 pts)</div>
+        </div>
+        <div class="champ-stats">
+          <div class="stat"><label>13 Áreas</label><b>33/39</b></div>
+          <div class="stat"><label>Opus Hard</label><b>4/10</b></div>
+          <div class="stat"><label>RLM / Lambda</label><b>Não (Puro)</b></div>
+          <div class="stat"><label>Velocidade</label><b>4.46 t/s</b></div>
+          <div class="stat accent"><label>Pontuação</label><b>73 pts</b></div>
+        </div>
+      </div>
+
+      <details class="layer-details">
+        <summary>🥈🥉 Abrir 2º e 3º Ganhadores do Pódio & Comparativo de Velocidade</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Pos.</th><th>Modelo</th><th>Quant</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Velocidade</th><th>Pontuação</th></tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>🥈 #2</td>
+          <td><b>Qwen3-14B-GPT-5.2-High-Reasoning-Distill</b> ⚡ <i>Mais rápido do Top 3</i></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td><b>33/39</b> <small>(Base 33)</small></td>
+          <td><b>1/10</b> <small>(Base 1)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>4.78 t/s</b></td>
+          <td><span class="pts-pill">43 pts</span> <small>(39.8%)</small></td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="layer-details">
+        <summary>📊 Abrir Todos os 2 Modelos Testados Nesta Categoria + Análise Individual</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Modelo</th><th>Quant</th><th>Peso</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Vel. GPU/Pri.</th><th>Vel. CPU</th><th>Pontos</th><th>Análise</th></tr>
+            </thead>
+            <tbody>
+        <tr class="model-row">
+          <td>#1</td>
+          <td><b>gemma-4-12B-coder-fable5-composer2.5-v1</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>6.87 GB</td>
+          <td><b>33/39</b> <small>(33➔33)</small></td>
+          <td><b>4/10</b> <small>(4➔4)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>4.46 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">73 pts</span></td>
+          <td class="obs-col">Elite Opus (4/10); bom geral (33/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 4.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#2</td>
+          <td><b>Qwen3-14B-GPT-5.2-High-Reasoning-Distill</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>8.38 GB</td>
+          <td><b>33/39</b> <small>(33➔33)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>4.78 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">43 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (33/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 4.8 t/s).</td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+    
+    <section class="cat-section" data-cat="7. Titãs (20B – 35B+)">
+      <div class="cat-header">
+        <h2>7. Titãs (20B – 35B+)</h2>
+        <span class="count-pill">2 modelos auditados</span>
+      </div>
+
+      <div class="champ-box">
+        <div class="champ-left">
+          <span class="badge-champ">🏆 CAMPEÃO DA CATEGORIA</span>
+          <h3>gpt-oss-20b-gpt-5-codex-distill <span class="qbadge">Q8_0</span></h3>
+          <p class="champ-note">Elite Opus (3/10); bom geral (30/39); resultado puro sem ajuda RLM; passa piso 7 t/s (11.3 t/s).</p>
+          
+        </div>
+        <div class="champ-stats">
+          <div class="stat"><label>13 Áreas</label><b>30/39</b></div>
+          <div class="stat"><label>Opus Hard</label><b>3/10</b></div>
+          <div class="stat"><label>RLM / Lambda</label><b>Não (Puro)</b></div>
+          <div class="stat"><label>Velocidade</label><b>11.26 t/s</b></div>
+          <div class="stat accent"><label>Pontuação</label><b>60 pts</b></div>
+        </div>
+      </div>
+
+      <details class="layer-details">
+        <summary>🥈🥉 Abrir 2º e 3º Ganhadores do Pódio & Comparativo de Velocidade</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Pos.</th><th>Modelo</th><th>Quant</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Velocidade</th><th>Pontuação</th></tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>🥈 #2</td>
+          <td><b>Qwen3.8-27B-TurboFCFusion-Heretic-NEO-CODER</b></td>
+          <td><span class="qbadge">IQ4_XS</span></td>
+          <td><b>10/39</b> <small>(Base 10)</small></td>
+          <td><b>0/10</b> <small>(Base 0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>N/D</b></td>
+          <td><span class="pts-pill">10 pts</span> <small>(10.3%)</small></td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="layer-details">
+        <summary>📊 Abrir Todos os 2 Modelos Testados Nesta Categoria + Análise Individual</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Modelo</th><th>Quant</th><th>Peso</th><th>13 Áreas</th><th>Opus Hard</th><th>RLM/Lambda</th><th>Vel. GPU/Pri.</th><th>Vel. CPU</th><th>Pontos</th><th>Análise</th></tr>
+            </thead>
+            <tbody>
+        <tr class="model-row">
+          <td>#1</td>
+          <td><b>gpt-oss-20b-gpt-5-codex-distill</b></td>
+          <td><span class="qbadge">Q8_0</span></td>
+          <td>11.28 GB</td>
+          <td><b>30/39</b> <small>(30➔30)</small></td>
+          <td><b>3/10</b> <small>(3➔3)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>11.26 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">60 pts</span></td>
+          <td class="obs-col">Elite Opus (3/10); bom geral (30/39); resultado puro sem ajuda RLM; passa piso 7 t/s (11.3 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#2</td>
+          <td><b>Qwen3.8-27B-TurboFCFusion-Heretic-NEO-CODER</b></td>
+          <td><span class="qbadge">IQ4_XS</span></td>
+          <td>15.44 GB</td>
+          <td><b>10/39</b> <small>(10➔10)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>N/D</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">10 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (10/39); resultado puro sem ajuda RLM.</td>
+        </tr></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+    
+</div>
+
+<script>
+function toggleAll(openState) {
+  document.querySelectorAll('details.layer-details').forEach(d => d.open = openState);
+}
+document.getElementById('searchInput').addEventListener('input', function(e) {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('tr.model-row').forEach(row => {
+    const match = !q || row.innerText.toLowerCase().includes(q);
+    row.style.display = match ? '' : 'none';
+  });
+  if (q) {
+    document.querySelectorAll('details.layer-details').forEach(d => d.open = true);
+  }
+});
+</script>
+</body>
+</html>
