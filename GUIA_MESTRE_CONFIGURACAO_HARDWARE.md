@@ -123,3 +123,10 @@ Teste executado ponta a ponta em [`proof_real_categories_gains.json`](raw_data/s
 | **5. 14B Híbrido (`DeepSeek-R1-14B [IQ3_M]`)** | 36.63s / *Timeout 120s* / 0/3 | **11.63s** / *Timeout 120s* / 0/3 | ⚠️ **Bug detectado:** Boot caiu `-68.2%`, mas `-ngl 18` com `IQ3_M` na Vulkan estoura `120s` na geração. |
 | **6. 16.8B MoE (`Ring-mini-2.0 [Q4_K_M]`)** | ❌ `CRASH_EXIT_1` (`q8_0/q8_0 -fa 0`) | **4.54s / 94.99 / 23.29 t/s / 3/3** | 🏆 **Destravamento Total:** `-ctk q8_0 -ctv f16 -fa 1 -t 12 -C 0x5555550` subiu em `4.5s` a **23.29 tok/s**! |
 | **7. 20B Heavy (`GPT-OSS-20B-Antidoom`)** | 165.48s / 29.2 / **12.84 t/s** / **3/3** | ❌ `BOOT_TIMEOUT_180S` (`--repack`) | ⚠️ **Bug detectado:** `--repack` em `11.27 GB` leva `>180s` (~4–5 min) só para repacking no boot; **`--no-repack`** roda liso a `12.84 t/s`. |
+
+### Atualização dos Testes de Fix (`14B CPU Pura` & `20B Sem Repack` — [`proof_fixes_14b_20b.json`](raw_data/speed_server_mtp_pld/proof_fixes_14b_20b.json))
+- **`DeepSeek-R1-Distill-14B [IQ3_M]` (CPU Pura `--device none -ngl 0`):** Boot `37.09s`, porém manteve `TimeoutError` (`>120s`) nas 3 perguntas pela lentidão da dequantização `IQ3_M` densa + `<think>` longo. **Veredito:** Reprovado pela Regra de Ouro (`< 7.0 t/s`); usar `Ring-mini-2.0` (`23.29 t/s`) ou `RLM-Qwen3-8B` (`14.26 t/s`).
+- **`GPT-OSS-20B-Antidoom [IQ4_XS]` (`--no-repack`):**
+  - **Config Limpa (`-t 10 --no-repack`, sem `-fa 1` e sem `--skip-chat-parsing`):** **`29.22 t/s` PP / `12.84 t/s` TG / `3/3` acertos (`40.57s`)**.
+  - **Config com `-fa 1 -b 512 -ub 64 --skip-chat-parsing`:** Caiu para `17.24 t/s` PP / `6.93 t/s` TG / `2/3` acertos (`133.89s`).
+  - **Veredito:** No `GPT-OSS-20B` em CPU, **NÃO usar `-fa 1` nem `--skip-chat-parsing`** — o perfil limpo (`-t 10 --no-repack`) é **85% mais rápido (`12.84 t/s`)** e mantém `3/3`!

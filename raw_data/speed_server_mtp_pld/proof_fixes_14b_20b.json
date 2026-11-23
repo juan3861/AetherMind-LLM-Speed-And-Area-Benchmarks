@@ -1,0 +1,32 @@
+[
+  {
+    "passed": 0,
+    "total": 3,
+    "avg_pp": 0.0,
+    "avg_tg": 0.0,
+    "total_wall_s": 0.0,
+    "errors": [
+      "Q1_code:TimeoutError",
+      "Q2_math:TimeoutError",
+      "Q3_json:TimeoutError"
+    ],
+    "status": "OK",
+    "boot_s": 37.09,
+    "cat": "5. 14B CPU Pura AVX2 (Fix Timeout Vulkan)",
+    "model": "DeepSeek-R1-Distill-14B [IQ3_M]"
+  },
+  {
+    "passed": 2,
+    "total": 3,
+    "avg_pp": 17.24,
+    "avg_tg": 6.93,
+    "total_wall_s": 133.89,
+    "errors": [
+      "Q3_json:WRONG"
+    ],
+    "status": "OK",
+    "boot_s": 158.11,
+    "cat": "7. 20B CPU Otimizado Sem Repack (Fix Boot Timeout)",
+    "model": "GPT-OSS-20B-Antidoom [IQ4_XS]"
+  }
+]
