@@ -66,7 +66,7 @@
   <header>
     <div>
       <h1>🏆 AetherMind — Ranking Matemático Oficial (13 Áreas + 10 Opus Hard)</h1>
-      <div class="subtitle">Apenas modelos auditados em <b>ambas</b> as baterias (39 perguntas + 10 desafios Opus Hard) — <b>166 modelos</b> em <b>7 categorias</b>.</div>
+      <div class="subtitle">Apenas modelos auditados em <b>ambas</b> as baterias (39 perguntas + 10 desafios Opus Hard) — <b>174 modelos</b> em <b>7 categorias</b>.</div>
     </div>
     <div class="controls">
       <input type="search" id="searchInput" placeholder="Buscar modelo ou quant (ex: Q5_K_M)...">
@@ -117,8 +117,8 @@
         <span><b>60</b> pts <small>(48.8%)</small></span>
         <span>13A: <b>30/39</b></span>
         <span>Opus: <b>3/10</b></span>
-        <span>Vel: <b>N/D</b></span>
-        <span>RLM: <b>Sim (+30A / +3O)</b></span>
+        <span>Vel: <b>8.88 t/s</b></span>
+        <span>RLM: <b>Não (Puro)</b></span>
       </div>
       <div class='fast-note'>⚡ Mais rápido do Top 3: <b>Qwen3-1.7B [Q8_0]</b> (31.07 t/s | 56 pts)</div>
     </div>
@@ -127,26 +127,26 @@
       <div class="sum-cat">4. Camada Média Compacta (2B – 4.5B)</div>
       <div class="sum-model">🏆 Parable-Qwen3-4B-Claude-Fable-5 <span class="qbadge">Q4_K_M</span></div>
       <div class="sum-metrics">
-        <span><b>85</b> pts <small>(65.9%)</small></span>
-        <span>13A: <b>35/39</b></span>
+        <span><b>86</b> pts <small>(66.9%)</small></span>
+        <span>13A: <b>36/39</b></span>
         <span>Opus: <b>5/10</b></span>
-        <span>Vel: <b>N/D</b></span>
-        <span>RLM: <b>Sim (+4A / +5O)</b></span>
+        <span>Vel: <b>1.58 t/s</b></span>
+        <span>RLM: <b>Não (Puro)</b></span>
       </div>
       <div class='fast-note'>⚡ Mais rápido do Top 3: <b>K2-Horizon-3.7B [Q5_K_M]</b> (20.42 t/s | 77 pts)</div>
     </div>
     
     <div class="sum-card">
       <div class="sum-cat">5. Médios (7B – 9B)</div>
-      <div class="sum-model">🏆 Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill <span class="qbadge">Q4_K_M</span></div>
+      <div class="sum-model">🏆 Ornith-1.5-9B <span class="qbadge">Q4_K_M</span></div>
       <div class="sum-metrics">
-        <span><b>74</b> pts <small>(58.9%)</small></span>
-        <span>13A: <b>34/39</b></span>
-        <span>Opus: <b>4/10</b></span>
-        <span>Vel: <b>8.36 t/s</b></span>
+        <span><b>80</b> pts <small>(60.8%)</small></span>
+        <span>13A: <b>30/39</b></span>
+        <span>Opus: <b>5/10</b></span>
+        <span>Vel: <b>4.15 t/s</b></span>
         <span>RLM: <b>Não (Puro)</b></span>
       </div>
-      
+      <div class='fast-note'>⚡ Mais rápido do Top 3: <b>Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill [Q4_K_M]</b> (8.36 t/s | 74 pts)</div>
     </div>
     
     <div class="sum-card">
@@ -1310,14 +1310,14 @@
         <div class="champ-left">
           <span class="badge-champ">🏆 CAMPEÃO DA CATEGORIA</span>
           <h3>IBM-Grok4-UltraFast-Coder-1B <span class="qbadge">Q4_K_M</span></h3>
-          <p class="champ-note">Resolveu 3/10 Opus; bom geral (30/39); ganhou +30A/+3O com Lambda-RLM.</p>
+          <p class="champ-note">Resolveu 3/10 Opus; bom geral (30/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.9 t/s).</p>
           <div class='fast-note'>⚡ Mais rápido do Top 3: <b>Qwen3-1.7B [Q8_0]</b> (31.07 t/s | 56 pts)</div>
         </div>
         <div class="champ-stats">
           <div class="stat"><label>13 Áreas</label><b>30/39</b></div>
           <div class="stat"><label>Opus Hard</label><b>3/10</b></div>
-          <div class="stat"><label>RLM / Lambda</label><b>Sim (+30A / +3O)</b></div>
-          <div class="stat"><label>Velocidade</label><b>N/D</b></div>
+          <div class="stat"><label>RLM / Lambda</label><b>Não (Puro)</b></div>
+          <div class="stat"><label>Velocidade</label><b>8.88 t/s</b></div>
           <div class="stat accent"><label>Pontuação</label><b>60 pts</b></div>
         </div>
       </div>
@@ -1367,13 +1367,13 @@
           <td><b>IBM-Grok4-UltraFast-Coder-1B</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
           <td>0.95 GB</td>
-          <td><b>30/39</b> <small>(0➔30)</small></td>
-          <td><b>3/10</b> <small>(0➔3)</small></td>
-          <td>Sim (+30A / +3O)</td>
-          <td><b>N/D</b></td>
+          <td><b>30/39</b> <small>(30➔30)</small></td>
+          <td><b>3/10</b> <small>(3➔3)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>8.88 t/s</b></td>
           <td>-</td>
           <td><span class="pts-pill">60 pts</span></td>
-          <td class="obs-col">Resolveu 3/10 Opus; bom geral (30/39); ganhou +30A/+3O com Lambda-RLM.</td>
+          <td class="obs-col">Resolveu 3/10 Opus; bom geral (30/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.9 t/s).</td>
         </tr>
         <tr class="model-row">
           <td>#2</td>
@@ -1682,22 +1682,22 @@
     <section class="cat-section" data-cat="4. Camada Média Compacta (2B – 4.5B)">
       <div class="cat-header">
         <h2>4. Camada Média Compacta (2B – 4.5B)</h2>
-        <span class="count-pill">33 modelos auditados</span>
+        <span class="count-pill">34 modelos auditados</span>
       </div>
 
       <div class="champ-box">
         <div class="champ-left">
           <span class="badge-champ">🏆 CAMPEÃO DA CATEGORIA</span>
           <h3>Parable-Qwen3-4B-Claude-Fable-5 <span class="qbadge">Q4_K_M</span></h3>
-          <p class="champ-note">Elite Suprema Opus (5/10); quase gabarito 13A (35/39); ganhou +4A/+5O com Lambda-RLM.</p>
+          <p class="champ-note">Elite Suprema Opus (5/10); quase gabarito 13A (36/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 1.6 t/s).</p>
           <div class='fast-note'>⚡ Mais rápido do Top 3: <b>K2-Horizon-3.7B [Q5_K_M]</b> (20.42 t/s | 77 pts)</div>
         </div>
         <div class="champ-stats">
-          <div class="stat"><label>13 Áreas</label><b>35/39</b></div>
+          <div class="stat"><label>13 Áreas</label><b>36/39</b></div>
           <div class="stat"><label>Opus Hard</label><b>5/10</b></div>
-          <div class="stat"><label>RLM / Lambda</label><b>Sim (+4A / +5O)</b></div>
-          <div class="stat"><label>Velocidade</label><b>N/D</b></div>
-          <div class="stat accent"><label>Pontuação</label><b>85 pts</b></div>
+          <div class="stat"><label>RLM / Lambda</label><b>Não (Puro)</b></div>
+          <div class="stat"><label>Velocidade</label><b>1.58 t/s</b></div>
+          <div class="stat accent"><label>Pontuação</label><b>86 pts</b></div>
         </div>
       </div>
 
@@ -1734,7 +1734,7 @@
       </details>
 
       <details class="layer-details">
-        <summary>📊 Abrir Todos os 33 Modelos Testados Nesta Categoria + Análise Individual</summary>
+        <summary>📊 Abrir Todos os 34 Modelos Testados Nesta Categoria + Análise Individual</summary>
         <div class="table-wrap">
           <table>
             <thead>
@@ -1746,13 +1746,13 @@
           <td><b>Parable-Qwen3-4B-Claude-Fable-5</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
           <td>2.33 GB</td>
-          <td><b>35/39</b> <small>(31➔35)</small></td>
-          <td><b>5/10</b> <small>(0➔5)</small></td>
-          <td>Sim (+4A / +5O)</td>
-          <td><b>N/D</b></td>
+          <td><b>36/39</b> <small>(36➔36)</small></td>
+          <td><b>5/10</b> <small>(5➔5)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>1.58 t/s</b></td>
           <td>-</td>
-          <td><span class="pts-pill">85 pts</span></td>
-          <td class="obs-col">Elite Suprema Opus (5/10); quase gabarito 13A (35/39); ganhou +4A/+5O com Lambda-RLM.</td>
+          <td><span class="pts-pill">86 pts</span></td>
+          <td class="obs-col">Elite Suprema Opus (5/10); quase gabarito 13A (36/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 1.6 t/s).</td>
         </tr>
         <tr class="model-row">
           <td>#2</td>
@@ -1808,6 +1808,19 @@
         </tr>
         <tr class="model-row">
           <td>#6</td>
+          <td><b>GPT-5-Distill-llama3.2-3B-Instruct</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>1.88 GB</td>
+          <td><b>30/39</b> <small>(30➔30)</small></td>
+          <td><b>4/10</b> <small>(4➔4)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>6.78 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">70 pts</span></td>
+          <td class="obs-col">Elite Suprema Opus (4/10); bom geral (30/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 6.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#7</td>
           <td><b>K2-Horizon-3.7B</b></td>
           <td><span class="qbadge">Q6_K</span></td>
           <td>3.88 GB</td>
@@ -1820,7 +1833,7 @@
           <td class="obs-col">Resolveu 3/10 Opus; quase gabarito 13A (37/39); ganhou +0A/+2O com Lambda-RLM; passa piso 7 t/s (19.8 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#7</td>
+          <td>#8</td>
           <td><b>Parable-4B-Fable5</b></td>
           <td><span class="qbadge">Q6_K</span></td>
           <td>3.08 GB</td>
@@ -1833,7 +1846,7 @@
           <td class="obs-col">Resolveu 3/10 Opus; quase gabarito 13A (36/39); ganhou +3A/+0O com Lambda-RLM; passa piso 7 t/s (19.5 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#8</td>
+          <td>#9</td>
           <td><b>Parable-4B-Fable5</b></td>
           <td><span class="qbadge">Q8_0</span></td>
           <td>3.99 GB</td>
@@ -1846,7 +1859,7 @@
           <td class="obs-col">Resolveu 3/10 Opus; quase gabarito 13A (35/39); ganhou +2A/+1O com Lambda-RLM; rápido (20.3 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#9</td>
+          <td>#10</td>
           <td><b>Parable-4B-Fable5</b></td>
           <td><span class="qbadge">F16</span></td>
           <td>7.50 GB</td>
@@ -1857,19 +1870,6 @@
           <td>3.77 t/s</td>
           <td><span class="pts-pill">65 pts</span></td>
           <td class="obs-col">Resolveu 3/10 Opus; quase gabarito 13A (35/39); ganhou +2A/+1O com Lambda-RLM; lento (&lt;7 t/s: 5.8 t/s).</td>
-        </tr>
-        <tr class="model-row">
-          <td>#10</td>
-          <td><b>GPT-5-Distill-llama3.2-3B-Instruct</b></td>
-          <td><span class="qbadge">Q4_K_M</span></td>
-          <td>1.88 GB</td>
-          <td><b>29/39</b> <small>(30➔29)</small></td>
-          <td><b>3/10</b> <small>(4➔3)</small></td>
-          <td>Não (Puro)</td>
-          <td><b>N/D</b></td>
-          <td>-</td>
-          <td><span class="pts-pill">59 pts</span></td>
-          <td class="obs-col">Resolveu 3/10 Opus; bom geral (29/39); resultado puro sem ajuda RLM.</td>
         </tr>
         <tr class="model-row">
           <td>#11</td>
@@ -2084,13 +2084,13 @@
           <td><b>unsloth-Qwen3-4B-Hybrid</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
           <td>2.33 GB</td>
-          <td><b>31/39</b> <small>(29➔31)</small></td>
+          <td><b>31/39</b> <small>(31➔31)</small></td>
           <td><b>0/10</b> <small>(0➔0)</small></td>
-          <td>Sim (+2A / +0O)</td>
-          <td><b>N/D</b></td>
+          <td>Não (Puro)</td>
+          <td><b>3.73 t/s</b></td>
           <td>-</td>
           <td><span class="pts-pill">31 pts</span></td>
-          <td class="obs-col">0/10 Opus; bom geral (31/39); ganhou +2A/+0O com Lambda-RLM.</td>
+          <td class="obs-col">0/10 Opus; bom geral (31/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 3.7 t/s).</td>
         </tr>
         <tr class="model-row">
           <td>#28</td>
@@ -2162,13 +2162,26 @@
           <td><b>NousResearch-DeepHermes-3-Llama3-3B</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
           <td>1.88 GB</td>
-          <td><b>22/39</b> <small>(17➔22)</small></td>
+          <td><b>24/39</b> <small>(24➔24)</small></td>
           <td><b>0/10</b> <small>(0➔0)</small></td>
-          <td>Sim (+5A / +0O)</td>
-          <td><b>N/D</b></td>
+          <td>Não (Puro)</td>
+          <td><b>7.10 t/s</b></td>
           <td>-</td>
-          <td><span class="pts-pill">22 pts</span></td>
-          <td class="obs-col">0/10 Opus; limitado em 13A (22/39); ganhou +5A/+0O com Lambda-RLM.</td>
+          <td><span class="pts-pill">24 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (24/39); resultado puro sem ajuda RLM; passa piso 7 t/s (7.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#34</td>
+          <td><b>Qwen3-4B-Instruct-2507-RLM-SFT-v3-Q4_K_M</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>2.33 GB</td>
+          <td><b>18/39</b> <small>(18➔18)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>12.63 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">18 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (18/39); resultado puro sem ajuda RLM; passa piso 7 t/s (12.6 t/s).</td>
         </tr></tbody>
           </table>
         </div>
@@ -2178,22 +2191,22 @@
     <section class="cat-section" data-cat="5. Médios (7B – 9B)">
       <div class="cat-header">
         <h2>5. Médios (7B – 9B)</h2>
-        <span class="count-pill">9 modelos auditados</span>
+        <span class="count-pill">16 modelos auditados</span>
       </div>
 
       <div class="champ-box">
         <div class="champ-left">
           <span class="badge-champ">🏆 CAMPEÃO DA CATEGORIA</span>
-          <h3>Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill <span class="qbadge">Q4_K_M</span></h3>
-          <p class="champ-note">Elite Suprema Opus (4/10); bom geral (34/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.4 t/s).</p>
-          
+          <h3>Ornith-1.5-9B <span class="qbadge">Q4_K_M</span></h3>
+          <p class="champ-note">Elite Suprema Opus (5/10); bom geral (30/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 4.2 t/s).</p>
+          <div class='fast-note'>⚡ Mais rápido do Top 3: <b>Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill [Q4_K_M]</b> (8.36 t/s | 74 pts)</div>
         </div>
         <div class="champ-stats">
-          <div class="stat"><label>13 Áreas</label><b>34/39</b></div>
-          <div class="stat"><label>Opus Hard</label><b>4/10</b></div>
+          <div class="stat"><label>13 Áreas</label><b>30/39</b></div>
+          <div class="stat"><label>Opus Hard</label><b>5/10</b></div>
           <div class="stat"><label>RLM / Lambda</label><b>Não (Puro)</b></div>
-          <div class="stat"><label>Velocidade</label><b>8.36 t/s</b></div>
-          <div class="stat accent"><label>Pontuação</label><b>74 pts</b></div>
+          <div class="stat"><label>Velocidade</label><b>4.15 t/s</b></div>
+          <div class="stat accent"><label>Pontuação</label><b>80 pts</b></div>
         </div>
       </div>
 
@@ -2209,28 +2222,28 @@
           <td>🥈 #2</td>
           <td><b>MiMo-V2.6-Distill-Qwen-9B</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
-          <td><b>38/39</b> <small>(Base 31)</small></td>
-          <td><b>3/10</b> <small>(Base 0)</small></td>
-          <td>Sim (+7A / +3O)</td>
-          <td><b>N/D</b></td>
-          <td><span class="pts-pill">68 pts</span> <small>(57.0%)</small></td>
+          <td><b>37/39</b> <small>(Base 37)</small></td>
+          <td><b>4/10</b> <small>(Base 4)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>2.07 t/s</b></td>
+          <td><span class="pts-pill">77 pts</span> <small>(61.9%)</small></td>
         </tr>
         <tr>
           <td>🥉 #3</td>
-          <td><b>K2-Horizon-7B</b></td>
-          <td><span class="qbadge">Q5_K_M</span></td>
-          <td><b>36/39</b> <small>(Base 36)</small></td>
-          <td><b>3/10</b> <small>(Base 3)</small></td>
+          <td><b>Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill</b> ⚡ <i>Mais rápido do Top 3</i></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td><b>34/39</b> <small>(Base 34)</small></td>
+          <td><b>4/10</b> <small>(Base 4)</small></td>
           <td>Não (Puro)</td>
-          <td><b>6.65 t/s</b></td>
-          <td><span class="pts-pill">66 pts</span> <small>(54.9%)</small></td>
+          <td><b>8.36 t/s</b></td>
+          <td><span class="pts-pill">74 pts</span> <small>(58.9%)</small></td>
         </tr></tbody>
           </table>
         </div>
       </details>
 
       <details class="layer-details">
-        <summary>📊 Abrir Todos os 9 Modelos Testados Nesta Categoria + Análise Individual</summary>
+        <summary>📊 Abrir Todos os 16 Modelos Testados Nesta Categoria + Análise Individual</summary>
         <div class="table-wrap">
           <table>
             <thead>
@@ -2239,6 +2252,32 @@
             <tbody>
         <tr class="model-row">
           <td>#1</td>
+          <td><b>Ornith-1.5-9B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>5.24 GB</td>
+          <td><b>30/39</b> <small>(30➔30)</small></td>
+          <td><b>5/10</b> <small>(5➔5)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>4.15 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">80 pts</span></td>
+          <td class="obs-col">Elite Suprema Opus (5/10); bom geral (30/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 4.2 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#2</td>
+          <td><b>MiMo-V2.6-Distill-Qwen-9B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>5.44 GB</td>
+          <td><b>37/39</b> <small>(37➔37)</small></td>
+          <td><b>4/10</b> <small>(4➔4)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>2.07 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">77 pts</span></td>
+          <td class="obs-col">Elite Suprema Opus (4/10); quase gabarito 13A (37/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 2.1 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#3</td>
           <td><b>Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
           <td>4.68 GB</td>
@@ -2251,20 +2290,33 @@
           <td class="obs-col">Elite Suprema Opus (4/10); bom geral (34/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.4 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#2</td>
-          <td><b>MiMo-V2.6-Distill-Qwen-9B</b></td>
+          <td>#4</td>
+          <td><b>Qwen3.5-9B-Pure</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
-          <td>5.44 GB</td>
-          <td><b>38/39</b> <small>(31➔38)</small></td>
-          <td><b>3/10</b> <small>(0➔3)</small></td>
-          <td>Sim (+7A / +3O)</td>
-          <td><b>N/D</b></td>
+          <td>5.24 GB</td>
+          <td><b>32/39</b> <small>(32➔32)</small></td>
+          <td><b>4/10</b> <small>(4➔4)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>4.40 t/s</b></td>
           <td>-</td>
-          <td><span class="pts-pill">68 pts</span></td>
-          <td class="obs-col">Resolveu 3/10 Opus; quase gabarito 13A (38/39); ganhou +7A/+3O com Lambda-RLM.</td>
+          <td><span class="pts-pill">72 pts</span></td>
+          <td class="obs-col">Elite Suprema Opus (4/10); bom geral (32/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 4.4 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#3</td>
+          <td>#5</td>
+          <td><b>rlm-qwen3-8b-v0.1-Q4_K_M</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>4.68 GB</td>
+          <td><b>37/39</b> <small>(37➔37)</small></td>
+          <td><b>3/10</b> <small>(3➔3)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>7.78 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">67 pts</span></td>
+          <td class="obs-col">Resolveu 3/10 Opus; quase gabarito 13A (37/39); resultado puro sem ajuda RLM; passa piso 7 t/s (7.8 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#6</td>
           <td><b>K2-Horizon-7B</b></td>
           <td><span class="qbadge">Q5_K_M</span></td>
           <td>6.02 GB</td>
@@ -2277,7 +2329,20 @@
           <td class="obs-col">Resolveu 3/10 Opus; quase gabarito 13A (36/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 6.7 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#4</td>
+          <td>#7</td>
+          <td><b>Qwopus3.5-9B-v3</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>5.24 GB</td>
+          <td><b>32/39</b> <small>(32➔32)</small></td>
+          <td><b>3/10</b> <small>(3➔3)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>4.49 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">62 pts</span></td>
+          <td class="obs-col">Resolveu 3/10 Opus; bom geral (32/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 4.5 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#8</td>
           <td><b>K2-Horizon-7B</b></td>
           <td><span class="qbadge">Q6_K</span></td>
           <td>6.89 GB</td>
@@ -2290,7 +2355,7 @@
           <td class="obs-col">Resolveu 2/10 Opus; quase gabarito 13A (37/39); ganhou +1A/+0O com Lambda-RLM; lento (&lt;7 t/s: 5.9 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#5</td>
+          <td>#9</td>
           <td><b>K2-Horizon-7B</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
           <td>5.21 GB</td>
@@ -2303,7 +2368,7 @@
           <td class="obs-col">Resolveu 1/10 Opus; quase gabarito 13A (37/39); ganhou +1A/+0O com Lambda-RLM; lento (&lt;7 t/s: 6.9 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#6</td>
+          <td>#10</td>
           <td><b>Qwen3-8B-GPT-5.2-High-Reasoning-Distill</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
           <td>4.68 GB</td>
@@ -2316,7 +2381,20 @@
           <td class="obs-col">Resolveu 1/10 Opus; quase gabarito 13A (35/39); resultado puro sem ajuda RLM; passa piso 7 t/s (7.9 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#7</td>
+          <td>#11</td>
+          <td><b>Qwen3.8-9B-Heretic-IQ4_XS</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>4.99 GB</td>
+          <td><b>33/39</b> <small>(33➔33)</small></td>
+          <td><b>1/10</b> <small>(1➔1)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>7.02 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">43 pts</span></td>
+          <td class="obs-col">Resolveu 1/10 Opus; bom geral (33/39); resultado puro sem ajuda RLM; passa piso 7 t/s (7.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#12</td>
           <td><b>Poe-8B-Crownelius-Grok-Heretic</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
           <td>4.68 GB</td>
@@ -2329,7 +2407,20 @@
           <td class="obs-col">Resolveu 2/10 Opus; limitado em 13A (18/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.2 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#8</td>
+          <td>#13</td>
+          <td><b>empero-Qwable-9B-Claude-Fable-5</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>5.24 GB</td>
+          <td><b>36/39</b> <small>(36➔36)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>4.00 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">36 pts</span></td>
+          <td class="obs-col">0/10 Opus; quase gabarito 13A (36/39); resultado puro sem ajuda RLM; lento (&lt;7 t/s: 4.0 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#14</td>
           <td><b>OpenR1-Distill-7B</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
           <td>4.36 GB</td>
@@ -2342,7 +2433,7 @@
           <td class="obs-col">0/10 Opus; bom geral (26/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.8 t/s).</td>
         </tr>
         <tr class="model-row">
-          <td>#9</td>
+          <td>#15</td>
           <td><b>DeepSeek-R1-Distill-Qwen-7B</b></td>
           <td><span class="qbadge">Q4_K_M</span></td>
           <td>4.36 GB</td>
@@ -2353,6 +2444,19 @@
           <td>-</td>
           <td><span class="pts-pill">8 pts</span></td>
           <td class="obs-col">0/10 Opus; limitado em 13A (8/39); resultado puro sem ajuda RLM; passa piso 7 t/s (8.7 t/s).</td>
+        </tr>
+        <tr class="model-row">
+          <td>#16</td>
+          <td><b>unsloth-DeepSeek-R1-0528-Qwen3-8B</b></td>
+          <td><span class="qbadge">Q4_K_M</span></td>
+          <td>4.68 GB</td>
+          <td><b>6/39</b> <small>(6➔6)</small></td>
+          <td><b>0/10</b> <small>(0➔0)</small></td>
+          <td>Não (Puro)</td>
+          <td><b>7.00 t/s</b></td>
+          <td>-</td>
+          <td><span class="pts-pill">6 pts</span></td>
+          <td class="obs-col">0/10 Opus; limitado em 13A (6/39); resultado puro sem ajuda RLM; passa piso 7 t/s (7.0 t/s).</td>
         </tr></tbody>
           </table>
         </div>
