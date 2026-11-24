@@ -2433,7 +2433,7 @@ footer {
         <div class="pillar-card p4">
           <div class="pillar-badge">4º ⚡ Campeão Velocidade</div>
           <div class="pillar-name">G9v3-3B-Heretic</div>
-          <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 1.72 GB • RLM: Não (Puro)</div>
+          <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 1.72 GB • RLM: Sim (+15A/+0O)</div>
           <div class="pillar-metrics">
             <div class="metric-item">
               <span class="metric-label">13 Áreas (39Q)</span>
@@ -2445,11 +2445,11 @@ footer {
             </div>
             <div class="metric-item">
               <span class="metric-label">Velocidade</span>
-              <span class="metric-val speed heat-badge heat-2">23.7 t/s</span>
+              <span class="metric-val speed heat-badge heat-2">24.1 t/s</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">Throughput</span>
-              <span class="metric-val">23.7 t/s</span>
+              <span class="metric-val">24.1 t/s</span>
             </div>
           </div>
         </div>
@@ -2748,6 +2748,20 @@ footer {
 
         <tr class="">
           <td><b>#20</b></td>
+          <td><b>SmolLM3-3B-DeepSeek-V4</b></td>
+          <td><span class="tag-quant">Q4_K_M</span></td>
+          <td>1.78 GB</td>
+          <td><span class=""><b>32/39</b></span> <small style="color:#64748b;">(28➔32)</small></td>
+          <td><span class=""><b>1/10</b></span> <small style="color:#64748b;">(0➔1)</small></td>
+          <td class="tag-rlm">Sim (+4A / +1O)</td>
+          <td><span class="heat-badge heat-2"><b>23.42 t/s</b></span></td>
+          <td><span class="score-badge">42 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 1/10 Opus; aprovado geral (32/39); ganhou +4A/+1O com Lambda-RLM; rápido (23.4 t/s).</td>
+        </tr>
+        
+
+        <tr class="">
+          <td><b>#21</b></td>
           <td><b>G9v3-3B</b></td>
           <td><span class="tag-quant">Q5_K_M</span></td>
           <td>2.04 GB</td>
@@ -2761,7 +2775,7 @@ footer {
         
 
         <tr class="">
-          <td><b>#21</b></td>
+          <td><b>#22</b></td>
           <td><b>G9v3-3B</b></td>
           <td><span class="tag-quant">Q6_K</span></td>
           <td>2.37 GB</td>
@@ -2771,20 +2785,6 @@ footer {
           <td><span class="heat-badge heat-2"><b>21.46 t/s</b></span></td>
           <td><span class="score-badge">42 pts</span></td>
           <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 1/10 Opus; aprovado geral (32/39); ganhou +1A/+1O com Lambda-RLM; rápido (21.5 t/s).</td>
-        </tr>
-        
-
-        <tr class="">
-          <td><b>#22</b></td>
-          <td><b>SmolLM3-3B-DeepSeek-V4</b></td>
-          <td><span class="tag-quant">Q4_K_M</span></td>
-          <td>1.78 GB</td>
-          <td><span class=""><b>32/39</b></span> <small style="color:#64748b;">(32➔32)</small></td>
-          <td><span class=""><b>1/10</b></span> <small style="color:#64748b;">(1➔1)</small></td>
-          <td class="tag-pure">Não (Puro)</td>
-          <td><span class=""><b>14.06 t/s</b></span></td>
-          <td><span class="score-badge">42 pts</span></td>
-          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 1/10 Opus; aprovado geral (32/39); resultado puro sem ajuda RLM; elegível Lambda &gt;=6 t/s (14.1 t/s).</td>
         </tr>
         
 
@@ -2877,12 +2877,12 @@ footer {
           <td><b>G9v3-3B-Heretic</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>1.72 GB</td>
-          <td><span class=""><b>31/39</b></span> <small style="color:#64748b;">(31➔31)</small></td>
+          <td><span class=""><b>31/39</b></span> <small style="color:#64748b;">(16➔31)</small></td>
           <td><span class=""><b>0/10</b></span> <small style="color:#64748b;">(0➔0)</small></td>
-          <td class="tag-pure">Não (Puro)</td>
-          <td><span class="heat-badge heat-2"><b>23.67 t/s</b></span></td>
+          <td class="tag-rlm">Sim (+15A / +0O)</td>
+          <td><span class="heat-badge heat-2"><b>24.07 t/s</b></span></td>
           <td><span class="score-badge">31 pts</span></td>
-          <td style="color:#94a3b8; font-size:0.75rem;">0/10 Opus; aprovado geral (31/39); resultado puro sem ajuda RLM; rápido (23.7 t/s).</td>
+          <td style="color:#94a3b8; font-size:0.75rem;">0/10 Opus; aprovado geral (31/39); ganhou +15A/+0O com Lambda-RLM; rápido (24.1 t/s).</td>
         </tr>
         
 
@@ -3020,7 +3020,7 @@ footer {
   <section class="cat-section" data-cat="5. Médios (7B – 9B)">
     <div class="cat-header">
       <div class="cat-title">5. Médios (7B – 9B)</div>
-      <div class="cat-count">17 modelos (5 riscados)</div>
+      <div class="cat-count">20 modelos (5 riscados)</div>
     </div>
 
     <!-- Pódio dos 4 Pilares -->
@@ -3028,24 +3028,24 @@ footer {
       
         <div class="pillar-card p1">
           <div class="pillar-badge">1º 🏆 Equilíbrio Geral</div>
-          <div class="pillar-name">Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill</div>
-          <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 4.68 GB • RLM: Não (Puro)</div>
+          <div class="pillar-name">K2-Horizon-7B</div>
+          <div class="pillar-meta">Quant: <span class="tag-quant">Q5_K_M</span> • 6.02 GB • RLM: Sim (+2A/+2O)</div>
           <div class="pillar-metrics">
             <div class="metric-item">
               <span class="metric-label">13 Áreas (39Q)</span>
-              <span class="metric-val highlight heat-badge heat-1">34/39</span>
+              <span class="metric-val highlight heat-badge heat-3">38/39</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">10 Opus Hard</span>
-              <span class="metric-val highlight heat-badge heat-2">4/10</span>
+              <span class="metric-val highlight heat-badge heat-3">5/10</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">Velocidade</span>
-              <span class="metric-val speed heat-badge heat-2">8.4 t/s</span>
+              <span class="metric-val speed heat-badge heat-4">10.4 t/s</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">Score Equilíbrio</span>
-              <span class="metric-val">80.9 pts</span>
+              <span class="metric-val">105.6 pts</span>
             </div>
           </div>
         </div>
@@ -3103,8 +3103,8 @@ footer {
       
         <div class="pillar-card p4">
           <div class="pillar-badge">4º ⚡ Campeão Velocidade</div>
-          <div class="pillar-name">Qwen3-8B-GPT-5.2-High-Reasoning-Distill</div>
-          <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 4.68 GB • RLM: Não (Puro)</div>
+          <div class="pillar-name">Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill</div>
+          <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 4.68 GB • RLM: Sim (+1A/+1O)</div>
           <div class="pillar-metrics">
             <div class="metric-item">
               <span class="metric-label">13 Áreas (39Q)</span>
@@ -3112,15 +3112,15 @@ footer {
             </div>
             <div class="metric-item">
               <span class="metric-label">10 Opus Hard</span>
-              <span class="metric-val highlight ">1/10</span>
+              <span class="metric-val highlight heat-badge heat-2">4/10</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">Velocidade</span>
-              <span class="metric-val speed heat-badge heat-2">7.9 t/s</span>
+              <span class="metric-val speed heat-badge heat-4">24.3 t/s</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">Throughput</span>
-              <span class="metric-val">7.9 t/s</span>
+              <span class="metric-val">24.3 t/s</span>
             </div>
           </div>
         </div>
@@ -3130,7 +3130,7 @@ footer {
     <!-- Tabela Completa da Categoria -->
     <details class="layer-details">
       <summary>
-        <span>📂 Ver Tabela Completa da Categoria (17 modelos)</span>
+        <span>📂 Ver Tabela Completa da Categoria (20 modelos)</span>
         <span style="font-size:0.75rem; color:#94a3b8;">Clique para expandir / recolher</span>
       </summary>
       <div class="details-content">
@@ -3153,6 +3153,20 @@ footer {
             
         <tr class="">
           <td><b>#1</b></td>
+          <td><b>K2-Horizon-7B</b></td>
+          <td><span class="tag-quant">Q5_K_M</span></td>
+          <td>6.02 GB</td>
+          <td><span class="heat-badge heat-3"><b>38/39</b></span> <small style="color:#64748b;">(36➔38)</small></td>
+          <td><span class="heat-badge heat-3"><b>5/10</b></span> <small style="color:#64748b;">(3➔5)</small></td>
+          <td class="tag-rlm">Sim (+2A / +2O)</td>
+          <td><span class="heat-badge heat-4"><b>10.45 t/s</b></span></td>
+          <td><span class="score-badge">88 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">Elite Suprema Opus (5/10); quase gabarito 13A (38/39); ganhou +2A/+2O com Lambda-RLM; elegível Lambda &gt;=6 t/s (10.4 t/s).</td>
+        </tr>
+        
+
+        <tr class="">
+          <td><b>#2</b></td>
           <td><b>Ornith-1.5-9B</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>5.24 GB</td>
@@ -3166,7 +3180,7 @@ footer {
         
 
         <tr class="">
-          <td><b>#2</b></td>
+          <td><b>#3</b></td>
           <td><b>MiMo-V2.6-Distill-Qwen-9B</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>5.44 GB</td>
@@ -3180,21 +3194,21 @@ footer {
         
 
         <tr class="">
-          <td><b>#3</b></td>
+          <td><b>#4</b></td>
           <td><b>Qwen2.5-7B-Thinking-Claude-Gemini-GPT5.2-Distill</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>4.68 GB</td>
-          <td><span class="heat-badge heat-1"><b>34/39</b></span> <small style="color:#64748b;">(34➔34)</small></td>
-          <td><span class="heat-badge heat-2"><b>4/10</b></span> <small style="color:#64748b;">(4➔4)</small></td>
-          <td class="tag-pure">Não (Puro)</td>
-          <td><span class="heat-badge heat-2"><b>8.36 t/s</b></span></td>
-          <td><span class="score-badge">74 pts</span></td>
-          <td style="color:#94a3b8; font-size:0.75rem;">Elite Suprema Opus (4/10); aprovado geral (34/39); resultado puro sem ajuda RLM; elegível Lambda &gt;=6 t/s (8.4 t/s).</td>
+          <td><span class="heat-badge heat-2"><b>35/39</b></span> <small style="color:#64748b;">(34➔35)</small></td>
+          <td><span class="heat-badge heat-2"><b>4/10</b></span> <small style="color:#64748b;">(3➔4)</small></td>
+          <td class="tag-rlm">Sim (+1A / +1O)</td>
+          <td><span class="heat-badge heat-4"><b>24.30 t/s</b></span></td>
+          <td><span class="score-badge">75 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">Elite Suprema Opus (4/10); quase gabarito 13A (35/39); ganhou +1A/+1O com Lambda-RLM; rápido (24.3 t/s).</td>
         </tr>
         
 
         <tr class="">
-          <td><b>#4</b></td>
+          <td><b>#5</b></td>
           <td><b>Qwen3.5-9B-Pure</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>5.24 GB</td>
@@ -3208,7 +3222,7 @@ footer {
         
 
         <tr class="">
-          <td><b>#5</b></td>
+          <td><b>#6</b></td>
           <td><b>rlm-qwen3-8b-v0.1-Q4_K_M</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>4.68 GB</td>
@@ -3222,21 +3236,21 @@ footer {
         
 
         <tr class="">
-          <td><b>#6</b></td>
-          <td><b>K2-Horizon-7B</b></td>
-          <td><span class="tag-quant">Q5_K_M</span></td>
-          <td>6.02 GB</td>
-          <td><span class="heat-badge heat-2"><b>36/39</b></span> <small style="color:#64748b;">(36➔36)</small></td>
+          <td><b>#7</b></td>
+          <td><b>Qwen2.5-Coder-7B-Instruct</b></td>
+          <td><span class="tag-quant">Q4_K_M</span></td>
+          <td>4.36 GB</td>
+          <td><span class="heat-badge heat-1"><b>34/39</b></span> <small style="color:#64748b;">(34➔34)</small></td>
           <td><span class=""><b>3/10</b></span> <small style="color:#64748b;">(3➔3)</small></td>
-          <td class="tag-pure">Não (Puro)</td>
-          <td><span class="heat-badge heat-1"><b>6.65 t/s</b></span></td>
-          <td><span class="score-badge">66 pts</span></td>
-          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 3/10 Opus; quase gabarito 13A (36/39); resultado puro sem ajuda RLM; elegível Lambda &gt;=6 t/s (6.7 t/s).</td>
+          <td class="tag-rlm">Sim (+0A / +0O)</td>
+          <td><span class="heat-badge heat-4"><b>22.90 t/s</b></span></td>
+          <td><span class="score-badge">64 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 3/10 Opus; aprovado geral (34/39); testado sob Lambda-RLM (sem ganho extra); rápido (22.9 t/s).</td>
         </tr>
         
 
         <tr class="">
-          <td><b>#7</b></td>
+          <td><b>#8</b></td>
           <td><b>Qwopus3.5-9B-v3</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>5.24 GB</td>
@@ -3250,7 +3264,7 @@ footer {
         
 
         <tr class="">
-          <td><b>#8</b></td>
+          <td><b>#9</b></td>
           <td><b>K2-Horizon-7B</b></td>
           <td><span class="tag-quant">Q6_K</span></td>
           <td>6.89 GB</td>
@@ -3264,7 +3278,7 @@ footer {
         
 
         <tr class="">
-          <td><b>#9</b></td>
+          <td><b>#10</b></td>
           <td><b>K2-Horizon-7B</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>5.21 GB</td>
@@ -3278,21 +3292,35 @@ footer {
         
 
         <tr class="">
-          <td><b>#10</b></td>
-          <td><b>Qwen3-8B-GPT-5.2-High-Reasoning-Distill</b></td>
+          <td><b>#11</b></td>
+          <td><b>LFM2.5-8B-A1B</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
-          <td>4.68 GB</td>
-          <td><span class="heat-badge heat-2"><b>35/39</b></span> <small style="color:#64748b;">(35➔35)</small></td>
-          <td><span class=""><b>1/10</b></span> <small style="color:#64748b;">(1➔1)</small></td>
-          <td class="tag-pure">Não (Puro)</td>
-          <td><span class="heat-badge heat-2"><b>7.90 t/s</b></span></td>
-          <td><span class="score-badge">45 pts</span></td>
-          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 1/10 Opus; quase gabarito 13A (35/39); resultado puro sem ajuda RLM; elegível Lambda &gt;=6 t/s (7.9 t/s).</td>
+          <td>4.80 GB</td>
+          <td><span class="heat-badge heat-2"><b>36/39</b></span> <small style="color:#64748b;">(32➔36)</small></td>
+          <td><span class=""><b>1/10</b></span> <small style="color:#64748b;">(0➔1)</small></td>
+          <td class="tag-rlm">Sim (+4A / +1O)</td>
+          <td><span class="heat-badge heat-4"><b>20.78 t/s</b></span></td>
+          <td><span class="score-badge">46 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 1/10 Opus; quase gabarito 13A (36/39); ganhou +4A/+1O com Lambda-RLM; rápido (20.8 t/s).</td>
         </tr>
         
 
         <tr class="">
-          <td><b>#11</b></td>
+          <td><b>#12</b></td>
+          <td><b>Qwen3-8B-GPT-5.2-High-Reasoning-Distill</b></td>
+          <td><span class="tag-quant">Q4_K_M</span></td>
+          <td>4.68 GB</td>
+          <td><span class="heat-badge heat-2"><b>35/39</b></span> <small style="color:#64748b;">(33➔35)</small></td>
+          <td><span class=""><b>1/10</b></span> <small style="color:#64748b;">(0➔1)</small></td>
+          <td class="tag-rlm">Sim (+2A / +1O)</td>
+          <td><span class="heat-badge heat-4"><b>20.29 t/s</b></span></td>
+          <td><span class="score-badge">45 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 1/10 Opus; quase gabarito 13A (35/39); ganhou +2A/+1O com Lambda-RLM; rápido (20.3 t/s).</td>
+        </tr>
+        
+
+        <tr class="">
+          <td><b>#13</b></td>
           <td><b>Qwen3.8-9B-Heretic-IQ4_XS</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>4.99 GB</td>
@@ -3306,7 +3334,7 @@ footer {
         
 
         <tr class="row-struck">
-          <td><b>#12</b></td>
+          <td><b>#14</b></td>
           <td><b>Poe-8B-Crownelius-Grok-Heretic</b><span class='struck-pill'>&lt;30A</span></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>4.68 GB</td>
@@ -3320,7 +3348,21 @@ footer {
         
 
         <tr class="">
-          <td><b>#13</b></td>
+          <td><b>#15</b></td>
+          <td><b>Qwen3-8B</b></td>
+          <td><span class="tag-quant">Q4_K_M</span></td>
+          <td>4.68 GB</td>
+          <td><span class="heat-badge heat-2"><b>36/39</b></span> <small style="color:#64748b;">(34➔36)</small></td>
+          <td><span class=""><b>0/10</b></span> <small style="color:#64748b;">(0➔0)</small></td>
+          <td class="tag-rlm">Sim (+2A / +0O)</td>
+          <td><span class="heat-badge heat-4"><b>19.64 t/s</b></span></td>
+          <td><span class="score-badge">36 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">0/10 Opus; quase gabarito 13A (36/39); ganhou +2A/+0O com Lambda-RLM; elegível Lambda &gt;=6 t/s (19.6 t/s).</td>
+        </tr>
+        
+
+        <tr class="">
+          <td><b>#16</b></td>
           <td><b>empero-Qwable-9B-Claude-Fable-5</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>5.24 GB</td>
@@ -3334,7 +3376,7 @@ footer {
         
 
         <tr class="row-struck">
-          <td><b>#14</b></td>
+          <td><b>#17</b></td>
           <td><b>OpenR1-Distill-7B</b><span class='struck-pill'>&lt;30A</span></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>4.36 GB</td>
@@ -3348,7 +3390,7 @@ footer {
         
 
         <tr class="row-struck">
-          <td><b>#15</b></td>
+          <td><b>#18</b></td>
           <td><b>DeepSeek-R1-Distill-Qwen-7B</b><span class='struck-pill'>&lt;30A</span></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>4.36 GB</td>
@@ -3362,7 +3404,7 @@ footer {
         
 
         <tr class="row-struck">
-          <td><b>#16</b></td>
+          <td><b>#19</b></td>
           <td><b>GPT-5.6-Sol</b><span class='struck-pill'>&lt;30A</span></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>5.03 GB</td>
@@ -3376,7 +3418,7 @@ footer {
         
 
         <tr class="row-struck">
-          <td><b>#17</b></td>
+          <td><b>#20</b></td>
           <td><b>unsloth-DeepSeek-R1-0528-Qwen3-8B</b><span class='struck-pill'>&lt;30A</span></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>4.68 GB</td>
@@ -3455,6 +3497,31 @@ footer {
       
         <div class="pillar-card p3">
           <div class="pillar-badge">3º 🌐 Mestre da Amplitude</div>
+          <div class="pillar-name">Mellum2-12B-A2.5B-Claude-4.6-4.8-Opus-Thinking</div>
+          <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 7.52 GB • RLM: Sim (+4A/+1O)</div>
+          <div class="pillar-metrics">
+            <div class="metric-item">
+              <span class="metric-label">13 Áreas (39Q)</span>
+              <span class="metric-val highlight heat-badge heat-1">34/39</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">10 Opus Hard</span>
+              <span class="metric-val highlight ">2/10</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Velocidade</span>
+              <span class="metric-val speed heat-badge heat-4">15.6 t/s</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Aproveitamento</span>
+              <span class="metric-val">87.2%</span>
+            </div>
+          </div>
+        </div>
+        
+      
+        <div class="pillar-card p4">
+          <div class="pillar-badge">4º ⚡ Campeão Velocidade</div>
           <div class="pillar-name">Qwen3-14B-GPT-5.2-High-Reasoning-Distill</div>
           <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 8.38 GB • RLM: Não (Puro)</div>
           <div class="pillar-metrics">
@@ -3471,33 +3538,8 @@ footer {
               <span class="metric-val speed heat-badge heat-1">4.8 t/s</span>
             </div>
             <div class="metric-item">
-              <span class="metric-label">Aproveitamento</span>
-              <span class="metric-val">84.6%</span>
-            </div>
-          </div>
-        </div>
-        
-      
-        <div class="pillar-card p4">
-          <div class="pillar-badge">4º ⚡ Campeão Velocidade</div>
-          <div class="pillar-name">Mellum2-12B-A2.5B-Claude-4.6-4.8-Opus-Thinking</div>
-          <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 7.52 GB • RLM: Sim (+0A/+0O)</div>
-          <div class="pillar-metrics">
-            <div class="metric-item">
-              <span class="metric-label">13 Áreas (39Q)</span>
-              <span class="metric-val highlight ">30/39</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-label">10 Opus Hard</span>
-              <span class="metric-val highlight ">1/10</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-label">Velocidade</span>
-              <span class="metric-val speed heat-badge heat-4">13.5 t/s</span>
-            </div>
-            <div class="metric-item">
               <span class="metric-label">Throughput</span>
-              <span class="metric-val">13.5 t/s</span>
+              <span class="metric-val">4.8 t/s</span>
             </div>
           </div>
         </div>
@@ -3558,6 +3600,20 @@ footer {
 
         <tr class="">
           <td><b>#3</b></td>
+          <td><b>Mellum2-12B-A2.5B-Claude-4.6-4.8-Opus-Thinking</b></td>
+          <td><span class="tag-quant">Q4_K_M</span></td>
+          <td>7.52 GB</td>
+          <td><span class="heat-badge heat-1"><b>34/39</b></span> <small style="color:#64748b;">(30➔34)</small></td>
+          <td><span class=""><b>2/10</b></span> <small style="color:#64748b;">(1➔2)</small></td>
+          <td class="tag-rlm">Sim (+4A / +1O)</td>
+          <td><span class="heat-badge heat-4"><b>15.57 t/s</b></span></td>
+          <td><span class="score-badge">54 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 2/10 Opus; aprovado geral (34/39); ganhou +4A/+1O com Lambda-RLM; elegível Lambda &gt;=6 t/s (15.6 t/s).</td>
+        </tr>
+        
+
+        <tr class="">
+          <td><b>#4</b></td>
           <td><b>Qwen3-14B-GPT-5.2-High-Reasoning-Distill</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>8.38 GB</td>
@@ -3571,7 +3627,7 @@ footer {
         
 
         <tr class="row-struck">
-          <td><b>#4</b></td>
+          <td><b>#5</b></td>
           <td><b>unsloth-Phi-4-reasoning-14B</b><span class='struck-pill'>&lt;3t/s</span></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>8.43 GB</td>
@@ -3583,20 +3639,6 @@ footer {
           <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 1/10 Opus; aprovado geral (31/39); ganhou +28A/+1O com Lambda-RLM; crítico &lt;3 t/s (2.2 t/s).</td>
         </tr>
         
-
-        <tr class="">
-          <td><b>#5</b></td>
-          <td><b>Mellum2-12B-A2.5B-Claude-4.6-4.8-Opus-Thinking</b></td>
-          <td><span class="tag-quant">Q4_K_M</span></td>
-          <td>7.52 GB</td>
-          <td><span class=""><b>30/39</b></span> <small style="color:#64748b;">(30➔30)</small></td>
-          <td><span class=""><b>1/10</b></span> <small style="color:#64748b;">(1➔1)</small></td>
-          <td class="tag-rlm">Sim (+0A / +0O)</td>
-          <td><span class="heat-badge heat-4"><b>13.54 t/s</b></span></td>
-          <td><span class="score-badge">40 pts</span></td>
-          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 1/10 Opus; aprovado geral (30/39); testado sob Lambda-RLM (sem ganho extra); elegível Lambda &gt;=6 t/s (13.5 t/s).</td>
-        </tr>
-        
           </tbody>
         </table>
       </div>
@@ -3606,7 +3648,7 @@ footer {
   <section class="cat-section" data-cat="7. Titãs Intermediários (20B – 27B)">
     <div class="cat-header">
       <div class="cat-title">7. Titãs Intermediários (20B – 27B)</div>
-      <div class="cat-count">8 modelos (3 riscados)</div>
+      <div class="cat-count">10 modelos (3 riscados)</div>
     </div>
 
     <!-- Pódio dos 4 Pilares -->
@@ -3615,23 +3657,23 @@ footer {
         <div class="pillar-card p1">
           <div class="pillar-badge">1º 🏆 Equilíbrio Geral</div>
           <div class="pillar-name">gpt-oss-20b-gpt-5-codex-distill</div>
-          <div class="pillar-meta">Quant: <span class="tag-quant">Q8_0</span> • 11.28 GB • RLM: Não (Puro)</div>
+          <div class="pillar-meta">Quant: <span class="tag-quant">Q8_0</span> • 11.28 GB • RLM: Sim (+3A/+2O)</div>
           <div class="pillar-metrics">
             <div class="metric-item">
               <span class="metric-label">13 Áreas (39Q)</span>
-              <span class="metric-val highlight ">30/39</span>
+              <span class="metric-val highlight heat-badge heat-1">33/39</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">10 Opus Hard</span>
-              <span class="metric-val highlight ">3/10</span>
+              <span class="metric-val highlight heat-badge heat-3">5/10</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">Velocidade</span>
-              <span class="metric-val speed heat-badge heat-4">11.3 t/s</span>
+              <span class="metric-val speed heat-badge heat-4">11.7 t/s</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">Score Equilíbrio</span>
-              <span class="metric-val">72.0 pts</span>
+              <span class="metric-val">99.6 pts</span>
             </div>
           </div>
         </div>
@@ -3639,6 +3681,31 @@ footer {
       
         <div class="pillar-card p2">
           <div class="pillar-badge">2º 🧠 Campeão Profundidade</div>
+          <div class="pillar-name">gpt-oss-20b-antidoom</div>
+          <div class="pillar-meta">Quant: <span class="tag-quant">IQ4_XS</span> • 11.27 GB • RLM: Sim (+0A/+0O)</div>
+          <div class="pillar-metrics">
+            <div class="metric-item">
+              <span class="metric-label">13 Áreas (39Q)</span>
+              <span class="metric-val highlight heat-badge heat-2">36/39</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">10 Opus Hard</span>
+              <span class="metric-val highlight heat-badge heat-4">6/10</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Velocidade</span>
+              <span class="metric-val speed heat-badge heat-2">7.5 t/s</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Gabarito Opus</span>
+              <span class="metric-val">60 pts</span>
+            </div>
+          </div>
+        </div>
+        
+      
+        <div class="pillar-card p3">
+          <div class="pillar-badge">3º 🌐 Mestre da Amplitude</div>
           <div class="pillar-name">gemma-4-26b-a4b-opus-4.7-distilled.Q4_K_M</div>
           <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 15.64 GB • RLM: Sim (+9A/+1O)</div>
           <div class="pillar-metrics">
@@ -3655,31 +3722,6 @@ footer {
               <span class="metric-val speed heat-badge heat-3">8.7 t/s</span>
             </div>
             <div class="metric-item">
-              <span class="metric-label">Gabarito Opus</span>
-              <span class="metric-val">20 pts</span>
-            </div>
-          </div>
-        </div>
-        
-      
-        <div class="pillar-card p3">
-          <div class="pillar-badge">3º 🌐 Mestre da Amplitude</div>
-          <div class="pillar-name">gemopus-4-26B-A4B-APEX-Balanced</div>
-          <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 18.17 GB • RLM: Sim (+12A/+1O)</div>
-          <div class="pillar-metrics">
-            <div class="metric-item">
-              <span class="metric-label">13 Áreas (39Q)</span>
-              <span class="metric-val highlight heat-badge heat-1">34/39</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-label">10 Opus Hard</span>
-              <span class="metric-val highlight ">2/10</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-label">Velocidade</span>
-              <span class="metric-val speed ">4.0 t/s</span>
-            </div>
-            <div class="metric-item">
               <span class="metric-label">Aproveitamento</span>
               <span class="metric-val">87.2%</span>
             </div>
@@ -3689,12 +3731,12 @@ footer {
       
         <div class="pillar-card p4">
           <div class="pillar-badge">4º ⚡ Campeão Velocidade</div>
-          <div class="pillar-name">Gemopus-4-26B-A4B-it-Preview-Q4_K_M</div>
-          <div class="pillar-meta">Quant: <span class="tag-quant">Q4_K_M</span> • 15.64 GB • RLM: Sim (+5A/+1O)</div>
+          <div class="pillar-name">OpenAI-gpt-oss-20B-Claude-4.5-Opus-Heretic-Uncensored</div>
+          <div class="pillar-meta">Quant: <span class="tag-quant">IQ4_XS</span> • 11.27 GB • RLM: Sim (+1A/+0O)</div>
           <div class="pillar-metrics">
             <div class="metric-item">
               <span class="metric-label">13 Áreas (39Q)</span>
-              <span class="metric-val highlight ">32/39</span>
+              <span class="metric-val highlight heat-badge heat-1">33/39</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">10 Opus Hard</span>
@@ -3702,11 +3744,11 @@ footer {
             </div>
             <div class="metric-item">
               <span class="metric-label">Velocidade</span>
-              <span class="metric-val speed heat-badge heat-3">8.3 t/s</span>
+              <span class="metric-val speed heat-badge heat-4">11.9 t/s</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">Throughput</span>
-              <span class="metric-val">8.3 t/s</span>
+              <span class="metric-val">11.9 t/s</span>
             </div>
           </div>
         </div>
@@ -3716,7 +3758,7 @@ footer {
     <!-- Tabela Completa da Categoria -->
     <details class="layer-details">
       <summary>
-        <span>📂 Ver Tabela Completa da Categoria (8 modelos)</span>
+        <span>📂 Ver Tabela Completa da Categoria (10 modelos)</span>
         <span style="font-size:0.75rem; color:#94a3b8;">Clique para expandir / recolher</span>
       </summary>
       <div class="details-content">
@@ -3739,20 +3781,34 @@ footer {
             
         <tr class="">
           <td><b>#1</b></td>
-          <td><b>gpt-oss-20b-gpt-5-codex-distill</b></td>
-          <td><span class="tag-quant">Q8_0</span></td>
-          <td>11.28 GB</td>
-          <td><span class=""><b>30/39</b></span> <small style="color:#64748b;">(30➔30)</small></td>
-          <td><span class=""><b>3/10</b></span> <small style="color:#64748b;">(3➔3)</small></td>
-          <td class="tag-pure">Não (Puro)</td>
-          <td><span class="heat-badge heat-4"><b>11.26 t/s</b></span></td>
-          <td><span class="score-badge">60 pts</span></td>
-          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 3/10 Opus; aprovado geral (30/39); resultado puro sem ajuda RLM; elegível Lambda &gt;=6 t/s (11.3 t/s).</td>
+          <td><b>gpt-oss-20b-antidoom</b></td>
+          <td><span class="tag-quant">IQ4_XS</span></td>
+          <td>11.27 GB</td>
+          <td><span class="heat-badge heat-2"><b>36/39</b></span> <small style="color:#64748b;">(36➔36)</small></td>
+          <td><span class="heat-badge heat-4"><b>6/10</b></span> <small style="color:#64748b;">(6➔6)</small></td>
+          <td class="tag-rlm">Sim (+0A / +0O)</td>
+          <td><span class="heat-badge heat-2"><b>7.46 t/s</b></span></td>
+          <td><span class="score-badge">96 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">Elite Suprema Opus (6/10); quase gabarito 13A (36/39); testado sob Lambda-RLM (sem ganho extra); elegível Lambda &gt;=6 t/s (7.5 t/s).</td>
         </tr>
         
 
         <tr class="">
           <td><b>#2</b></td>
+          <td><b>gpt-oss-20b-gpt-5-codex-distill</b></td>
+          <td><span class="tag-quant">Q8_0</span></td>
+          <td>11.28 GB</td>
+          <td><span class="heat-badge heat-1"><b>33/39</b></span> <small style="color:#64748b;">(30➔33)</small></td>
+          <td><span class="heat-badge heat-3"><b>5/10</b></span> <small style="color:#64748b;">(3➔5)</small></td>
+          <td class="tag-rlm">Sim (+3A / +2O)</td>
+          <td><span class="heat-badge heat-4"><b>11.68 t/s</b></span></td>
+          <td><span class="score-badge">83 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">Elite Suprema Opus (5/10); aprovado geral (33/39); ganhou +3A/+2O com Lambda-RLM; elegível Lambda &gt;=6 t/s (11.7 t/s).</td>
+        </tr>
+        
+
+        <tr class="">
+          <td><b>#3</b></td>
           <td><b>gemma-4-26b-a4b-opus-4.7-distilled.Q4_K_M</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>15.64 GB</td>
@@ -3766,7 +3822,7 @@ footer {
         
 
         <tr class="">
-          <td><b>#3</b></td>
+          <td><b>#4</b></td>
           <td><b>gemopus-4-26B-A4B-APEX-Balanced</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>18.17 GB</td>
@@ -3780,7 +3836,21 @@ footer {
         
 
         <tr class="">
-          <td><b>#4</b></td>
+          <td><b>#5</b></td>
+          <td><b>OpenAI-gpt-oss-20B-Claude-4.5-Opus-Heretic-Uncensored</b></td>
+          <td><span class="tag-quant">IQ4_XS</span></td>
+          <td>11.27 GB</td>
+          <td><span class="heat-badge heat-1"><b>33/39</b></span> <small style="color:#64748b;">(32➔33)</small></td>
+          <td><span class=""><b>2/10</b></span> <small style="color:#64748b;">(2➔2)</small></td>
+          <td class="tag-rlm">Sim (+1A / +0O)</td>
+          <td><span class="heat-badge heat-4"><b>11.89 t/s</b></span></td>
+          <td><span class="score-badge">53 pts</span></td>
+          <td style="color:#94a3b8; font-size:0.75rem;">Resolveu 2/10 Opus; aprovado geral (33/39); ganhou +1A/+0O com Lambda-RLM; elegível Lambda &gt;=6 t/s (11.9 t/s).</td>
+        </tr>
+        
+
+        <tr class="">
+          <td><b>#6</b></td>
           <td><b>Gemopus-4-26B-A4B-it-Preview-Q4_K_M</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>15.64 GB</td>
@@ -3794,7 +3864,7 @@ footer {
         
 
         <tr class="">
-          <td><b>#5</b></td>
+          <td><b>#7</b></td>
           <td><b>gemma-4-26B-A4B-it-Claude-Opus-Distill-v2</b></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>15.64 GB</td>
@@ -3808,7 +3878,7 @@ footer {
         
 
         <tr class="row-struck">
-          <td><b>#6</b></td>
+          <td><b>#8</b></td>
           <td><b>TeichAI-Gemma4-26B-A4B-Opus-MoE</b><span class='struck-pill'>&lt;30A</span></td>
           <td><span class="tag-quant">Q4_K_M</span></td>
           <td>12.37 GB</td>
@@ -3822,7 +3892,7 @@ footer {
         
 
         <tr class="row-struck">
-          <td><b>#7</b></td>
+          <td><b>#9</b></td>
           <td><b>Qwen3.8-27B-Fable-Distill-IQ4_XS</b><span class='struck-pill'>&lt;30A</span><span class='struck-pill'>&lt;3t/s</span></td>
           <td><span class="tag-quant">IQ4_XS</span></td>
           <td>14.94 GB</td>
@@ -3836,7 +3906,7 @@ footer {
         
 
         <tr class="row-struck">
-          <td><b>#8</b></td>
+          <td><b>#10</b></td>
           <td><b>Qwen3.8-27B-TurboFCFusion-Heretic-NEO-CODER</b><span class='struck-pill'>&lt;30A</span><span class='struck-pill'>&lt;3t/s</span></td>
           <td><span class="tag-quant">IQ4_XS</span></td>
           <td>15.44 GB</td>
